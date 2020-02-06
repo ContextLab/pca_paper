@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="087f40a4-16fa-4201-824e-4386ba095805" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/figs/Accuracy_by_components.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/code/figs/Accuracy_by_components.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/notebooks/pca_pieman.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/code/notebooks/pca_pieman.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/scripts/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/scripts/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/scripts/pieman_pca_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/scripts/pieman_pca_analysis.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,8 +25,8 @@
       <file leaf-file-name="pieman_pca_analysis.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/scripts/pieman_pca_analysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-669">
-              <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+            <state relative-caret-position="393">
+              <caret line="50" column="30" lean-forward="true" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
               <folding>
                 <element signature="e#1#22#0" expanded="true" />
               </folding>
@@ -40,7 +37,7 @@
       <file leaf-file-name="pieman_pca_analysis_submit.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/scripts/pieman_pca_analysis_submit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2907">
+            <state relative-caret-position="1103">
               <caret line="159" column="77" selection-start-line="159" selection-start-column="77" selection-end-line="159" selection-end-column="77" />
               <folding>
                 <element signature="e#51#76#0" expanded="true" />
@@ -52,8 +49,8 @@
       <file leaf-file-name="config.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/scripts/config.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="627">
-              <caret line="34" selection-start-line="34" selection-end-line="34" />
+            <state relative-caret-position="456">
+              <caret line="24" column="17" lean-forward="true" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -78,13 +75,15 @@
       <file leaf-file-name="pieman_pca_chunk_submit.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/scripts/pieman_pca_chunk_submit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-80" />
+            <state relative-caret-position="-195" />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="pieman_pca_chunk.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/scripts/pieman_pca_chunk.py">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-384" />
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -98,6 +97,7 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/code/scripts/config.py" />
         <option value="$PROJECT_DIR$/code/scripts/run_job.sh" />
+        <option value="$PROJECT_DIR$/code/scripts/pieman_pca_analysis.py" />
       </list>
     </option>
   </component>
@@ -195,7 +195,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="6" y="23" width="1646" height="1005" extended-state="1" />
+    <frame x="6" y="23" width="1646" height="1005" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -288,16 +288,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/scripts/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/scripts/run_job.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="665">
@@ -308,9 +298,29 @@
     <entry file="file://$PROJECT_DIR$/code/scripts/run_job_local.sh">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/code/scripts/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="24" column="17" lean-forward="true" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/scripts/pieman_pca_chunk_submit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-195" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/scripts/pieman_pca_chunk.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-384" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/code/scripts/pieman_pca_analysis_submit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2907">
+        <state relative-caret-position="1103">
           <caret line="159" column="77" selection-start-line="159" selection-start-column="77" selection-end-line="159" selection-end-column="77" />
           <folding>
             <element signature="e#51#76#0" expanded="true" />
@@ -318,18 +328,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/scripts/pieman_pca_chunk.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/scripts/pieman_pca_chunk_submit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-80" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/scripts/pieman_pca_analysis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-669">
-          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+        <state relative-caret-position="393">
+          <caret line="50" column="30" lean-forward="true" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
           <folding>
             <element signature="e#1#22#0" expanded="true" />
           </folding>
