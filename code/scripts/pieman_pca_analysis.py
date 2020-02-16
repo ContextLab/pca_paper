@@ -7,6 +7,7 @@ import sys
 import os
 from config import config
 import pandas as pd
+import hypertools as hyp
 
 cond = sys.argv[1]
 chunk = sys.argv[2]
@@ -86,6 +87,8 @@ data = np.array(data)
 conds = np.array(conds)
 
 append_iter = pd.DataFrame()
+
+pca_data = np.asarray(hyp.reduce(list(data[conds == cond]), ndims=10))
 
 iter_results = tc.helpers.pca_decoder(data[conds == cond], nfolds=2, dims=int(ndims),
                                     combine=mean_combine,
