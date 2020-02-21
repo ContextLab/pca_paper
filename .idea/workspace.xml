@@ -11,7 +11,6 @@
       <change beforePath="$PROJECT_DIR$/code/figs/Accuracy_by_components_third_1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/code/figs/Accuracy_by_components_third_1.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/figs/Accuracy_by_components_third_2.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/code/figs/Accuracy_by_components_third_2.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/notebooks/pca_pieman.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/code/notebooks/pca_pieman.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/scripts/pieman_pca_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/scripts/pieman_pca_analysis.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -83,8 +82,8 @@
       <file leaf-file-name="arrayprint.py" pinned="false" current-in-tab="false">
         <entry file="file:///usr/local/lib/python3.6/site-packages/numpy/core/arrayprint.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="1375" selection-start-line="1375" selection-end-line="1375" />
+            <state relative-caret-position="842">
+              <caret line="1411" selection-start-line="1411" selection-end-line="1411" />
             </state>
           </provider>
         </entry>
@@ -489,8 +488,8 @@
     </entry>
     <entry file="file:///usr/local/lib/python3.6/site-packages/numpy/core/arrayprint.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="1375" selection-start-line="1375" selection-end-line="1375" />
+        <state relative-caret-position="842">
+          <caret line="1411" selection-start-line="1411" selection-end-line="1411" />
         </state>
       </provider>
     </entry>
