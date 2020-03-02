@@ -130,5 +130,5 @@ dmypy.json
 
 
 data/*
-code/figs/corrs/*
+code/figs/pca/*
 code/figs/neurosynth_data/*
