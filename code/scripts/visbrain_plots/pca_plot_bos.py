@@ -4,7 +4,8 @@ import os
 import glob as glob
 from visbrain.objects import BrainObj, ColorbarObj, SceneObj, SourceObj
 
-cmap = "hot_r"
+colors = ['Blues_r', 'Greens_r', 'Purples_r', 'Reds_r']
+#cmap = "Purples_r"
 
 nii_bo_dir = '../../../data/niis/pcas'
 fig_dir = '../../../paper/figs/source/pcas'
@@ -17,50 +18,71 @@ KW = dict(title_size=14., zoom=2)
 
 template_brain = 'B3'
 
-bo_list = glob.glob(os.path.join(nii_bo_dir, 'intact*.bo'))
+conditions = ['intact', 'paragraph', 'rest', 'word']
 
-for b in bo_list:
+for e, c in enumerate(conditions):
 
-    bo = se.load(b)
+    cmap = colors[e]
 
-    fname = os.path.splitext(os.path.basename(b))[0]
+    b1 = se.load(os.path.join(nii_bo_dir,f'{c}_1_pca.bo'))
+    b2 = se.load(os.path.join(nii_bo_dir,f'{c}_2_pca.bo'))
+    b3 = se.load(os.path.join(nii_bo_dir,f'{c}_3_pca.bo'))
+    b4 = se.load(os.path.join(nii_bo_dir,f'{c}_4_pca.bo'))
+    b5 = se.load(os.path.join(nii_bo_dir,f'{c}_5_pca.bo'))
+
+    data1 = b1.get_data().values.ravel()
+    xyz1 = b1.locs.values
+
+    data2 = b2.get_data().values.ravel()
+    xyz2 = b2.locs.values
+
+    data3 = b3.get_data().values.ravel()
+    xyz3 = b3.locs.values
+
+    data4 = b4.get_data().values.ravel()
+    xyz4 = b4.locs.values
+
+    data5 = b5.get_data().values.ravel()
+    xyz5 = b5.locs.values
+
+
+    template_brain = 'B3'
 
     sc = SceneObj(bgcolor='white', size=(1000, 1000))
 
-    data1 = bo.get_data().values.ravel()
-    xyz1 = bo.locs.values
-
+    CBAR_STATE = dict(cbtxtsz=12, clim=[0, 6], txtsz=10., width=.1, cbtxtsh=3.,
+                      rect=(-.3, -2., 1., 4.))
+    KW = dict(title_size=14., zoom=1)
 
     s_obj_1 = SourceObj('iEEG', xyz1, data=data1, cmap=cmap)
     s_obj_1.color_sources(data=data1)
+    s_obj_2 = SourceObj('iEEG', xyz2, data=data2, cmap=cmap)
+    s_obj_2.color_sources(data=data2)
+    s_obj_3 = SourceObj('iEEG', xyz3, data=data3, cmap=cmap)
+    s_obj_3.color_sources(data=data3)
+    s_obj_4 = SourceObj('iEEG', xyz4, data=data4, cmap=cmap)
+    s_obj_4.color_sources(data=data4)
+    s_obj_5 = SourceObj('iEEG', xyz5, data=data5, cmap=cmap)
+    s_obj_5.color_sources(data=data5)
 
+    s_obj_all = s_obj_1 + s_obj_2 + s_obj_3 + s_obj_4 + s_obj_5
 
-    s_obj_all = s_obj_1
 
     b_obj_proj_left = BrainObj(template_brain, hemisphere='left', translucent=False)
-    b_obj_proj_left.project_sources(s_obj_all, clim=(0, 1), cmap=cmap, radius=r)
+    b_obj_proj_left.project_sources(s_obj_all, clim=(0, 4), cmap=cmap)
     sc.add_to_subplot(b_obj_proj_left, row=0, col=0, rotate='left', use_this_cam=True)
 
 
     b_obj_proj_left = BrainObj(template_brain, hemisphere='left', translucent=False)
-    b_obj_proj_left.project_sources(s_obj_all, clim=(0, 1), cmap=cmap, radius=r)
-    sc.add_to_subplot(b_obj_proj_left, row=1, col=0, rotate='right', use_this_cam=True)
+    b_obj_proj_left.project_sources(s_obj_all, clim=(0, 4), cmap=cmap)
+    sc.add_to_subplot(b_obj_proj_left, row=0, col=1, rotate='right', use_this_cam=True)
 
     b_obj_proj_right = BrainObj(template_brain, hemisphere='right', translucent=False)
-    b_obj_proj_right.project_sources(s_obj_all, clim=(0, 1), cmap=cmap, radius=r)
-    sc.add_to_subplot(b_obj_proj_right, row=1, col=1, rotate='left', use_this_cam=True)
+    b_obj_proj_right.project_sources(s_obj_all, clim=(0, 4), cmap=cmap)
+    sc.add_to_subplot(b_obj_proj_right, row=0, col=2, rotate='left', use_this_cam=True)
 
     b_obj_proj_right = BrainObj(template_brain, hemisphere='right', translucent=False)
-    b_obj_proj_right.project_sources(s_obj_all, clim=(0, 1), cmap=cmap, radius=r)
-    sc.add_to_subplot(b_obj_proj_right, row=0, col=1, rotate='right', use_this_cam=True)
+    b_obj_proj_right.project_sources(s_obj_all, clim=(0, 4), cmap=cmap)
+    sc.add_to_subplot(b_obj_proj_right, row=0, col=3, rotate='right', use_this_cam=True)
 
-    cb_proj = ColorbarObj(b_obj_proj_right,
-                          cblabel='Correlation',
-                          cmap='hot_r',
-                          vmin = 0,
-                          vmax=1,
-                          **CBAR_STATE)
-
-    #sc.add_to_subplot(cb_proj, row=0, col=2, width_max=100)
-
-    sc.screenshot(os.path.join(fig_dir, fname + '.png'), transparent=True)
+    sc.screenshot(os.path.join(fig_dir, f'{c}_5_components.png'), transparent=True)
