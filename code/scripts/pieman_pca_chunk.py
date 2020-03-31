@@ -64,6 +64,7 @@ if debug:
     for third in list(range(3)):
         data = []
         conds = []
+
         for c in pieman_conds:
             next_data = list(map(lambda i: pieman_data[c][:, i][0][divided:divided+10,:20], np.arange(4)))
             data.extend(next_data)
@@ -79,27 +80,27 @@ else:
 
     data_chunks = [0] * 3
     conds_chunks = [0] * 3
-    divided = 0
     for third in list(range(3)):
         data = []
         conds = []
         for c in pieman_conds:
+            timechunk = int(np.round(pieman_data[c][0][0].shape[0]/3, 0))
+            divided = third * timechunk
             if c == 'paragraph':
                 if factors == 700:
                     next_data = list(
-                        map(lambda i: pieman_data[c][:, i][0][divided:divided+100,:], np.where(np.arange(pieman_data[c].shape[1]) != 3)[0]))
+                        map(lambda i: pieman_data[c][:, i][0][divided:divided+timechunk,:], np.where(np.arange(pieman_data[c].shape[1]) != 3)[0]))
                 else:
                     next_data = list(
-                        map(lambda i: pieman_data[c][:, i][0][divided:divided+100,:], np.where(np.arange(pieman_data[c].shape[1]) != 0)[0]))
+                        map(lambda i: pieman_data[c][:, i][0][divided:divided+timechunk,:], np.where(np.arange(pieman_data[c].shape[1]) != 0)[0]))
             else:
-                next_data = list(map(lambda i: pieman_data[c][:, i][0], np.arange(pieman_data[c].shape[1])))
-
+                next_data = list(map(lambda i: pieman_data[c][:, i][0][divided:divided+timechunk,:], np.arange(pieman_data[c].shape[1])))
+            print(np.shape(next_data))
             data.extend(next_data)
             conds.extend([c]*len(next_data))
 
         conds_chunks[third] = conds
         data_chunks[third] = data
-        divided += 100
 
     del pieman_data
 
