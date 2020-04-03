@@ -25,7 +25,7 @@ cond_type = ['intact', 'paragraph', 'word', 'rest']
 # options for levels: integer
 
 # options for reps: integer
-reps =  str('10')
+reps =  str('100')
 
 # options for reps: cfuns
 cfuns =  [str('isfc')]
