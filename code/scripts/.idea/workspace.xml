@@ -11,20 +11,20 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/scripts$pca_plot_bos_chunks.coverage" NAME="pca_plot_bos_chunks Coverage Results" MODIFIED="1585605912726" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/visbrain_plots" />
-    <SUITE FILE_PATH="coverage/scripts$pieman_pca_analysis.coverage" NAME="pieman_pca_analysis Coverage Results" MODIFIED="1584387985497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/scripts$pca_plot_bos.coverage" NAME="pca_plot_bos Coverage Results" MODIFIED="1586269641212" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/visbrain_plots" />
+    <SUITE FILE_PATH="coverage/scripts$pieman_pca_analysis.coverage" NAME="pieman_pca_analysis Coverage Results" MODIFIED="1586450565468" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/scripts$pca_plot_bos.coverage" NAME="pca_plot_bos Coverage Results" MODIFIED="1586271477477" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/visbrain_plots" />
     <SUITE FILE_PATH="coverage/scripts$pieman_pca_chunk_submit.coverage" NAME="pieman_pca_chunk_submit Coverage Results" MODIFIED="1585603041961" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/scripts$pca_plot_changes.coverage" NAME="pca_plot_changes Coverage Results" MODIFIED="1586195941821" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/visbrain_plots" />
     <SUITE FILE_PATH="coverage/scripts$pieman_pca_chunk.coverage" NAME="pieman_pca_chunk Coverage Results" MODIFIED="1585604932290" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/scripts$pieman_pca_analysis_submit.coverage" NAME="pieman_pca_analysis_submit Coverage Results" MODIFIED="1584405848019" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/scripts$pieman_pca_analysis_submit.coverage" NAME="pieman_pca_analysis_submit Coverage Results" MODIFIED="1586450466481" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="pieman_pca_analysis.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="pieman_pca_analysis.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pieman_pca_analysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="93" column="57" selection-start-line="93" selection-start-column="57" selection-end-line="93" selection-end-column="57" />
+            <state relative-caret-position="150">
+              <caret line="79" column="12" selection-start-line="79" selection-start-column="12" selection-end-line="79" selection-end-column="104" />
               <folding>
                 <element signature="e#1#22#0" expanded="true" />
               </folding>
@@ -35,13 +35,13 @@
       <file leaf-file-name="pieman_pca_analysis_submit.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pieman_pca_analysis_submit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="26" column="16" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+            <state relative-caret-position="181">
+              <caret line="53" selection-start-line="53" selection-end-line="53" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pca_plot_bos.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pca_plot_bos.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/visbrain_plots/pca_plot_bos.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="190">
@@ -192,7 +192,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.pca_plot_bos">
+  <component name="RunManager" selected="Python.pieman_pca_analysis">
     <configuration name="pca_plot_bos" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="scripts" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -250,7 +250,7 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="pieman_pca_chunk" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="pieman_pca_analysis" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="scripts" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -263,13 +263,13 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pieman_pca_chunk.py" />
-      <option name="PARAMETERS" value="intact chunk 5 isfc PCA 10 gaussian 100 False" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pieman_pca_analysis.py" />
+      <option name="PARAMETERS" value="paragraph unchunked 97 isfc PCA 10 gaussian 100 False" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="pieman_pca_chunk_submit" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="pieman_pca_analysis_submit" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="scripts" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -282,7 +282,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pieman_pca_chunk_submit.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pieman_pca_analysis_submit.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -291,17 +291,17 @@
     <list>
       <item itemvalue="Python.pca_plot_bos" />
       <item itemvalue="Python.pca_plot_bos_chunks" />
-      <item itemvalue="Python.pieman_pca_chunk" />
-      <item itemvalue="Python.pieman_pca_chunk_submit" />
       <item itemvalue="Python.pca_plot_changes" />
+      <item itemvalue="Python.pieman_pca_analysis" />
+      <item itemvalue="Python.pieman_pca_analysis_submit" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.pieman_pca_analysis" />
+        <item itemvalue="Python.pieman_pca_analysis_submit" />
         <item itemvalue="Python.pca_plot_bos" />
         <item itemvalue="Python.pca_plot_changes" />
         <item itemvalue="Python.pca_plot_bos_chunks" />
-        <item itemvalue="Python.pieman_pca_chunk" />
-        <item itemvalue="Python.pieman_pca_chunk_submit" />
       </list>
     </recent_temporary>
   </component>
@@ -320,12 +320,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="185" y="35" width="1250" height="908" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4050633" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.4050633" />
       <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" />
       <window_info anchor="bottom" id="Terminal" />
@@ -334,7 +333,7 @@
       <window_info anchor="right" id="Database" />
       <window_info anchor="right" id="SciView" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39620253" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39620253" />
       <window_info id="Favorites" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -369,28 +368,21 @@
           <line>109</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pieman_pca_analysis.py</url>
+          <line>75</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pieman_pca_analysis_submit.py</url>
+          <line>53</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="8" />
+      <option name="time" value="10" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pieman_pca_analysis.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="93" column="57" selection-start-line="93" selection-start-column="57" selection-end-line="93" selection-end-column="57" />
-          <folding>
-            <element signature="e#1#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pieman_pca_analysis_submit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="26" column="16" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pieman_pca_chunk.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="158">
@@ -443,6 +435,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pieman_pca_analysis_submit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pieman_pca_analysis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="79" column="12" selection-start-line="79" selection-start-column="12" selection-end-line="79" selection-end-column="104" />
+          <folding>
+            <element signature="e#1#22#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
