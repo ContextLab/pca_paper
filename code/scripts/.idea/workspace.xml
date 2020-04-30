@@ -11,7 +11,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/scripts$pca_plot_bos_chunks.coverage" NAME="pca_plot_bos_chunks Coverage Results" MODIFIED="1585605912726" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/visbrain_plots" />
-    <SUITE FILE_PATH="coverage/scripts$acc_by_network.coverage" NAME="acc_by_network Coverage Results" MODIFIED="1587745276697" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/visbrain_plots" />
+    <SUITE FILE_PATH="coverage/scripts$acc_by_network.coverage" NAME="acc_by_network Coverage Results" MODIFIED="1588204319820" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/visbrain_plots" />
     <SUITE FILE_PATH="coverage/scripts$pieman_pca_network_chunk.coverage" NAME="pieman_pca_network_chunk Coverage Results" MODIFIED="1586630543754" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/scripts$pieman_pca_analysis.coverage" NAME="pieman_pca_analysis Coverage Results" MODIFIED="1586450565468" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/scripts$pca_plot_bos.coverage" NAME="pca_plot_bos Coverage Results" MODIFIED="1586271477477" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/visbrain_plots" />
@@ -28,8 +28,8 @@
       <file leaf-file-name="acc_by_network.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/visbrain_plots/acc_by_network.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
+            <state relative-caret-position="-2485">
+              <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -100,8 +100,8 @@
       <file leaf-file-name="color.py" pinned="false" current-in-tab="false">
         <entry file="file:///usr/local/lib/python3.6/site-packages/visbrain/utils/color.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="29">
-              <caret line="397" selection-start-line="397" selection-end-line="405" selection-end-column="48" />
+            <state relative-caret-position="259">
+              <caret line="404" column="34" lean-forward="true" selection-start-line="404" selection-start-column="34" selection-end-line="404" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -134,9 +134,9 @@
       <find>_project_sources_data</find>
       <find>project_sources</find>
       <find>_array2colormap</find>
-      <find>alpha</find>
       <find>project_source</find>
       <find>_update_cbar_args</find>
+      <find>alpha</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -354,6 +354,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="55" y="96" width="1456" height="908" extended-state="1" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" weight="0.32911393" />
@@ -369,7 +370,7 @@
       <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39620253" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39240506" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -803,13 +804,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/lib/python3.6/site-packages/visbrain/utils/color.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29">
-          <caret line="397" selection-start-line="397" selection-end-line="405" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.6/site-packages/visbrain/visuals/brain_visual.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="295">
@@ -837,10 +831,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///usr/local/lib/python3.6/site-packages/visbrain/utils/color.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="404" column="34" lean-forward="true" selection-start-line="404" selection-start-column="34" selection-end-line="404" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/visbrain_plots/acc_by_network.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        <state relative-caret-position="-2485">
+          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>

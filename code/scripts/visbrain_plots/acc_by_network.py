@@ -8,7 +8,7 @@ from visbrain.gui import Brain
 #cmap = "yeo_colors_7"
 
 
-cmap = "black_7"
+cmap = "blue_7"
 template_brain = 'B3'
 
 CBAR_STATE = dict(cbtxtsz=12, clim=[0, 7], txtsz=10., width=.1, cbtxtsh=3.,
