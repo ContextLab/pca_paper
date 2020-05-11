@@ -353,7 +353,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="55" y="96" width="1456" height="908" extended-state="1" />
+    <frame x="55" y="96" width="1456" height="908" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
