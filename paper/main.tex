@@ -56,13 +56,26 @@ when thoughts are deeper and more complicated, the units of neural
 activity would carry more information, and would require therefore
 fewer components to decode.  
 
-This idea can be explored in this visual analogy for neural
+This idea can be explored in this visual analogy (Fig.~\ref{fig: pie_example}) for neural
 compression.  Here there are two images of pies, the top pie is more
 complex than the bottom.  On the left we're illustrating that it takes
 fewer componenets to reach the same 95 percent variance explained in
 the less complex pie, which corresponds to higher compression.
 However, on the right with very few components similar
 variance is explaining both pies.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{figs/pie_example.pdf}
+  \caption{\textbf{Illustration of compression.} Visual analogy for
+    neural compression. Here are 2 images of pies, one more complex
+    thantheother. \textbf{a.}It takes fewer components to reach the same percent
+    variance explained in the less complex pie, which corresponds to
+    higher compression. \textbf{b.}However, with very few components, similar variance is explained in both pies.
+\textbf{c.} Plots the cumulative explained variance for more and more components.}
+  \label{fig:pie_example}
+\end{figure}
+
 
 We investigated the dimensionality of neural patterns by training
 classifiers using more and more principle components. Or, in other
@@ -75,334 +88,22 @@ listened to a story varying in cognitive richness~\citep{SimoEtal16}.
 
 
 
+
 \section*{Methods}
-A major challenge to studying such patterns is that typically neither
-the correlations nor the hierarchical organizations of those
-correlations may be directly observed.  Rather, these fundamental
-properties must be inferred indirectly by examining the observable
-parts of the system-- e.g., the behaviors of the individual units of
-that system.  Here we propose a series of mathematical operations that may be used to approximate dynamic correlations at a range of scales (i.e., orders of interaction).
 
-There are two basic steps to our approach (Fig.~\ref{fig:methods_fig}).  In the first step, we take
-a number-of-timepoints ($T$) by number-of-features ($F$)
-\textit{matrix of observations} ($\mathbf{X}$) and we return a $T$ by
-$\frac{F^2 - F}{2}$ \textit{matrix of dynamic correlations}
-($\mathbf{Y}$).  Here $\mathbf{Y_0}$ describes, at each moment, how
-all of the features (columns of $\mathbf{X}$) are inferred to be
-interacting.  (Since the interactions are assumed to be non-recurrent
-and symmetric, only the upper triangle of the full correlation matrix
-is computed.)  In the second step, we project $\mathbf{Y_0}$ onto an
-$F$-dimensional space, resulting in a new $T$ by $F$ matrix
-$\mathbf{Y_1}$.  Note that $\mathbf{Y_1}$ contains information about
-the correlation dynamics present in $\mathbf{X}$, but represented in a
-compressed number of dimensions.  By repeatedly applying these two
-steps in sequence, we can examine and explore higher order dynamic
-correlations in $\mathbf{X}$.
+\subsubsection*{Dimensionality reduction}
 
-\subsection*{Dynamic correlations}
-Given a matrix of observations, we can compute the (static)
-correlations between any pair of observations, $\mathbf{X}_i$ and
-$\mathbf{X}_j$ using:
-\begin{align}
-  \mathrm{corr}(\mathbf{X}_i, \mathbf{X}_j) &= \frac{\sum_{t=1}^T \left(\mathbf{X}_i(t)
-                                              -
-                                              \bar{\mathbf{X}_i}\right) \left(\mathbf{X}_j(t)
-                                              -
-                                              \bar{\mathbf{X}_j}\right)}{\sqrt{\sum_{t=1}^T
-                                              \sigma^2_{\mathbf{X}_i} 
-                                              \sigma^2_{\mathbf{X}_j}}},~\mathrm{where}\\\label{eqn:corr}
-  \bar{\mathbf{X}_k} &= \sum_{t=1}^T
-                       \mathbf{X}_k(t),~\mathrm{and}\\
-  \sigma^2_{\mathbf{X}_k} &= \sum_{t=1}^T \left( \mathbf{X}_k -
-                            \bar{\mathbf{X}_k} \right)^2 
-\end{align}
+Explain PCA 
 
-We can generalize this formula to compute time-varying correlations by
-incorporating a \textit{weight function} that takes a time $t$ as input,
-and returns how much the observed data every timepoint (including $t$)
-contribute to the correlations at time $t$ (Fig.~\ref{fig:weights}).
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{figs/kernels}
-  \caption{\textbf{Examples of time-varying weights.  Each panel
-      displays per-timepoint weights at $t = 50$, evaluated for 100
-      timepoints ($1, ..., 100$).  a. Uniform weights.} The weights
-    are timepoint-invariant; observations at all timepoints are
-    weighted equally, and do not change as a function of $t$.  This is
-    a special case of weight function that reduces dynamic
-    correlations to static correlations.  \textbf{b. Dirac delta
-      function.} Only the observation at timepoint $t$ is given weight
-    (of 1), and weights for observations at all other timepoints are
-    set to 0.  \textbf{c. Gaussian weights.} Each observation's
-    weights fall off in time according to a Gaussian probability
-    density function centered on $\mu = t$.  Weights derived using
-    several different example variance parameters ($\sigma^2$ are
-    displayed.  \textbf{d. Laplace weights.}  Each observation's
-    weights fall off in time according to a Laplace probability
-    density function centered on $\mu = t$.  Weights derived using
-    several different example scale parameters ($b$) are displayed.
-    \textbf{e. Mexican hat (Ricker wavelet) weights.}  Each
-    observation's weights fall off in time according to a Ricker
-    wavelet centered on $t$.  This function highlights the
-    \textit{contrasts} between local versus surrounding activity
-    patterns in estimating dynamic correlations. Weights derived using
-    several different example width parameters ($\sigma$) are
-    displayed.  }
-  \label{fig:weights}
-\end{figure}
-
-Given a weight function $w(t)$ for timepoint $t$, evaluated at
-timepoints in the interval $\left[ 1, ..., T \right]$, we can extend the static correlation formula
-in Equation~\ref{eqn:corr} to reflect an \textit{instantaneous
-  correlation} at timepoint $t$:
-\begin{align}
-  \mathrm{timecorr}(\mathbf{X}_i, \mathbf{X}_j, t) &= \frac{\sum_{t=1}^T \left(\mathbf{X}_i(t)
-                                              -
-                                              \widetilde{\mathbf{X}}_i(t)\right) \left(\mathbf{X}_j(t)
-                                              -
-                                              \widetilde{\mathbf{X}}_j(t)\right)}{\sqrt{\sum_{t=1}^T
-                                              \widetilde{\sigma}^2_{\mathbf{X}_i}(t) 
-                                              \widetilde{\sigma}^2_{\mathbf{X}_j}}(t)},~\mathrm{where}\\\label{eqn:timecorr}
-  \widetilde{\mathbf{X}}_k(t) &= \sum_{i=1}^T
-                       w(t, i)\mathbf{X}_k(i),\\
-  \widetilde{\sigma}^2_{\mathbf{X}_k}(t) &= \sum_{i=1}^T \left( \mathbf{X}_k(i) -
-                            \widetilde{\mathbf{X}}_k(t) \right)^2,
-\end{align}
-and $w(t, i)$ is shorthand for $w(t)$ evaluated at timepoint $i$.
-Equation~\ref{eqn:timecorr} may be used to estimate the instantaneous
-correlations between every pair of observations, at each timepoint
-(i.e., $\mathbf{Y}$).
-
-\subsubsection*{Inter-subject dynamic correlations}
-Equation~\ref{eqn:timecorr} provides a means of taking a single
-observation matrix, $\mathbf{X}$ and estimating the dynamic
-correlations from moment to moment, $\mathbf{Y}$.  Suppose that one
-has access to a set of multiple observation matrices that reflect the
-same phenomenon.  For example, one might collect neuroimaging data
-from several experimental participants, as each participant performs
-the same task (or sequence of tasks).  Let $\mathbf{X}_1$,
-$\mathbf{X}_2$, ..., $\mathbf{X}_P$ reflect the $T$ by $F$ observation
-matrices for each of $P$ participants in an experiment.  We can use
-\textit{inter-subject functional connectivity}~\citep[ISFC;
-][]{SimoEtal16} to compute the degree of stimulus-driven correlations
-reflected in the multi-participant dataset at a given timepoint $t$
-using:
-\begin{align}
-\bar{\mathbf{C}}(t) = M\left(R\left(\frac{1}{2P} \sum_{i=1}^P
-  Z\left(Y_i(t)\right)^\mathrm{T} + Z\left(Y_i,(t)\right)\right)\right),
-\end{align}
-where $M$ extracts and vectorizes the diagonal and upper triangle of a symmetric
-matrix, $Z$ is the Fisher $z$-transformation~\citep{Zar10}:
-\begin{align}
-Z(r) = \frac{\log(1+r) - \log(1-r)}{2}
-\end{align}
-$R$ is the inverse of $Z$:
-\begin{align}
-R(z) = \frac{\exp(2z - 1)}{\exp(2z + 1)},
-\end{align}
-and $\mathbf{Y}_i(t)$ denotes the correlation matrix
-(Eqn.~\ref{eqn:corr}) between each column of $\mathbf{X}_i$ and each
-column of the average observations from all \textit{other}
-participants, $\bar{\mathbf{X}}_{ \backslash i}$:
-\begin{align}
-  \bar{\mathbf{X}}_{ \backslash i} = R\left(\frac{1}{P-1}\sum_{i \in
-  \backslash i} Z\left( \mathbf{X}_i \right) \right),
-\end{align}
-where $ \backslash i$ denotes the set of all participants other than
-participant $i$. In this way, the $T$ by $\left( \frac{F^2 - F}{2}
-  + F \right)$
-matrix $\bar{\mathbf{C}}$ is the time-varying extension of the ISFC
-approach developed by \cite{SimoEtal16}.
-
-\subsection*{Higher-order correlations}
-Given a timeseries of dynamic correlations (e.g., obtained using
-Eqn.~\ref{eqn:timecorr}), higher-order correlations reflect the
-dynamic correlations between columns of $\mathbf{Y}$.  Given unlimited
-computing resources, one could use repeated applications of
-Equation~\ref{eqn:timecorr} to estimate these higher-order
-correlations (i.e., substituting in the previous output, $\mathbf{Y}$,
-for the input, $\mathbf{X}$ in the equation).  However, because each
-output $\mathbf{Y}$ has $\mathcal{O}(F^2)$ columns relative to $F$ columns in
-the input $\mathbf{X}$, the output of Equation~\ref{eqn:timecorr}
-grows with the square of the number of repeated applications (total
-cost of computing $n$\textsuperscript{th} order correlations is
-$\mathcal{O}(F^{2n})$ for $n \in \mathcal{J}, n > 0$).  When $F$ or $n$ is large,
-this approach quickly becomes intractable.
-
-To make progress in computing $\mathbf{Y_{n+1}}$, we can approximate
-$\mathbf{Y}_n$ by computing an $\mathcal{O}(F)$-dimensional embedding of
-$\mathbf{Y}_n$, termed $\hat{\mathbf{Y}}_n$, and then we can apply
-Equation~\ref{eqn:timecorr} to $\hat{\mathbf{Y}}_n$ rather than
-directly to $\mathbf{Y}_n$.  This enables us to maintain $\mathcal{O}(n)$
-scaling with respect to $n$, rather than exponential scaling via the
-direct approach.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.5\textwidth]{figs/methods_fig}
-  \caption{\textbf{Computing higher order correlations. } Dynamic
-    correlations
-  are computed then approximated to the same size as original data
-  using dimensionality reduction.
-  This process is repeated, and can be used to compute up to any
-  arbitrary order with compuations scaling linearly (as opposed to exponentially) with order. }
-  \label{fig:methods_fig}
-\end{figure}
-
-
-There are many possible methods for computing $\hat{\mathbf{Y}}_n$
-from $\mathbf{Y}_n$, including traditional dimensionality reduction
-approaches and graph theory based approaches as described next.  In the
-\textit{Discussion} section we elaborate on other potential approaches.
-
-\subsubsection*{Dimensionality reduction-based approaches to computing
-  $\hat{\mathbf{Y}}_n$}
-
-Commonly used dimensionality reduction algorithms include Principal
-Components Analysis~\citep[PCA; ][]{Pear01}, Probabilistic
-PCA~\citep[PPCA; ][]{TippBish99}, Exploratory Factor
-Analysis~\citep[EFA; ][]{Spea04}, Independent Components
-Analysis~\citep[ICA; ][]{JuttHera91, ComoEtal91}, $t$-Stochastic
-Neighbor Embedding~\citep[$t$-SNE; ][]{MaatHint08}, Uniform Manifold
-Approximation and Projection~\citep[UMAP; ][]{McInHeal18},
-non-negative matrix factorization~\citep[NMF; ][]{LeeSeun99},
-Topographic Factor Analysis (TFA)~\cite{MannEtal14b}, Hierarchical
-Topographic Factor analysis (HTFA)~\cite{MannEtal18}, Topographic
-Latent Source Analysis (TLSA)~\cite{GersEtal11}, Dictionary
-learning~\citep{MairEtal09a, MairEtal09b}, deep
-autoencoders~\citep{HintSala06}, among others.  While complete
-characterizations of each of these algorithms is beyond the scope of
-the present manuscript, the general intuition driving these
-approaches is to compute the $\hat{\mathbf{Y}}$ with $i$ columns that
-is closest to the original $\mathbf{Y}$ with $j$ columns, and where
-(typically) $i \ll j$.  The different approaches place different
-constraints on what properties $\hat{\mathbf{Y}}$ must satisfy and
-which aspects of the data are compared (and how) to characterize the
-match between $\hat{\mathbf{Y}}$ and  $\mathbf{Y}$.
-
-Applying dimensionality reduction algorithms to $\mathbf{Y}$ yields a
-$\hat{\mathbf{Y}}$ whose columns reflect weighted combinations (or
-nonlinear transformations) of the original columns of $\mathbf{Y}$.
-This has two main consequences.  First, with each repeated
-dimensionality reduction, the resulting $\hat{\mathbf{Y}}_n$ has lower
-and lower fidelity (with respect to what the ``true'' $\mathbf{Y}_n$
-might have looked like without using dimensionality reduction to
-maintain scalability).  In other words, computing $\hat{\mathbf{Y}}_n$
-is a lossy operation.  Second, whereas the columns of $\mathbf{Y}_n$
-may be mapped directly onto pairs of columns of $\mathbf{Y}_{n-1}$,
-that mapping either becomes less cleanly defined in
-$\hat{\mathbf{Y}}_n$ due to the reweightings and/or nonlinear
-transformations.
-
-\subsubsection*{Graph theory-based approaches to computing
-  $\hat{\mathbf{Y}}_n$}
-
-Graph theoretic measures take as input a matrix of interactions (e.g.,
-using the above notation, an $F \times F$ correlation matrix or
-binarized correlation matrix reconstituded from a single timepoint's
-row of $\mathbf{Y}$) and return as output a set of $F$ measures
-describing how each node (feature) sits within that interactions
-matrix with respect to the rest of the population.  Common measures
-include betweeness centrality~\citep[the proportion of shortest paths
-between each pair of nodes in the population that involves the given
-node in question; e.g., ][]{Newm05, OpsaEtal10, Bart04, GeisEtal08,
-  Free77}; diversity and dissimilarity~\citep[characterizations of how
-differently connected a given node is from others in the population;
-e.g., ][]{Rao82, Lin09, RicoSzei06}; Eigenvector centrality and
-pagerank centrality~\citep[measures of how influential a given node is
-within the broader network; e.g., ][]{Newm08, Bona07, LohmEtal10,
-  HaluEtal13}; transfer entropy and flow coefficients~\citep[a measure
-of how much information is flowing from a given node to other nodes in
-the network; e.g., ][]{HoneEtal07, Schr00}; $k$-coreness
-centrality~\citep[a measure of the connectivity of a node within its
-local sub-graph; e.g., ][]{AlvaEtal05, ChriFowl10}; within-module
-degree~\citep[a measure of how many connections a node has to its
-close neighbors in the network; e.g., ][]{RubiSpor10}; participation
-coefficient~\citep[a measure of the diversity of a node's connections
-to different sub-graphs in the network; e.g., ][]{RubiSpor10}; and
-sub-graph centrality~\citep[a measure of a node's participation in all
-of the network's sub-graphs; e.g., ][]{EstrRodr05}.
-
-As an alternative to the above dimensionality reduction approach to
-embedding $\mathbf{Y}_n$ in a lower-dimensional space, but still
-allowing for scalable explorations of higher-order structure in the
-data, we also explore using the above graph theoretic measures as a
-means of obtaining $\hat{\mathbf{Y}}_n$.  In particular: for a given
-graph theoretic measure, $\eta: \mathcal{R}^{F \times F} \rightarrow
-\mathcal{R}^F$, we can use $\eta$ to tranform each row of
-$\mathbf{Y}_n$ in a way that characterizes the corresponding
-graph-theoretic properties of each column.  Whereas the dimensionality
-reduction approach to computing $\hat{\mathbf{Y}}_n$ is lossy,
-the graph-theory approach is lossless.  However, whereas the
-dimensionality reduction approach maintains ties (direct or indirect)
-to the original activity patterns reflected in $\mathbf{Y}_{n-1}$, the
-graph-theory approach does not.  Instead, the graph-theory
-characterizes the nature and timecourse of each feature's
-\textit{participation} in the network.
 
 \subsection*{Evaluation metrics}
-We evaluate our approach to extracting dynamic correlations and
-higher-order correlations using several metrics detailed next.  First,
-we generated synthetic data using known time-varying correlations, and
-then we evaluated the fidelity with which Equation~\ref{eqn:timecorr}
-could recover those correlations (for synthetic datasets with
-different properties, and using different kernels to define the
-weights; Fig.~\ref{fig:weights}).  We then turned to a series of
-analyses on a (real) neuroimaging dataset where the ground truth
-correlations were \textit{not} known.  We evaluated whether the
-recovered correlations could be used to accurately label held-out
+ We evaluated the degree of
+compression of held-out
 neuroimaging data with the time at which it was collected.  We used this latter evaluations (using timepoint
 decoding) as a proxy for
-gauging how much explanatory power the recovered correlations held
+gauging how much explanatory power the compressed data held
 with respect to the observed data.
 
-\subsubsection*{Generating synthetic data}
-To explore recovery of a constant covariance (Fig.~\ref{fig:synthetic_data},  a.), we generated syntheic
-data sampled from a constant covariance matrix. To do this, we created one random
-covariance matrix, $K$, with 50 features, and for each of the 300 timepoints  we
-sampled from a Gaussian distribution centered on $K$.  Similarly, we generated synthetic data
-sampled from a random covariance matrix (Fig.~\ref{fig:synthetic_data}, b.) by creating a new random
-covariance matrix $K(t)$, for each of the 300 timepoints and sampled from a
-Gaussian distribution centered on $K(t)$.
-
-To generate synthetic data from a dynamically changing covariance
-matrix (Fig.~\ref{fig:synthetic_data},  c.),
-we generated two random covariance
-matrices, $K_{1}$ and $K_{2}$.  We then computed a weighted average covariance matrix
-for each of the 300 timepoint, $K(t)$, 
-by taking the linearly spaced weights ($w$) of the two random matrices, 
-\begin{align}
-K(t) = w(t) * K_{1} + (1 - w(t)) *  K_{2}, \\\label{eqn:ramping}
-\end{align}
-and for each of the 300 timepoints sampled from a
-Gaussian distribution centered on $K(t)$.
-
-Lastly, for the synthetic data containing block structure (Fig.~\ref{fig:synthetic_data},  d.), we followed the same
-process of creating synthetic data sampled from a constant covariance
-matrix (see above) but sampled from a new random covariance matrix
-after 60 consecutive timepoints.  We then pieced the blocks together
-to create a sythetic dataset with 300 total timepoints but drawn from
-5 separate covariance matrices. 
-
-\subsubsection*{Recovery of ground truth parameters from synthetic
-  data}
-
-
-We applied timecorr, using delta and gaussian (width = 10) kernels
-Fig.~\ref{fig:weights}) to each of these 
-synthetic datasets, then correlated each recovered
-correlation matrix with the ground truth.  We repeated this process 10
-times and explored how recovery varies
-with the kernel and the specific structure of the data. For the
-ramping synthetic dataset (Fig.~\ref{fig:synthetic_data},  c.)  and for the
-block synthetic dataset (Fig.~\ref{fig:synthetic_data},  d.)  we made further
-comparisons of the timecorr recovered correlation matrices. We
-compared the ramping recovered correlation matrices to only the first random covariance matrix $K_{1}$
-(First, Fig.~\ref{fig:synthetic_data},  c.) and to only the last
-random covariance matrix $K_{2}$ (Last, Fig.~\ref{fig:synthetic_data},
-c.) from Equation~\ref{eqn:ramping}. We also compared the block recovered correlation matrices in to
-the block specific covariance matrix (Block 1-5,
-Fig.~\ref{fig:synthetic_data},  d.).
 
 
 \subsubsection*{Timepoint decoding}
@@ -421,80 +122,25 @@ that were specifically driven by the story participants listened to.
 Following the analyses conducted by (HTFA)~\cite{MannEtal18}, we first
 applied \textit{hierarchical topographic factor analysis} (HTFA) to
 the fMRI datasets to obtain a time series of 700 node activities for
-every participant.  We then computed the dynamic weighted ISFC using a
-range of kernels and widths.  Specifically, we used Gaussian, Laplace,
-and mexican hat kernels, as well as widths of 5, 10, 20, and 50.  We
-then approximated these dynamic correlation using two reduction measures, PCA and eigenvector centrality, and computed the dynamic weighted ISFC on the approximations.  We repeated this process up to 10th order approximated correlations.  
+every participant.  We then applied dimensionality reduction
+(Incremental PCA) for each group.
+
+We then compared the groups’ activity patterns (using Pearson
+correlations) to estimate the story times each corresponding pattern
+using more and more principle components.   
 
 To assess decoding accuracy, we randomly divided participants for each
-stimulus into training and testing groups. For the zeroth order, we
-computed the mean factor activity for each group.  For all subsequent
-orders up to the tenth order, we computed the mean approximated
-dynamic ISFC of factor activity for each group. To assess how
-additional higher-order correlations contribute to decoding accuracy,
-for each order we included a weighted-mixutre (described below) of the activity patterns of all
-previous orders.  For each group of participants in turn, we compared these activity patterns (using Pearson correlations) to estimate the story times each pattern corresponded to. Specifically, we asked, for each timepoint: what are the correlations
+stimulus into training and testing groups. We then compared the
+groups’ activity patterns (using Pearson correlations) to estimate the
+story times each corresponding pattern using more and more principle
+components (as the data became less compressed). Specifically, we asked, for each timepoint: what are the correlations
 between the first group's and second group's activity patterns at each
 order. We note that the decoding test we used is a conservative in which we count a timepoint label as incorrect if it is not an exact match.
-
-For each order we obtained the weighted-mixture of the correlation
-matrices for the current order and all previous orders using mixing parameter, $\phi$, where $0 <\phi< 1$ reflects a
-weighted mixture of order based decoding Fig.~\ref{fig:decoding_level}
-Panel c. ). We calculated  $\phi$, by
-subdividing the training group and using the quasi-Newton method of
-Broyden, Fletcher, Goldfarb, and Shanno (BFGS ~\citep{NoceWrig06}) for optimization. We
-repeated this cross-validation process 10 times for each parameter set. 
 
 
 
 \section*{Results}
-\subsubsection*{Synthetic data}
 
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{figs/synthetic_data.pdf}
-  \caption{\textbf{Dynamic correlation recovery with synthetic data. } Using synthetic data containing different
-    underlying correlational structure,
-   we test how well we can recover dynamic correlation matrices using two kernels (delta and gaussian,
-    width = 10) when compared to groud truth.  We plot recovery using of datasets containing the
-    following underlying structure:
-    \textbf{a. Constant. b. Random. c. Ramping.  d. Block.}}
-  \label{fig:synthetic_data}
-\end{figure}
-
-To assess the performance of dynamic correlation recovery using
-timecorr, we varied width the kernel and the specific structure of the
-data. We applied timecorr, using delta and gaussian kernels
-Fig.~\ref{fig:weights}) to each of the following  
-synthetic datasets: constant, random, ramping, and block.  We then correlated each recovered
-correlation matrix with the ground truth. 
-
-For the constant synthetic dataset, a gaussian kernel (width=10)
-outperformed the delta kernel (Fig.~\ref{fig:synthetic_data},  a.).  This is in contrast with the random
-synthetic dataset, for which the delta kernel best captures the
-rapidly changing structure (Fig.~\ref{fig:synthetic_data},  b.). For
-the ramping synthetic dataset, the slow changing strucutre within the
-data is best
-captured by the gaussian kernel and the best recovery occurs in the
-middle (Ramping, Fig.~\ref{fig:synthetic_data},
-c.). In addition to comparing the timecorr recovered correlation
-matrices to the ground truth, we
-further compared the ramping recovered correlation matrices to only the first random covariance matrix $K_{1}$
-(First, Fig.~\ref{fig:synthetic_data},  c.) and to only the last
-random covariance matrix $K_{2}$ (Last, Fig.~\ref{fig:synthetic_data},
-c.), both of which perform best at the beginning and end respectively.
-
-Similary for the block sythetic dataset, we compared the timecorr
-recovered correlation matrices to the ground truth as well as to each
-block-specific covariance matrix (Block 1-5,
-Fig.~\ref{fig:synthetic_data},  d.).  Although the structure is
-changing by block, the gaussian kernel once again outperforms the
-delta kernel.  Performance does however drop near even boundaries for
-when using the gaussian kernel. 
-
-
-\subsubsection*{Neuroimaging dataset~\citep{SimoEtal16}}
 For our decoding analysis, we used HTFA-derived node activities
 ~\cite{MannEtal18} from fMRI data collected as participants listened
 to an audio recording of a story (intact condition; 36 participants),
@@ -503,112 +149,47 @@ participants in the paragraph-scrambled condition listened to the
 paragraphs in a randomized order and 36 in the word-scrambled
 condition listened to the words in a randomized order), or lay resting
 with their eyes open in the scanner (rest condition; 36
-participants). We sought to demonstrate how higher-order correlations
-may be used to examine dynamic interactions of brain patterns in
-(real) multi-subject fMRI datasets. This story listening dataset was
+participants). We sought to understand the 'dimensionality' of the
+neural patterns by using more and more principle
+components to decode a multi-subject fMRI datasets. This story listening dataset was
 collected as part of a separate study, where the full imaging
 parameters, image preprocessing methods, and experimental details may
 be found~\citep{SimoEtal16}. The dataset is available at
 \href{url}{http://arks. princeton.edu/ark:/88435/dsp015d86p269k}.
 
+
 \begin{figure}
   \centering
-  \includegraphics[width=\textwidth]{figs/decode_level.pdf}
-  \caption{\textbf{Decoding by order.
-      a.\&d. Relative decoding accuracy by order.} Ribbons of each
-    color display cross-validated decoding performance averaged over
-    all parameters for each condition (intact, paragraph, word,
-    and rest) using PCA (a.) or eigenvector centrality (d.) to
-    approximate correlations. Decoders were trained using increasingly more
-    higher-order information and this ribbons are displayed relative
-    to chance at 0. The red dots indicates
-    maximum decoding accuracy for each condition. \textbf{b.\&e. Z-transformed decoding accuracy
-      by order.}  We Z-transformed the decoding accuracy by order to better
-    visualize the order with the maximum decoding accuracy for each
-    condition using PCA (b.) or eigenvector centrality (e.) to
-    approximate correlations. \textbf{c.\&f. Optimized weights.} Bar heights indicate the
-    optimized mixing paramete $\phi$ of each contributing order up to
-    and including the order with the maximum
-    decoding accuracy for each contributing order using PCA (c.) or eigenvector centrality (f.) to
-    approximate correlations.
-  For the order with maximum decoding accuracy by condition, we show
-  barplots of the optimized weights $\phi$  for each contributing
-  order.}
-  \label{fig:decoding_level}
+  \includegraphics[width=\textwidth]{figs/decode_interpret.pdf}
+  \caption{\textbf{Decoding accuracy.} \textbf{a. Decoding accuracy by
+      number of components.} Ribbons of each color display
+    cross-validated decoding performance for each condition (intact,
+    paragraph, word, and rest). Decoders were trained using
+    increasingly more principle components and displayed relative to
+    chance (red line). \textbf{b. Fixed decoding accuracy by number of
+      components.} We zoom in on the plot shown in \textbf{a.} and add
+    a line denoting fixed decoding accuracy (.05). We plot where the
+    intact, paragraph, and word conditions intersect.
+    \textbf{c. Explanation of inflection metric.} First the we fit a sigmoid function to the decoding accuracy by number of components. Second, we found where the second derivate is both positive and less than .0001. Last, we then plot that inflection point as a single metric to capture the slope and asymptote of the curve.}
+  \label{fig:decode_interpret}
 \end{figure}
 
-
-We next evaluated if our model of high-order correlations in brain activity can capture cognitively relevant brain patterns. We performed a decoding analysis, using cross validation to estimate (using other participants’ data) which parts of the story each weighted-mixture of higher-order brain activity pattern corresponded to (see \textit{Materials and methods}). We note that our primary goal was not to achieve perfect decoding accuracy, but rather to use decoding accuracy as a benchmark for assessing whether different neural features specifically capture cognitively relevant brain patterns.
+We performed a decoding analysis, using cross validation to estimate
+(using other participants’ data) which parts of the story the additional added
+principle component corresponded to (see \textit{Materials and methods}). We note that our primary goal was not to achieve perfect decoding accuracy, but rather to use decoding accuracy as a benchmark for assessing whether different neural features specifically capture cognitively relevant brain patterns.
 
 Separately for each experimental condition, we divided participants
-into two groups. For the zeroth order, we computed the mean factor
-activity for each group.  For all subsequent orders up to the tenth
-order, we computed the mean approximated dynamic ISFC of factor
-activity for each group (see \textit{Materials and methods}), and
-combined in a weighted mixutre with all previous orders
-(i.e. cross-validation for the second
-order contained a weighted-mixture of zeroth, first, and second order
-(Fig.~\ref{fig:decoding_level}, c.\&f.).  For
-each order, we correlated the group 1 activity patterns with group 2
-activity patterns.  We then subdivided the group 1 to obtain an
-optimal weighting parameter for each order’s correlation matrix using
-the same cross validation method. We used the optimal weighting
-parameters to obtain a weighted-mixture (see \textit{Materials and methods}) of each order’s correlation
-matrix. Using these correlations, we labeled the group 1 timepoints
-using the group 2 timepoints with which they were most highly
-correlated; we then computed the proportion of correctly labeled group
-1 timepoints. (We also performed the symmetric analysis whereby we
-labeled the group 2 timepoints using the group 1 timepoints as a
-template.) We repeated this procedure 100 times (randomly re-assigning
-participants to the two groups each time) to obtain a distribution of
-decoding accuracies for each experimental condition. There were 272
+into two groups. Starting with 1 principle comonent, for
+each dimension we added another principle component, and we correlated the group 1 activity patterns with group 2
+activity patterns.  There were 272
 timepoints for paragraph condition, 300 timepoints for intact and word
 conditions, and 400 timepoints for rest condition,  so chance
 performance on this decoding test is was $\frac{1}{272}$,
 $\frac{1}{300}$, and $\frac{1}{400}$ respectively.
  
-We repeated this process for each set of parameters, varying kernel
-type and width, and averaged over the reduction technique used to
-approximate the higher-order correlations (PCA Fig.~\ref{fig:decoding_level},  a.-c. and eigenvector
-centrality Fig.~\ref{fig:decoding_level},  d.-f.).  Since there is no ground truth in these analyses, and we did not know
-which parameters best capture the data, we instead report a robustness
-search by averaging over the parameters and reporting which results
-consistently showed up across all parameters.
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{figs/brain_plots.pdf}
-  \caption{\textbf{Average correlations by order for the intact listening condition.} Using eigenvector
-    centrality to approximate higher-order correlations for the intact
-    listening condition, we plot the
-    strongest 25\% absolute value
-    mean correlation for order: \textbf{a. 1. b. 2. c. 3.,
-      and d. 4}, representing the degree of agreement by
-    location pair over time.}
-  \label{fig:brain_plots}
-\end{figure}
+- As complexity of the stimulus increases, decoding accuracy
+increases (Fig.~\ref{fig:decode_interpret},  a.).  
 
-The two methods used to approximate the higher-order correlations (PCA Fig.~\ref{fig:decoding_level},  a.-c. and eigenvector
-centrality Fig.~\ref{fig:decoding_level},  d.-f.) capture different
-facets of the activity patterns.  Using PCA, the higher-order
-correlations are all linked to the original activity patterns, whereas
-eigenvectory centrality breaks the immediate link with specific brain
-areas and instead characterizes the position of the nodes in the
-network that are similar over time.
-
-We found for both PCA and eigenvector centrality, during the intact condition in the
-experiment, classifiers that incorporated higher-order correlations
-yielded consistently higher accuracy than classifiers trained only on
-lower-order patterns (Fig.~\ref{fig:decoding_level},  a.\&d.).  We plot
-the average correlations for up to the fourth order for the intact
-condition (Fig.~\ref{fig:brain_plots}) representing the degree of
-agreement by location pair over time.  By
-contrast, we found that incorporating higher-order (greater than first
-order) correlations did
-not further improve decoding accuracy for the other listening
-conditions or rest condition.  This suggests
-that the cognitive processing that supported the most cognitively rich
-condition
-involved higher-order network dynamics. 
 
 
 
