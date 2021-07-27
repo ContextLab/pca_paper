@@ -1,6 +1,10 @@
 
-import timecorr as tc
-from timecorr.helpers import isfc, wisfc, mean_combine, corrmean_combine
+import sys
+import os
+sys.path.append(sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
+#sys.path.append(os.path.abspath('..'))
+from decode_helpers.helpers import pca_decoder
 from scipy.io import loadmat
 import numpy as np
 import sys
@@ -12,11 +16,8 @@ import hypertools as hyp
 cond = sys.argv[1]
 chunk = sys.argv[2]
 reps = sys.argv[3]
-cfun = sys.argv[4]
-rfun = sys.argv[5]
-width = int(sys.argv[6])
-wp = sys.argv[7]
-ndims = sys.argv[8]
+rfun = sys.argv[4]
+ndims = sys.argv[5]
 
 if len(sys.argv) < 10:
     debug = False
@@ -24,6 +25,7 @@ else:
     debug = eval(sys.argv[9])
 
 result_name = 'pca_decode'
+
 
 if debug:
     results_dir = os.path.join(config['resultsdir'], result_name, rfun + '_debug', 'ndims_'+ ndims)
@@ -38,12 +40,6 @@ except OSError as err:
    print(err)
 
 
-
-laplace = {'name': 'Laplace', 'weights': tc.laplace_weights, 'params': {'scale': width}}
-delta = {'name': '$\delta$', 'weights': tc.eye_weights, 'params': tc.eye_params}
-gaussian = {'name': 'Gaussian', 'weights': tc.gaussian_weights, 'params': {'var': width}}
-mexican_hat = {'name': 'Mexican hat', 'weights': tc.mexican_hat_weights, 'params': {'sigma': width}}
-
 factors = 700
 
 if factors == 100:
@@ -55,7 +51,6 @@ pieman_data = loadmat(os.path.join(config['datadir'], pieman_name))
 pieman_conds = ['intact', 'paragraph', 'word', 'rest']
 
 
-weights_paramter = eval(wp)
 
 if debug:
     data = []
@@ -90,12 +85,7 @@ append_iter = pd.DataFrame()
 
 pca_data = np.asarray(hyp.reduce(list(data[conds == cond]), ndims=int(ndims)))
 
-iter_results = tc.helpers.pca_decoder(data[conds == cond], nfolds=2, dims=int(ndims),
-                                    combine=mean_combine,
-                                    cfun=eval(cfun),
-                                    rfun=None,
-                                    weights_fun=weights_paramter['weights'],
-                                    weights_params=weights_paramter['params'])
+iter_results = pca_decoder(data[conds == cond], nfolds=2, dims=int(ndims))
 
 print(iter_results)
 iter_results['iteration'] = int(reps)
