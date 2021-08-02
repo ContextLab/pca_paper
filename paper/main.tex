@@ -14,7 +14,7 @@
 \linenumbers
 
 
-\title{High-order dynamic neural correlations reflect naturalistic processing
+\title{Understanding brain complexity in naturalistic processing
 in humans} \author{Lucy
   L. W. Owen$^1$, and\
   Jeremy R. Manning\textsuperscript{$1, \dagger$}\\
@@ -188,34 +188,73 @@ performance on this decoding test is was $\frac{1}{272}$,
 $\frac{1}{300}$, and $\frac{1}{400}$ respectively.
  
 - As complexity of the stimulus increases, decoding accuracy
-increases (Fig.~\ref{fig:decode_interpret},  a.).  
+increases (Fig.~\ref{fig:decode_interpret},  a.).  Replication of
+Simony findings. 
+
+- As complexity of the stimuli increases, we need fewer components to
+decode the same amount (Fig.~\ref{fig:decode_interpret},  b.).  
+
+- As complexity of the stimuli increases, more components are required to reach peak decoding accuracy (Fig.~\ref{fig:decode_interpret},  c.).  
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{figs/decode_pcs_network.pdf}
+  \caption{\textbf{Inflection points by network.} \textbf{a.}
+    Inflection point was calculated as explained in
+    Fig.~\ref{fig:decode_interpret}, b. Analyses were limited by the
+    brain networks (using the Yeoetal11 network parcellation) and
+    arranged in increasing order relative to the intact condition.
+    \textbf{b. and c.} For the total time in the intact condition, we are plotting the relative inflection points (\textbf{b.}) and corresponding number of components (\textbf{c.}) by network. \textbf{d.} The network parcellation defined by Yeo et al. (2011) is displayed on the inflated brain maps. The colors and network labels serve as a legend for \textbf{a.} and \textbf{d.}}
+  \label{fig:decode_pcs_network}
+\end{figure}
 
 
+As complexity of the stimuli increases, decoding accuracy increases
+with higher cognitive areas. (Fig.~\ref{fig: decode_pcs_network}).
 
+ If, there is some understanding of the narrative that accumulates over time, we should be able to see that change.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{figs/decode_pcs.pdf}
+  \caption{\textbf{Inflection points by thirds.} \textbf{a.}
+    Decoding accuracy by number of components not broken into thirds
+    (Fig.~\ref{fig:decode_interpret} a.). \textbf{b. and c.}
+    Quantifying changes in decoding accuracy across
+time. \textbf{b.} Slope of decoding accuracy was calculated by fitting
+a regression line for each component/condition for each
+third. \textbf{c.}  We also repeated the analysis
+(Fig.~\ref{fig:decode_interpret}, b.) to obtain the inflection point
+for each condition and for each third. \textbf{d.}  Decoding accuracy by number of components for each third of the scan time. We repeated the same analysis in Fig.~\ref{fig:decode_interpret} a. but breaking the scan time for each condition into 3 intervals.
+}
+  \label{fig: decode_pcs_thirds}
+\end{figure}
+
+- Increases in decoding accuracy with the same number or fewer components for more complex, cognitively rich, conditions.
+- Decreases in decoding accuracy for the word-scrambled and rest
+condition.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Discussion}
 
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{figs/direction_of_field.pdf}
-  \caption{\textbf{Direction of the field (adapted from~\citep{Turk13}).} The evolution of fMRI analyses started with
-    univariate activation, which refers to
-    the average amplitude of BOLD activity evoked by events of an
-    experimental condition. Next, multivariate classifiers are trained
-    on patterns of activation across voxels to decode distributed
-    representations for specific events. The next, resting
-    connectivity, is the temporal correlation of one or more seed
-    regions with the remainder of the brain during rest. Additionally,
-    task-based connectivity examines how these correlations differ by
-    cognitive state. Following this increasing trajectory of
-    increasing complexity, full connectivity considers all pairwise
-    correlations in the brain, most commonly at rest.  Next, dynamic
-    full connectivity considers how full connectivity changes over
-    time. Continuing this line of reasoning, we expect higher-order network dynamics might provide even richer insights into the neural basis of cognition.}
-  \label{fig:direction_of_field}
-\end{figure}
+
+- We trained classifiers using more and more principle components to decode, and compared across condi- tions with varying degrees of cognitive richness.
+-We found that as listening conditions become more cognitively rich,
+decoding accuracy increased.
+-Also, decoding accuracy increased as understanding of the narrative
+accumulated over time, in more complex listening conditions.
+- Decoding accuracy also increased in higher cognitive areas, in more complex listening conditions.
+-We found that as story listening conditions become more complex, more
+components are required to decode.
+-We also found we could decode better with more impoverished data when
+there is the underlying structure of the narrative providing more cognitive richness.
+-We posit that as the complexity of our thoughts increases, neural
+compression decreases. However, as our thoughts become deeper and richer, more reliable information is available at higher neural compression.
+
+
+
+
 
 
 
