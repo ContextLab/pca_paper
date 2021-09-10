@@ -1,6 +1,9 @@
 #!/usr/bin/python
 
 # create a bunch of job scripts
+# import sys
+# import os
+# sys.path.append(os.path.abspath('..'))
 from config import config
 from subprocess import call
 import numpy as np
@@ -24,7 +27,7 @@ cond_type = ['intact', 'paragraph', 'word', 'rest']
 
 
 # options for reps: integer
-reps =  str('10')
+reps =  str('1')
 
 # options for reps: rfuns
 rfuns =  [str('PCA')]
@@ -34,7 +37,7 @@ rfuns =  [str('PCA')]
 dims = ['100']
 
 # options for debug: True or False
-debug = str('False')
+debug = str('True')
 
 job_commands = list(np.array([list(map(lambda x: x[0]+" "+str(x[1])+" "+'unchunked'+" "+str(r)+
                                                  " "+rfuns[0]+" "+ dims[0]+ " "+debug,

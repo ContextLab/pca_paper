@@ -6,16 +6,30 @@ config = dict()
 config['template'] = 'run_job.sh'
 
 # ====== MODIFY ONLY THE CODE BETWEEN THESE LINES ======
-if (socket.gethostname() == 'Lucys-MacBook-Pro.local') or (socket.gethostname() == 'vertex.kiewit.dartmouth.edu') or (socket.gethostname() == 'vertex.local')or (socket.gethostname() == 'vpn-investment-office-231-132-37.dartmouth.edu'):
-    config['datadir'] = '/Users/lucyowen/repos/pca_paper-1/data'
-    config['workingdir'] = '/Users/lucyowen/repos/pca_paper-1'
-    config['startdir'] = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))  # directory to start the job in
-    config['template'] = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'run_job_local.sh')
-else:
+
+if (socket.gethostname() == 'discovery7.hpcc.dartmouth.edu') or (socket.gethostname() == 'ndoli.hpcc.dartmouth.edu'):
     config['datadir'] = '/dartfs/rc/lab/D/DBIC/CDL/f002s72/pca_paper/pieman/data'
     config['workingdir'] = '/dartfs/rc/lab/D/DBIC/CDL/f002s72/pca_paper/pieman'
     config['startdir'] = '/dartfs/rc/lab/D/DBIC/CDL/f002s72'
     config['template'] = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'run_job.sh')
+else:
+    config['datadir'] = '/Users/lucyowen/repos/pca_paper-1/data'
+    config['workingdir'] = '/Users/lucyowen/repos/pca_paper-1'
+    config['startdir'] = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))  # directory to start the job in
+    config['template'] = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'run_job_local.sh')
+
+# local = True
+# if local:
+# #if (socket.gethostname() == 'Lucys-MacBook-Pro.local') or (socket.gethostname() == 'vertex.kiewit.dartmouth.edu') or (socket.gethostname() == 'vertex.local')or (socket.gethostname() == 'vpn-investment-office-231-132-37.dartmouth.edu'):
+#     config['datadir'] = '/Users/lucyowen/repos/pca_paper-1/data'
+#     config['workingdir'] = '/Users/lucyowen/repos/pca_paper-1'
+#     config['startdir'] = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))  # directory to start the job in
+#     config['template'] = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'run_job_local.sh')
+# else:
+#     config['datadir'] = '/dartfs/rc/lab/D/DBIC/CDL/f002s72/pca_paper/pieman/data'
+#     config['workingdir'] = '/dartfs/rc/lab/D/DBIC/CDL/f002s72/pca_paper/pieman'
+#     config['startdir'] = '/dartfs/rc/lab/D/DBIC/CDL/f002s72'
+#     config['template'] = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'run_job.sh')
 
 # config['datadir'] = '/opt/project/data'
 # config['workingdir'] = '/opt/project/'

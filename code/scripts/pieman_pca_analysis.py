@@ -1,7 +1,7 @@
 
 import sys
 import os
-sys.path.append(sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+#sys.path.append(sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 #sys.path.append(os.path.abspath('..'))
 from decode_helpers.helpers import pca_decoder
@@ -19,10 +19,10 @@ reps = sys.argv[3]
 rfun = sys.argv[4]
 ndims = sys.argv[5]
 
-if len(sys.argv) < 10:
+if len(sys.argv) < 7:
     debug = False
 else:
-    debug = eval(sys.argv[9])
+    debug = eval(sys.argv[6])
 
 result_name = 'pca_decode'
 
@@ -83,7 +83,7 @@ conds = np.array(conds)
 
 append_iter = pd.DataFrame()
 
-pca_data = np.asarray(hyp.reduce(list(data[conds == cond]), ndims=int(ndims)))
+#pca_data = np.asarray(hyp.reduce(list(data[conds == cond]), ndims=int(ndims)))
 
 iter_results = pca_decoder(data[conds == cond], nfolds=2, dims=int(ndims))
 
