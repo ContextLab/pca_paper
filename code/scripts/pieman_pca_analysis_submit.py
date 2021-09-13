@@ -1,9 +1,7 @@
 #!/usr/bin/python
 
 # create a bunch of job scripts
-# import sys
-# import os
-# sys.path.append(os.path.abspath('..'))
+
 from config import config
 from subprocess import call
 import numpy as np
@@ -34,10 +32,10 @@ rfuns =  [str('PCA')]
 
 
 # options for dims: integers
-dims = ['100']
+dims = ['700']
 
 # options for debug: True or False
-debug = str('True')
+debug = str('False')
 
 job_commands = list(np.array([list(map(lambda x: x[0]+" "+str(x[1])+" "+'unchunked'+" "+str(r)+
                                                  " "+rfuns[0]+" "+ dims[0]+ " "+debug,
@@ -149,7 +147,7 @@ for n, c in zip(job_names, job_commands):
             next_job = create_job(n, c)
 
             if (socket.gethostname() == 'discovery7.hpcc.dartmouth.edu') or (socket.gethostname() == 'ndoli.hpcc.dartmouth.edu'):
-                submit_command = 'echo "[SUBMITTING JOB: ' + next_job + ']"; qsub'
+                submit_command = 'echo "[SUBMITTING JOB: ' + next_job + ']"; sbatch/srun'
             else:
                 submit_command = 'echo "[RUNNING JOB: ' + next_job + ']"; sh'
 
