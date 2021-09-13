@@ -26,10 +26,10 @@ echo ACTIVATING timecorr VIRTUAL ENVIRONMENT
 
 module load python
 
-source activate timecorr_env
+source activate pca_env
 
 # run the job
 <config['cmd_wrapper']> <job_command> #note: job_command is reserved for the job command; it should not be specified in config.py
 
-source deactivate timecorr_env
+source deactivate pca_env
 
