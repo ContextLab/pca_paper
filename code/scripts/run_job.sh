@@ -6,16 +6,15 @@
 # SLURM lines begin with "#SBATCH".  to-be-replaced text is sandwiched between angled brackets
 
 # declare a name for this job
-#SBATCH -N <config['jobname']>
+#SBATCH --job-name=[<config['jobname']>]
 
 # specify the queue the job will be added to (if more than 600, use largeq)
-#SBATCH -q <config['q']>
+#SBATCH -p <config['q']>
 
 # specify the number of cores and nodes (estimate 4GB of RAM per core)
-#SBATCH -l nodes=<config['nnodes']>:ppn=<config['ppn']>
+#SBATCH -N <config['nnodes']
 
-# specify how long the job should run (wall time)
-#SBATCH -l walltime=<config['walltime']>
+#SBATCH -n <config['ppn']
 
 # set the working directory *of this script* to the directory from which the job was submitted
 
