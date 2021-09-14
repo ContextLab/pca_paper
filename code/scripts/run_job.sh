@@ -12,9 +12,9 @@
 #SBATCH -p <config['q']>
 
 # specify the number of cores and nodes (estimate 4GB of RAM per core)
-#SBATCH -N <config['nnodes']
+#SBATCH -N <config['nnodes']>
 
-#SBATCH -n <config['ppn']
+#SBATCH -n <config['ppn']>
 
 # set the working directory *of this script* to the directory from which the job was submitted
 
