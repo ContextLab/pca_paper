@@ -25,7 +25,7 @@ cond_type = ['intact', 'paragraph', 'word', 'rest']
 
 
 # options for reps: integer
-reps =  str('5')
+reps =  str('100')
 
 # options for reps: rfuns
 rfuns =  [str('PCA')]

@@ -6,7 +6,7 @@
 # SLURM lines begin with "#SBATCH".  to-be-replaced text is sandwiched between angled brackets
 
 # declare a name for this job
-#SBATCH --job-name=[<config['jobname']>]
+#SBATCH --job-name=<config['jobname']>
 
 # specify the number of cores and nodes (estimate 4GB of RAM per core)
 #SBATCH -N <config['nnodes']>

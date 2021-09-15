@@ -16,7 +16,7 @@ if local:
     config['template'] = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'run_job_local.sh')
 else:
     config['datadir'] = '/dartfs-hpc/rc/home/2/f002s72/Discovery_home/repos/pca_paper-1/data'
-    config['workingdir'] = '/dartfs-hpc/rc/home/2/f002s72/Discovery_home/repos/pca_paper-1/'
+    config['workingdir'] = '/dartfs/rc/lab/D/DBIC/CDL/f002s72/pca_paper/pieman'
     config['startdir'] = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
     config['template'] = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'run_job.sh')
 
