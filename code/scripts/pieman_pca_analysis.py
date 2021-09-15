@@ -77,8 +77,6 @@ conds = np.array(conds)
 
 append_iter = pd.DataFrame()
 
-#pca_data = np.asarray(hyp.reduce(list(data[conds == cond]), ndims=int(ndims)))
-
 iter_results = pca_decoder(data[conds == cond], nfolds=2, dims=int(ndims))
 
 print(iter_results)

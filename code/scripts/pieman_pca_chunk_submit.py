@@ -22,38 +22,26 @@ job_script = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'pieman_p
 
 cond_type = ['intact', 'paragraph', 'word', 'rest']
 
-# options for levels: integer
-
 # options for reps: integer
-reps =  str('100')
-
-# options for reps: cfuns
-cfuns =  [str('isfc')]
+reps =  str('1')
 
 # options for reps: rfuns
-#rfuns =  [str('eigenvector_centrality'), str('pagerank_centrality'), str('strength')]
 rfuns =  [str('PCA')]
 
-# options for widths: integer
-widths = [str(10)]
-
-# options for weight functions: laplace, gaussian, mexican hat, delta
-weights = ['gaussian']
-
 # options for dims: integers
-dims = ['100']
+dims = ['700']
 
 # options for debug: True or False
 debug = str('False')
 
-job_commands = list(np.array([list(map(lambda x: x[0]+" "+str(x[1])+" "+'chunk'+" "+str(r)+
-                                                 " "+cfuns[0]+" "+rfuns[0]+" "+widths[0]+" "+weights[0]+" "+ dims[0]+ " "+debug,
+job_commands = list(np.array([list(map(lambda x: x[0]+" "+str(x[1])+" "+'chunked'+" "+str(r)+
+                                                 " "+rfuns[0]+" "+ dims[0]+ " "+debug,
                                        zip([job_script]*len(cond_type), cond_type)))
                               for r in range(int(reps))]).flat)
 
 # job_names should specify the file name of each script (as a list, of the same length as job_commands)
-job_names = list(np.array([list(map(lambda x: os.path.basename(os.path.splitext(x)[0])+'_'+'chunk'+'_'+str(r)+'_'
-                                              +cfuns[0]+'_'+rfuns[0]+'_'+widths[0]+'_'+weights[0]+'_'+ dims[0] + '_'+debug+'.sh', cond_type))
+job_names = list(np.array([list(map(lambda x: os.path.basename(os.path.splitext(x)[0])+'_'+'chunked'+'_'+str(r)+'_'
+                                              '_'+rfuns[0]+'_'+ dims[0] + '_'+debug+'.sh', cond_type))
                            for r in range(int(reps))]).flat)
 
 
