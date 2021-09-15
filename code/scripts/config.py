@@ -5,7 +5,7 @@ config = dict()
 
 config['template'] = 'run_job.sh'
 
-local = True
+local = False
 
 # ====== MODIFY ONLY THE CODE BETWEEN THESE LINES ======
 
