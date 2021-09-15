@@ -5,18 +5,31 @@ config = dict()
 
 config['template'] = 'run_job.sh'
 
+local = False
+
 # ====== MODIFY ONLY THE CODE BETWEEN THESE LINES ======
 
-if (socket.gethostname() == 'discovery7.hpcc.dartmouth.edu') or (socket.gethostname() == 'ndoli.hpcc.dartmouth.edu'):
-    config['datadir'] = '/dartfs-hpc/rc/home/2/f002s72/Discovery_home/repos/pca_paper-1/data'
-    config['workingdir'] = '/dartfs-hpc/rc/home/2/f002s72/Discovery_home/repos/pca_paper-1/'
-    config['startdir'] = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-    config['template'] = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'run_job.sh')
-else:
+if local:
     config['datadir'] = '/Users/lucyowen/repos/pca_paper-1/data'
     config['workingdir'] = '/Users/lucyowen/repos/pca_paper-1'
     config['startdir'] = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))  # directory to start the job in
     config['template'] = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'run_job_local.sh')
+else:
+    config['datadir'] = '/dartfs-hpc/rc/home/2/f002s72/Discovery_home/repos/pca_paper-1/data'
+    config['workingdir'] = '/dartfs-hpc/rc/home/2/f002s72/Discovery_home/repos/pca_paper-1/'
+    config['startdir'] = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+    config['template'] = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'run_job.sh')
+
+# if (socket.gethostname() == 'discovery7.hpcc.dartmouth.edu') or (socket.gethostname() == 'ndoli.hpcc.dartmouth.edu'):
+#     config['datadir'] = '/dartfs-hpc/rc/home/2/f002s72/Discovery_home/repos/pca_paper-1/data'
+#     config['workingdir'] = '/dartfs-hpc/rc/home/2/f002s72/Discovery_home/repos/pca_paper-1/'
+#     config['startdir'] = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+#     config['template'] = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'run_job.sh')
+# else:
+#     config['datadir'] = '/Users/lucyowen/repos/pca_paper-1/data'
+#     config['workingdir'] = '/Users/lucyowen/repos/pca_paper-1'
+#     config['startdir'] = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))  # directory to start the job in
+#     config['template'] = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'run_job_local.sh')
 
 # local = True
 # if local:

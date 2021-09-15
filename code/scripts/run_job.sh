@@ -8,9 +8,6 @@
 # declare a name for this job
 #SBATCH --job-name=[<config['jobname']>]
 
-# specify the queue the job will be added to (if more than 600, use largeq)
-#SBATCH -p <config['q']>
-
 # specify the number of cores and nodes (estimate 4GB of RAM per core)
 #SBATCH -N <config['nnodes']>
 
