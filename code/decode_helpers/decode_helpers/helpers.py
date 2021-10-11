@@ -134,7 +134,6 @@ class CorrelationClassifier(BaseEstimator):
         self.X = X
         self.y = y
         self.feature_importances_ = np.zeros(X.shape[1])
-        # self.n_features_in_ = n_features
 
         full_corrs = 1 - pdist(X, metric='correlation')
         for i in range(X.shape[1]):
@@ -155,20 +154,30 @@ def decoding(in_data, out_data, n_features, **kwargs):
 
     y = np.array(range(0, in_data.shape[0]))
     estimator = CorrelationClassifier()
+
     selector = RFE(estimator, n_features, step=1)
     selector = selector.fit(in_data, y)
-    #try_reg = CorrelationClassifier.fit(X = in_data, y = y)
+
     predictions = selector.predict(out_data)
-    # reg = linear_model.LinearRegression().fit(in_data, y)
-    # linear_model.LinearRegression(copy_X=True, fit_intercept=True, n_jobs=1, normalize=False)
-    # LinearRegression(copy_X=True, fit_intercept=True, n_jobs=1, normalize=False)
-    # predictions = reg.predict(out_data)
 
-    total_hits = np.sum(y == predictions.round().astype(int))
+    acc = np.sum(y == predictions.round().astype(int))/in_data.shape[0]
 
-    return total_hits
+    return acc
 
-def pca_decoder_try(data, nfolds=2, dims=10):
+def find_features(data, dims=10):
+
+    pca_data = np.asarray(hyp.reduce(list(data), ndims=dims))
+
+    in_all_data = np.asarray(mean_combine([x for x in pca_data]))
+
+    y = np.array(range(0, in_all_data.shape[0]))
+    model = CorrelationClassifier()
+    model.fit(in_all_data, y)
+    importance = model.feature_importances_
+
+    return importance
+
+def pca_decoder_rfe(data, nfolds=2, dims=10):
     """
     :param data: a list of number-of-observations by number-of-features matrices
     :param nfolds: number of cross-validation folds (train using out-of-fold data;
@@ -191,41 +200,28 @@ def pca_decoder_try(data, nfolds=2, dims=10):
     pca_data = np.asarray(hyp.reduce(list(data), ndims=dims))
 
     group_assignments = get_xval_assignments(len(pca_data), nfolds)
-    results_pd = pd.DataFrame()
-
-    try_results_pd_full = pd.DataFrame()
+    results_pd_full = pd.DataFrame()
 
     for i in range(0, nfolds):
-        for d in reversed(range(1, dims + 1)):
 
-            in_data = np.asarray([x for x in pca_data[group_assignments == i]])[:, :, :d]
-            out_data = np.asarray([x for x in pca_data[group_assignments != i]])[:, :, :d]
+        in_data = np.asarray([x for x in pca_data[group_assignments == i]])
+        out_data = np.asarray([x for x in pca_data[group_assignments != i]])
 
-            in_smooth = np.asarray(mean_combine([x for x in in_data]))
-            out_smooth = np.asarray(mean_combine([x for x in out_data]))
+        in_smooth = np.asarray(mean_combine([x for x in in_data]))
+        out_smooth = np.asarray(mean_combine([x for x in out_data]))
 
-            trying_it = decoding(in_smooth, out_smooth, n_features=10)
-            #print(trying_it)
-            try_results_pd = pd.DataFrame({'hits': [trying_it]})
-            try_results_pd['dims'] = d
-            try_results_pd['folds'] = i
+        for d in reversed(range(2, dims + 1)):
 
+            decode_elim = decoding(in_smooth, out_smooth, n_features=d)
 
-            if d < 3:
-                in_smooth = np.hstack((in_smooth, np.zeros((in_smooth.shape[0], 3 - in_smooth.shape[1]))))
-                out_smooth = np.hstack((out_smooth, np.zeros((out_smooth.shape[0], 3 - out_smooth.shape[1]))))
-            corrs = (1 - sd.cdist(in_smooth, out_smooth, 'correlation'))
+            results_pd = pd.DataFrame({'accuracy': [decode_elim]})
+            results_pd['dims'] = d
+            results_pd['folds'] = i
 
-            corrs = np.array(corrs)
-            next_results_pd = decoder(corrs)
-            next_results_pd['dims'] = d
-            next_results_pd['folds'] = i
-
-            results_pd = pd.concat([results_pd, next_results_pd])
-            try_results_pd_full = pd.concat([try_results_pd_full, try_results_pd])
+            results_pd_full = pd.concat([results_pd_full, results_pd])
 
 
-    return results_pd, try_results_pd_full
+    return try_results_pd_full
 
 
 def pca_decoder(data, nfolds=2, dims=10):
@@ -276,71 +272,3 @@ def pca_decoder(data, nfolds=2, dims=10):
 
     return results_pd
 
-
-
-def pca_elimination(data, nfolds=2, dims=10):
-    """
-    :param data: a list of number-of-observations by number-of-features matrices
-    :param nfolds: number of cross-validation folds (train using out-of-fold data;
-                   test using in-fold data)
-    :return: results dictionary with the following keys:
-       'rank': mean percentile rank (across all timepoints and folds) in the
-               decoding distribution of the true timepoint
-       'accuracy': mean percent accuracy (across all timepoints and folds)
-       'error': mean estimation error (across all timepoints and folds) between
-                the decoded and actual window numbers, expressed as a percentage
-                of the total number of windows
-    """
-
-    assert len(np.unique(
-        list(map(lambda x: x.shape[0], data)))) == 1, 'all data matrices must have the same number of timepoints'
-    assert len(np.unique(
-        list(map(lambda x: x.shape[1], data)))) == 1, 'all data matrices must have the same number of features'
-
-
-    pca_data = np.asarray(hyp.reduce(list(data), ndims=dims))
-
-    group_assignments = get_xval_assignments(len(pca_data), nfolds)
-    results_pd = pd.DataFrame()
-
-    for i in range(0, nfolds):
-
-        #for d in reversed(range(1, dims + 1)):
-
-        in_data = np.asarray([x for x in pca_data[group_assignments == i]])
-        out_data = np.asarray([x for x in pca_data[group_assignments != i]])
-
-        in_smooth = np.asarray(mean_combine([x for x in in_data]))
-        out_smooth = np.asarray(mean_combine([x for x in out_data]))
-
-        if d < 3:
-            in_smooth = np.hstack((in_smooth, np.zeros((in_smooth.shape[0], 3 - in_smooth.shape[1]))))
-            out_smooth = np.hstack((out_smooth, np.zeros((out_smooth.shape[0], 3 - out_smooth.shape[1]))))
-
-        for d in reversed(range(1, dims + 1)):
-
-            #corrs = (1 - sd.cdist(in_smooth, out_smooth, 'correlation'))
-            # linear regression (X, y) - insmooth, y is label timepoi
-            #svc = SVC(kernel="linear", C=1)
-
-            # estimator - model= LinearRegression()
-            rfe = RFE(estimator=LinearRegression(in_smooth, labels).model, n_features_to_select=d, step=1)
-            rfe.fit(in_smooth, labels)
-            rfe.predict(out_smooth)
-            ranking = rfe.ranking_.reshape(digits.images[0].shape)
-
-            # min_features_to_select = 1  # Minimum number of features to consider
-            # rfecv = RFECV(estimator=svc, step=1, cv=StratifiedKFold(2),
-            #               scoring='accuracy',
-            #               min_features_to_select=min_features_to_select)
-            # rfecv.fit(in_smooth, out_smooth)
-
-
-            corrs = np.array(corrs)
-            next_results_pd = decoder(corrs)
-            next_results_pd['dims'] = d
-            next_results_pd['folds'] = i
-
-            results_pd = pd.concat([results_pd, next_results_pd])
-
-    return results_pd
