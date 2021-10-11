@@ -77,28 +77,19 @@ conds = np.array(conds)
 
 append_iter = pd.DataFrame()
 
-try_iter_results = pca_decoder_rfe(data[conds == cond], nfolds=2, dims=int(ndims))
+iter_results = pca_decoder_rfe(data[conds == cond], nfolds=2, dims=int(ndims))
 
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-fig, ax = plt.subplots()
-sns.scatterplot(x="dims", y="accuracy",
-             data=try_iter_results, ax=ax, palette="cubehelix")
-sns.despine(ax=ax, left=True)
-plt.show()
-print(try_iter_results)
-try_iter_results['iteration'] = int(reps)
+iter_results['iteration'] = int(reps)
 
 
 save_file = os.path.join(results_dir, cond)
 
 
 if not os.path.isfile(save_file + '.csv'):
-      try_iter_results.to_csv(save_file + '.csv')
+      iter_results.to_csv(save_file + '.csv')
 else:
     append_iter = pd.read_csv(save_file + '.csv', index_col=0)
-    append_iter = append_iter.append(try_iter_results)
+    append_iter = append_iter.append(iter_results)
     append_iter.to_csv(save_file + '.csv')
 
 
