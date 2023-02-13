@@ -137,7 +137,7 @@ class CorrelationClassifier(BaseEstimator):
 
         full_corrs = 1 - pdist(X, metric='correlation')
         for i in range(X.shape[1]):
-            next_X = np.delete(X.copy(), i, axis=1)
+            next_X = np.delete(X.copy(), i, axis=1) # This isn't actually deleting anything at this point
             next_corrs = 1 - pdist(next_X, metric='correlation')
             self.feature_importances_[i] = pearsonr(full_corrs, next_corrs)[0]
 
@@ -162,6 +162,12 @@ def decoding(in_data, out_data, n_features, **kwargs):
 
     acc = np.sum(y == predictions.round().astype(int))/in_data.shape[0]
 
+
+    try_it = (1 - sd.cdist(np.atleast_2d(y).T, np.atleast_2d(predictions).T, 'euclidean'))
+
+    import seaborn as sns
+    sns.heatmap(try_it)
+    plt.show()
     return acc
 
 def find_features(data, dims=10):
@@ -221,7 +227,7 @@ def pca_decoder_rfe(data, nfolds=2, dims=10):
             results_pd_full = pd.concat([results_pd_full, results_pd])
 
 
-    return try_results_pd_full
+    return results_pd_full
 
 
 def pca_decoder(data, nfolds=2, dims=10):
