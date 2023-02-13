@@ -128,7 +128,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-
+locks/
+results/
+scripts/
 data/*
 code/figs/pca/*
 code/figs/neurosynth_data/*
