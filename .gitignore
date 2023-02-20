@@ -142,3 +142,7 @@ paper/*.synctex.gz
 paper/*.blg
 paper/*.out
 paper/*.log
+.DS_Store
+*/.DS_Store
+*/.ipynb_checkpoints/*
+.idea
