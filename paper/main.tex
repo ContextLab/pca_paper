@@ -14,28 +14,59 @@
 \linenumbers
 
 
-\title{Understanding brain complexity in naturalistic processing
-in humans} \author{Lucy
-  L. W. Owen$^1$, and\
-  Jeremy R. Manning\textsuperscript{$1, \dagger$}\\
-  [0.1in]$^1$Department of Psychological and Brain
-  Sciences,\\Dartmouth
-  College, Hanover, NH\\
-  \textsuperscript{$\dagger$}Address correspondence to
-  jeremy.r.manning@dartmouth.edu}
+\title{High-order cognition is supported by complex but compressible brain activity patterns} 
 
+\author{Lucy L. W. Owen$^1, 2$, and Jeremy R. Manning\textsuperscript{$1,
+*$}\\$^1$Department of Psychological and Brain Sciences,\\Dartmouth College,
+Hanover, NH\\[0.1cm]$^2$Carney Institute for Brain Sciences,\\Brown University,
+Providence, RI\\[0.1cm] \textsuperscript{*}Address correspondence to
+jeremy.r.manning@dartmouth.edu}
 
 \begin{document}
 \maketitle
 
 
-\begin{abstract}
-We applied dimensionality reduction algorithms to the activity patterns in each experimental condition.  Specifically, we sought to understand the “dimensionality” of the neural patterns that were sufficient to decode participants’ listening times (or approach was similar to that of Mack et al. 2017).  We found that even low-dimensional embeddings of the data were sufficient to accurately decode listening times from the intact story recording, whereas finer temporal scramblings of the story required higher-dimensional embeddings of the data to reach peak decoding accuracy.
+\begin{abstract} 
+
+
+
+
+We applied dimensionality reduction algorithms to the activity
+patterns in each experimental condition. Specifically, we sought to understand
+the “dimensionality” of the neural patterns that were sufficient to decode
+participants’ listening times (or approach was similar to that of Mack et al.
+2017). We found that even low-dimensional embeddings of the data were
+sufficient to accurately decode listening times from the intact story
+recording, whereas finer temporal scramblings of the story required
+higher-dimensional embeddings of the data to reach peak decoding accuracy.
+
 \end{abstract}
 
 \doublespacing
 
 \section*{Introduction}
+
+Large-scale networks, including the human brain, may be conceptualized as
+occupying one or more positions along on a continuum. At one extreme, every
+node is fully independent of every other node. At the other extreme, all nodes
+are fully coupled and behave identically. Each extreme optimizes key properties
+of how the network functions. When every node is independent, the network is
+maximally \textit{expressive}: if we define the network's ``state'' as the
+total set of activity patterns across nodes, then every state is equally
+reachable by a network with fully independent nodes. On the other hand, a fully
+coupled network optimizes \textit{robustness}: any subset of nodes, other than
+the entire network, may be removed from the network without any loss of
+function or expressive power. Note that a given set of nodes might reconfigure
+its connections or behaviors under different circumstances to change its
+position along this continuum according to the needs at hand. Presumably, most
+systems tend to occupy positions between the above extremes. We wondered: might
+the human brain reconfigure itself to be more flexible or more robust according
+to ongoing demands?
+
+
+
+
+
 
 We're interested in the complexity of brain patterns that underly
 different types of thoughts. To explore this question space, we will take

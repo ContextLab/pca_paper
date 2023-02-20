@@ -134,3 +134,11 @@ scripts/
 data/*
 code/figs/pca/*
 code/figs/neurosynth_data/*
+*.fdb_latexmk
+*.aux
+*.bbl
+*.fls
+*.synctex.gz
+*.blg
+*.out
+*.log
