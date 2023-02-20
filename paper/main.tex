@@ -72,10 +72,26 @@ systems tend to occupy positions between these extremes. We wondered: might
 the human brain reconfigure itself to be more flexible or more robust according
 to ongoing demands?
 
-% compression (redundancy) vs. complexity -- appear to balance each other, but not necessarily.
-Closely related to the above notions of expressiveness versus robustness are
-measures of how much \textit{information}~\citep{Shan48}...
+% compression (redundancy) vs. complexity -- appear to balance each other, butnot necessarily. 
 
+Closely related to the above notions of expressiveness versus robustness are
+measures of how much \textit{information}~\citep{Shan48} is contained in a
+given signal or pattern. Formally, information is defined as the amount of
+uncertainty (i.e., entropy) in a given variables' outcomes, measured in
+\textit{bits}, or the optimal number of yes/no questions needed to reduce
+uncertainty about the variable's outcomes to zero. The \textit{redundancy} of a
+signal denotes the difference how expressive the signal could be (i.e.,
+proportional to the number of unique states or symbols used to transmit the
+signal) and the actual information rate (i.e., the entropy of each individual
+state or symbol). If a brain network's nodes are fully independent, then the
+number of bits required to express a single activity pattern is proportional to
+the number of nodes. The network would also be minimally redundant, since the
+status of every node would be needed to fully express a single brain activity
+pattern. If a brain network's nodes are fully coupled and identical, then the
+number of bits required to express a single activity pattern is proportional to
+the number of unique states or values any individual node can take on. Such a
+network would be highly redundant, since knowing any individual node's state
+would be sufficient to recover the full-brain activity pattern.
 
 %   - e.g., you could have something that is highly compressible (just a few components are sufficient to achieve some threshold information level) but
 %     *also* very rich-- e.g., the maximum number of informative components is large
