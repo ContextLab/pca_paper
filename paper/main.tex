@@ -28,17 +28,26 @@ jeremy.r.manning@dartmouth.edu}
 
 \begin{abstract} 
 
-
-
-
-We applied dimensionality reduction algorithms to the activity
-patterns in each experimental condition. Specifically, we sought to understand
-the “dimensionality” of the neural patterns that were sufficient to decode
-participants’ listening times (or approach was similar to that of Mack et al.
-2017). We found that even low-dimensional embeddings of the data were
-sufficient to accurately decode listening times from the intact story
-recording, whereas finer temporal scramblings of the story required
-higher-dimensional embeddings of the data to reach peak decoding accuracy.
+We applied dimensionality reduction algorithms and pattern classifiers to
+functional neuroimaging data collected as participants listened to a story,
+temporally scrambled versions of the story, or underwent a resting state
+scanning session. These experimental conditions were intended to require
+different depths of processing and insprire different levels of engagement. We
+considered two primary aspects of the data. First, we treated the number of
+features (components) required to achieve a threshold decoding accuracy as a
+proxy for the ``compressibility'' of the neural patterns (where fewer
+components indicate higher compressibility). Second, we treated the maximum
+achievable decoding accuracy across participants as an indicator of the
+``stability'' of the recorded patterns. Overall, we found that neural patterns
+recorded as participants listened to the intact story required fewer features
+to achieve comparable classification accuracy to the other experimental
+conditions. However, the peak decoding accuracy (achievable with more features)
+was also highest during intact story listening. Taken together, our work
+suggests that our brain networks flexibly reconfigure according to ongoing task
+demands, and that the activity patterns associated with higher-order cognition
+and high engagement are both more complex and more compressible than the
+activity patterns associated with lower-order tasks and lower levels of
+engagement.
 
 \end{abstract}
 
@@ -68,37 +77,52 @@ to ongoing demands?
 
 
 
-We're interested in the complexity of brain patterns that underly
-different types of thoughts. To explore this question space, we will take
-brain patterns recorded under different experimental conditions used in Aim 2, and
-project them into lower dimensional spaces using principle components
-analysis. We can then ask how well those low-dimensional embeddings of
-the data retain cognitively relevant information like when in a story
-someone is listening to. 
+We're interested in the complexity of brain patterns that underly different
+types of thoughts. To explore this question space, we will take brain patterns
+recorded under different experimental conditions used in Aim 2, and project
+them into lower dimensional spaces using principle components analysis. We can
+then ask how well those low-dimensional embeddings of the data retain
+cognitively relevant information like when in a story someone is listening to.
 
-This work has been inspired, in part, by~\cite{MackEtal20}. In this paper, 
-they investigated the role of the prefrontal cortex in filtering out 
-irrelevant content.  Specifically, they looked at if the vmPFC performs 
-data reduction on incoming information through compression.  
-This was motivated, in part, by orbital frontal cortex (OFC) 
-compression in rats~\citep{ZhouEtal19}. They studied this using a learning paradigm in which participants had to classify insects based on different numbers of feature dimensions.  The idea was that participants in some learning blocks, participants could identify the insects based on one feature (low complexity) or several features (high complexity), but importantly the stimuli remained the same across all learning problems.  They found that complexity and compression had an inverse relationship; the lower complexity of a conceptual space, the higher the degree of compression.  Building on this idea, we wonder if varying degrees of compression is performed throughout the brain.  We also want to test this idea, but using varying levels of engagement listening to a naturalistic stimuli.  
+This work has been inspired, in part, by~\cite{MackEtal20}. In this paper, they
+investigated the role of the prefrontal cortex in filtering out irrelevant
+content. Specifically, they looked at if the vmPFC performs data reduction on
+incoming information through compression. This was motivated, in part, by
+orbital frontal cortex (OFC) compression in rats~\citep{ZhouEtal19}. They
+studied this using a learning paradigm in which participants had to classify
+insects based on different numbers of feature dimensions. The idea was that
+participants in some learning blocks, participants could identify the insects
+based on one feature (low complexity) or several features (high complexity),
+but importantly the stimuli remained the same across all learning problems.
+They found that complexity and compression had an inverse relationship; the
+lower complexity of a conceptual space, the higher the degree of compression.
+Building on this idea, we wonder if varying degrees of compression is performed
+throughout the brain. We also want to test this idea, but using varying levels
+of engagement listening to a naturalistic stimuli.
 
-To understand the degree of compression throughout the brain during cognition, we will use the same fMRI data from Aim 2, collected while participants listened to a story in different scrambling conditions.  We will measure the degree that multivoxel activation patterns are compressed during story listening using principle components analysis (PCA) a method for low-rank approximation of multidimensional data~\citep{EckaYoun36}. We will explore this using decoding accuracy as a function of the number of components, or dimensions, in the low-dimensional space under different cognitive conditions.
+To understand the degree of compression throughout the brain during cognition,
+we will use the same fMRI data from Aim 2, collected while participants
+listened to a story in different scrambling conditions. We will measure the
+degree that multivoxel activation patterns are compressed during story
+listening using principle components analysis (PCA) a method for low-rank
+approximation of multidimensional data~\citep{EckaYoun36}. We will explore this
+using decoding accuracy as a function of the number of components, or
+dimensions, in the low-dimensional space under different cognitive conditions.
 
-You can imagine two reasonable predictions of
-how cognition is reflected in brain patterns.  The first is as our
-thoughts become more complex, they are supported by more complex brain
-patterns, and require more components to decode.  The second is that
-when thoughts are deeper and more complicated, the units of neural
-activity would carry more information, and would require therefore
-fewer components to decode.  
+You can imagine two reasonable predictions of how cognition is reflected in
+brain patterns. The first is as our thoughts become more complex, they are
+supported by more complex brain patterns, and require more components to
+decode. The second is that when thoughts are deeper and more complicated, the
+units of neural activity would carry more information, and would require
+therefore fewer components to decode.
 
 
-This idea can be explored in this visual analogy (Fig.~\ref{fig: pie_example}) for neural compression.  Here there are two images of pies, the top pie is more complex than the bottom.  On the left we're illustrating that it takes
-fewer components to reach the same 95 percent variance explained in
-the less complex pie, which corresponds to higher compression.
-However, on the right with very few components similar
-variance is explaining both pies.
+This idea can be explored in this visual analogy (Fig.~\ref{fig: pie_example})
+for neural compression. Here there are two images of pies, the top pie is more
+complex than the bottom. On the left we're illustrating that it takes fewer
+components to reach the same 95 percent variance explained in the less complex
+pie, which corresponds to higher compression. However, on the right with very
+few components similar variance is explaining both pies.
 
 \begin{figure}
   \centering
