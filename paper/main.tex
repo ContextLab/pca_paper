@@ -58,40 +58,81 @@ engagement.
 Large-scale networks, including the human brain, may be conceptualized as
 occupying one or more positions along on a continuum. At one extreme, every
 node is fully independent of every other node. At the other extreme, all nodes
-are fully coupled and behave identically. Each extreme optimizes key properties
-of how the network functions. When every node is independent, the network is
-maximally \textit{expressive}: if we define the network's ``state'' as the
-total set of activity patterns across nodes, then every state is equally
-reachable by a network with fully independent nodes. On the other hand, a fully
-coupled network optimizes \textit{robustness}: any subset of nodes, other than
-the entire network, may be removed from the network without any loss of
-function or expressive power. Note that a given set of nodes might reconfigure
-its connections or behaviors under different circumstances to change its
-position along this continuum according to the needs at hand. Presumably, most
-systems tend to occupy positions between these extremes. We wondered: might
-the human brain reconfigure itself to be more flexible or more robust according
-to ongoing demands?
+behave identically. Each extreme optimizes key properties of how the network
+functions. When every node is independent, the network is maximally
+\textit{expressive}: if we define the network's ``state'' as the activity
+pattern across its nodes, then every state is equally reachable by a network
+with fully independent nodes. On the other hand, a network of identically
+behaved nodes optimizes \textit{robustness}: any subset of nodes may be removed
+from the network without any loss of function or expressive power, as long as
+any single node remains. Presumably, most natural systems tend to occupy
+positions between these extremes. We wondered: might the human brain
+reconfigure itself to be more flexible or more robust according to ongoing
+demands? In other words, might the brain reconfigure its connections or
+behaviors under different circumstances to change its position along this
+continuum?
+
+We take as a given that brain activity is highly flexible: our brains can
+exhibit nearly infinite activity patterns. However, those activity patterns are
+also highly structured. For example, full-brain correlation matrices are stable
+within~\citep{FinnEtal15} and across~\citep{YeoEtal11} individuals. This
+stability implies that our brains are not 
+
+For example, despite stable individual differences in
+full-brain correlations~\citep{FinnEtal15}, 
+
+A number of prior studies suggest that 
+
 
 % compression (redundancy) vs. complexity -- appear to balance each other, butnot necessarily. 
 
 Closely related to the above notions of expressiveness versus robustness are
-measures of how much \textit{information}~\citep{Shan48} is contained in a
-given signal or pattern. Formally, information is defined as the amount of
-uncertainty (i.e., entropy) in a given variables' outcomes, measured in
-\textit{bits}, or the optimal number of yes/no questions needed to reduce
-uncertainty about the variable's outcomes to zero. The \textit{redundancy} of a
-signal denotes the difference how expressive the signal could be (i.e.,
-proportional to the number of unique states or symbols used to transmit the
-signal) and the actual information rate (i.e., the entropy of each individual
-state or symbol). If a brain network's nodes are fully independent, then the
-number of bits required to express a single activity pattern is proportional to
-the number of nodes. The network would also be minimally redundant, since the
-status of every node would be needed to fully express a single brain activity
-pattern. If a brain network's nodes are fully coupled and identical, then the
-number of bits required to express a single activity pattern is proportional to
-the number of unique states or values any individual node can take on. Such a
-network would be highly redundant, since knowing any individual node's state
-would be sufficient to recover the full-brain activity pattern.
+measures of how much \textit{information} is contained in a given signal or
+pattern, and how \textit{redundant} a signal is. Formally, information is
+defined as the amount of uncertainty about a given variables' outcomes (i.e.,
+entropy), measured in \textit{bits}, or the optimal number of yes/no questions
+needed to reduce uncertainty about the variable's outcomes to zero. Highly
+complex systems with many degrees of freedom (i.e., high flexibility and
+expressiveness), are more information-rich than simpler or more constrained
+systems. The redundancy of a signal denotes the difference how expressive the
+signal \textit{could} be (i.e., proportional to the number of unique states or
+symbols used to transmit the signal) and the actual information rate (i.e., the
+entropy of each individual state or symbol). If a brain network's nodes are
+fully independent, then the number of bits required to express a single
+activity pattern is proportional to the number of nodes. The network would also
+be minimally redundant, since the status of every node would be needed to fully
+express a single brain activity pattern. If a brain network's nodes are fully
+coupled and identical, then the number of bits required to express a single
+activity pattern is proportional to the number of unique states or values any
+individual node can take on. Such a network would be highly redundant, since
+knowing any individual node's state would be sufficient to recover the
+full-brain activity pattern. Highly redundant systems are also robust, since
+there is little information loss from losing any given observation.
+
+% Some papers to add in:
+
+% https://www.nature.com/articles/s41467-019-13930-8
+% https://onlinelibrary.wiley.com/doi/full/10.1002/jnr.24316?casa_token=PjnffsBh3vgAAAAA%3AynPc_easF6EXPrEK7ihnQ6Jc8QeWq6x0u-ytDsMwxQ4a0jnIvXhg8xBQDDVnAoMbYhUWiwUtlj4vTA
+% https://www.sciencedirect.com/science/article/pii/S1053811918305238?casa_token=xSH5EIN1rZYAAAAA:R2Zf9Lu_np3v0t5-lNZNal0JaJLk1JyYe4QxtmHnba9_lMGJUJgKNK4lHoybuITemQqYUIcuNA
+% https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3174820/
+% https://www.sciencedirect.com/science/article/pii/S0896627314004000
+% https://www.pnas.org/doi/abs/10.1073/pnas.0905267106
+% https://www.sciencedirect.com/science/article/pii/S0896627318302411
+% https://www.liebertpub.com/doi/full/10.1089/brain.2011.0068
+% https://www.sciencedirect.com/science/article/pii/S1053811917302872#f0015
+% https://www.sciencedirect.com/science/article/abs/pii/S1053811919303027
+% https://pubmed.ncbi.nlm.nih.gov/34625348/
+
+
+If brain activity patterns contain rich task-relevant information, we should be
+able to use the activity patterns to accurately differentiate between different
+aspects of the task~\citep[e.g., using pattern classifiers;][]{NormEtal06b}.
+For example, prior work has shown a direct correspondence between
+classification accuracy and the information content of a signal~\citep{Alva02}.
+If brain activity patterns are 
+
+
+
 
 %   - e.g., you could have something that is highly compressible (just a few components are sufficient to achieve some threshold information level) but
 %     *also* very rich-- e.g., the maximum number of informative components is large
