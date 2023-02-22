@@ -7,8 +7,6 @@ dependencies:
   - certifi=2021.5.30
   - libedit=3.1.20210714
   - libffi=3.2.1
-  - libgcc-ng=9.1.0
-  - libstdcxx-ng=9.1.0
   - ncurses=6.2
   - openssl=1.1.1l
   - pip=21.2.2
@@ -26,7 +24,6 @@ dependencies:
     - attrs==20.3.0
     - backcall==0.2.0
     - bleach==3.3.0
-    - brainconn==0.0.1
     - cached-property==1.5.2
     - cffi==1.14.5
     - chardet==4.0.0
