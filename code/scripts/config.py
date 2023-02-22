@@ -5,7 +5,7 @@ config = dict()
 
 config['template'] = 'run_job.sh'
 
-local = True
+local = False
 
 # ====== MODIFY ONLY THE CODE BETWEEN THESE LINES ======
 
@@ -59,7 +59,7 @@ config['jobname'] = "pca_analysis"  # default job name
 config['q'] = "default"  # options: default, testing, largeq
 config['nnodes'] = 1  # how many nodes to use for this one job
 config['ppn'] = 4  # how many processors to use for this one job (assume 4GB of RAM per processor)
-config['walltime'] = '3:00:00'  # maximum runtime, in h:MM:SS
+config['walltime'] = '24:00:00'  # maximum runtime, in h:MM:SS
 #config['startdir'] = '/ihome/lowen/repos/supereeg/examples'  # directory to start the job in
 config['cmd_wrapper'] = "python3"  # replace with actual command wrapper (e.g. matlab, python, etc.)
 config['modules'] = "(\"python/3.6\")"  # separate each module with a space and enclose in (escaped) double quotes

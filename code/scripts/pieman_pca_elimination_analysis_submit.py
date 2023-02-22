@@ -37,13 +37,13 @@ dims = ['700']
 # options for debug: True or False
 debug = str('False')
 
-job_commands = list(np.array([list(map(lambda x: x[0]+" "+str(x[1])+" "+'unchunked'+" "+str(r)+
+job_commands = list(np.array([list(map(lambda x: x[0]+" "+str(x[1])+" "+'elim_unchunked'+" "+str(r)+
                                                  " "+rfuns[0]+" "+ dims[0]+ " "+debug,
                                        zip([job_script]*len(cond_type), cond_type)))
                               for r in range(int(reps))]).flat)
 
 # job_names should specify the file name of each script (as a list, of the same length as job_commands)
-job_names = list(np.array([list(map(lambda x: os.path.basename(os.path.splitext(x)[0])+'_'+'unchunked'+'_'+str(r)+'_'
+job_names = list(np.array([list(map(lambda x: os.path.basename(os.path.splitext(x)[0])+'_'+'elim_unchunked'+'_'+str(r)+'_'
                                               '_'+rfuns[0]+'_'+ dims[0] + '_'+debug+'.sh', cond_type))
                            for r in range(int(reps))]).flat)
 
