@@ -146,3 +146,5 @@ paper/*.log
 */.DS_Store
 */.ipynb_checkpoints/*
 .idea
+paper/figs/source/.DS_Store
+paper/figs/source/.DS_Store
