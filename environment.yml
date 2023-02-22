@@ -2,23 +2,23 @@ name: pca_env
 channels:
   - defaults
 dependencies:
-  - _libgcc_mutex=0.1=main
-  - ca-certificates=2021.7.5=h06a4308_1
-  - certifi=2021.5.30=py37h06a4308_0
-  - libedit=3.1.20210714=h7f8727e_0
-  - libffi=3.2.1=hf484d3e_1007
-  - libgcc-ng=9.1.0=hdf63c60_0
-  - libstdcxx-ng=9.1.0=hdf63c60_0
-  - ncurses=6.2=he6710b0_1
-  - openssl=1.1.1l=h7f8727e_0
-  - pip=21.2.2=py37h06a4308_0
-  - python=3.7.2=h0371630_0
-  - readline=7.0=h7b6447c_5
-  - setuptools=52.0.0=py37h06a4308_0
-  - sqlite=3.33.0=h62c20be_0
-  - wheel=0.37.0=pyhd3eb1b0_1
-  - xz=5.2.5=h7b6447c_0
-  - zlib=1.2.11=h7b6447c_3
+  - _libgcc_mutex=0.1
+  - ca-certificates=2021.7.5
+  - certifi=2021.5.30
+  - libedit=3.1.20210714
+  - libffi=3.2.1
+  - libgcc-ng=9.1.0
+  - libstdcxx-ng=9.1.0
+  - ncurses=6.2
+  - openssl=1.1.1l
+  - pip=21.2.2
+  - python=3.7.2
+  - readline=7.0
+  - setuptools=52.0.0
+  - sqlite=3.33.0
+  - wheel=0.37.0
+  - xz=5.2.5
+  - zlib=1.2.11
   - pip:
     - appnope==0.1.2
     - argon2-cffi==20.1.0
@@ -130,4 +130,3 @@ dependencies:
     - widgetsnbextension==3.5.1
     - zipp==3.4.1
 prefix: /dartfs-hpc/rc/home/2/f002s72/.conda/envs/pca_env
-
