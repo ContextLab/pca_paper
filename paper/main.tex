@@ -115,6 +115,38 @@ small number of implanted electrodes~\citep{OwenEtal20, ScanEtal21}. This
 robustness property suggests that the relevant signal (e.g., underlying factors
 that have some influence over brain activity patterns) are compressible.
 
+\begin{figure}[tp]
+
+  \centering
+  \includegraphics[width=\textwidth]{figs/information_and_compressibility}
+  
+  \caption{\textbf{Information content and compressibility.} \textbf{A. Variance
+  explained for two images.} We applied principal components analysis to a
+  photograph and drawing, treating each row of the images as ``observations.''
+  Across columns, we identified the number of components required to explain
+  100\%, 95\%, 75\%, or 50\% of the cumulative variance in each image (the 100\%
+  columns denote the original images). The numbers of components are indicate in
+  parentheses, and the resulting ``compressed'' images are displayed. \textbf{B.
+  Representing two images with different numbers of components.} Using the same
+  principal component decompositions as in Panel A, we computed the cumulative
+  proportion of variance explained with 380 (original images), 20, 4, or 2
+  components. \textbf{C. Cumulative variance explained versus number of
+  components.} For the images displayed in Panels A and B, we plot the cumulative
+  proportion of variance explained as a function of the number of components used
+  to represent each image. \textbf{D. Information rate and compressibility.}
+  Across multiple images, the information rate (i.e., the amount of information
+  contained in each image; horizontal axis) is high when each individual pixel
+  provides information that cannot be inferred from other pixels.
+  High-information rate images tend to be high-resolution, and low-information
+  rate images tend to be low-resolution. Compressibility is related to the
+  difference between the information required to specify the original versus
+  compressed images (vertical axis). Highly compressible images often contain
+  predictable structure (redundancies) that can be leveraged to represent the
+  images much more efficiently than in their original feature spaces.}
+  
+  \label{fig:information-compression} 
+  \end{figure}
+
 To the extent that brain activity patterns contain rich task-relevant
 information, we should be able to use the activity patterns to accurately
 differentiate between different aspects of the task~\citep[e.g., using pattern
@@ -132,37 +164,6 @@ And if the signal is compressible, a low-dimensional embedding of the signal
 will be similarly informative to the original signal
 (Fig.~\ref{fig:information-compression}D).
 
-\begin{figure}[tp]
-
-\centering
-\includegraphics[width=\textwidth]{figs/information_and_compressibility}
-
-\caption{\textbf{Information content and compressibility.} \textbf{A. Variance
-explained for two images.} We applied principal components analysis to a
-photograph and drawing, treating each row of the images as ``observations.''
-Across columns, we identified the number of components required to explain
-100\%, 95\%, 75\%, or 50\% of the cumulative variance in each image (the 100\%
-columns denote the original images). The numbers of components are indicate in
-parentheses, and the resulting ``compressed'' images are displayed. \textbf{B.
-Representing two images with different numbers of components.} Using the same
-principal component decompositions as in Panel A, we computed the cumulative
-proportion of variance explained with 380 (original images), 20, 4, or 2
-components. \textbf{C. Cumulative variance explained versus number of
-components.} For the images displayed in Panels A and B, we plot the cumulative
-proportion of variance explained as a function of the number of components used
-to represent each image. \textbf{D. Information rate and compressibility.}
-Across multiple images, the information rate (i.e., the amount of information
-contained in each image; horizontal axis) is high when each individual pixel
-provides information that cannot be inferred from other pixels.
-High-information rate images tend to be high-resolution, and low-information
-rate images tend to be low-resolution. Compressibility is related to the
-difference between the information required to specify the original versus
-compressed images (vertical axis). Highly compressible images often contain
-predictable structure (redundancies) that can be leveraged to represent the
-images much more efficiently than in their original feature spaces.}
-
-\label{fig:information-compression} 
-\end{figure}
 
 Several recent studies suggest that the complexity of brain activity is
 task-dependent, whereby simpler tasks with lower cognitive demands are
@@ -176,71 +177,32 @@ of a common stimulus also appears to drive more stereotyped task-related
 activity and functional connectivity across individuals~\citep{HassEtal08,
 LernEtal11, SimoChan20, SimoEtal16}.
 
+The above prior studies are consistent with two potential descriptions of how
+cognitive processes are reflects in brain activity patterns. One possibility is
+that the information rate of brain activity increases during more complex or
+higher-level cognitive processing. If so, then the ability to reliably decode
+cognitive states from brain activity patterns should improve with task
+complexity or with the level (or ``depth'') of cognitive processing. A second
+possibility is that the compressibility of brain activity patterns increases
+during more complex or higher-level cognitive processing. If so, then
+individual features of brain recordings, or compressed representations of brain
+recordings, should carry more information during complex or high-level (versus
+simple or low-level) cognitive tasks.
 
-
-
-
-% % compression and task demands -- MackEtal20, ZhouEtal19
-% % timecorr -- higher order network patterns during higher order cognition implies more complexity
-% % cognitive richness and scrambling-- various Hasson lab papers
-
-
-
-
-% We're interested in the complexity of brain patterns that underly different
-% types of thoughts. To explore this question space, we will take brain patterns
-% recorded under different experimental conditions used in Aim 2, and project
-% them into lower dimensional spaces using principle components analysis. We can
-% then ask how well those low-dimensional embeddings of the data retain
-% cognitively relevant information like when in a story someone is listening to.
-
-% This work has been inspired, in part, by~\cite{MackEtal20}. In this paper, they
-% investigated the role of the prefrontal cortex in filtering out irrelevant
-% content. Specifically, they looked at if the vmPFC performs data reduction on
-% incoming information through compression. This was motivated, in part, by
-% orbital frontal cortex (OFC) compression in rats~\citep{ZhouEtal19}. They
-% studied this using a learning paradigm in which participants had to classify
-% insects based on different numbers of feature dimensions. The idea was that
-% participants in some learning blocks, participants could identify the insects
-% based on one feature (low complexity) or several features (high complexity),
-% but importantly the stimuli remained the same across all learning problems.
-% They found that complexity and compression had an inverse relationship; the
-% lower complexity of a conceptual space, the higher the degree of compression.
-% Building on this idea, we wonder if varying degrees of compression is performed
-% throughout the brain. We also want to test this idea, but using varying levels
-% of engagement listening to a naturalistic stimuli.
-
-% To understand the degree of compression throughout the brain during cognition,
-% we will use the same fMRI data from Aim 2, collected while participants
-% listened to a story in different scrambling conditions. We will measure the
-% degree that multivoxel activation patterns are compressed during story
-% listening using principle components analysis (PCA) a method for low-rank
-% approximation of multidimensional data~\citep{EckaYoun36}. We will explore this
-% using decoding accuracy as a function of the number of components, or
-% dimensions, in the low-dimensional space under different cognitive conditions.
-
-% You can imagine two reasonable predictions of how cognition is reflected in
-% brain patterns. The first is as our thoughts become more complex, they are
-% supported by more complex brain patterns, and require more components to
-% decode. The second is that when thoughts are deeper and more complicated, the
-% units of neural activity would carry more information, and would require
-% therefore fewer components to decode.
-
-
-% This idea can be explored in this visual analogy (Fig.~\ref{fig: pie_example})
-% for neural compression. Here there are two images of pies, the top pie is more
-% complex than the bottom. On the left we're illustrating that it takes fewer
-% components to reach the same 95 percent variance explained in the less complex
-% pie, which corresponds to higher compression. However, on the right with very
-% few components similar variance is explaining both pies.
-
-
-% We investigated the dimensionality of neural patterns by training
-% classifiers using more and more principle components. Or, in other
-% words, we used less and less compression to decode.
-% We applied the approach to
-% a neuroimaging dataset comprising data collected as participants
-% listened to a story varying in cognitive richness~\citep{SimoEtal16}.
+We used a previously collected neuroimaging dataset to estimate the extent to
+which each of these two possibilities might hold. The dataset we examined
+comprised functional magnetic resonance imaging (fMRI) data collected as
+participants listened to an audio recording of a 10-minute story, temporally
+scrambled recordings of the story, or underwent a resting state
+scan~\citep{SimoEtal16}. Each of these experimental conditions evokes different
+depths of cognitive processing~\citep{SimoEtal16,LernEtal11,
+HassEtal08,OwenEtal21}. We used across-participant classifiers to decode
+listening times in each condition, as a proxy for how ``informative'' the
+task-specific activity patterns were~\citep{SimoChan20}. We also use principle
+components analysis to generate lower-dimensional representations of the
+activity patterns. We then repeated the classification analyses after
+preserving different numbers of components and examined how classification
+accuracy changed across the different experimental conditions.
 
 
 
