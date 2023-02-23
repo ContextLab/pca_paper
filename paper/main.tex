@@ -72,186 +72,210 @@ demands? In other words, might the brain reconfigure its connections or
 behaviors under different circumstances to change its position along this
 continuum?
 
-We take as a given that brain activity is highly flexible: our brains can
-exhibit nearly infinite activity patterns. However, those activity patterns are
-also highly structured. For example, full-brain correlation matrices are stable
-within~\citep{FinnEtal15} and across~\citep{YeoEtal11} individuals. This
-stability implies that our brains are not 
-
-For example, despite stable individual differences in
-full-brain correlations~\citep{FinnEtal15}, 
-
-A number of prior studies suggest that 
-
-
 % compression (redundancy) vs. complexity -- appear to balance each other, butnot necessarily. 
 
 Closely related to the above notions of expressiveness versus robustness are
 measures of how much \textit{information} is contained in a given signal or
-pattern, and how \textit{redundant} a signal is. Formally, information is
-defined as the amount of uncertainty about a given variables' outcomes (i.e.,
-entropy), measured in \textit{bits}, or the optimal number of yes/no questions
-needed to reduce uncertainty about the variable's outcomes to zero. Highly
-complex systems with many degrees of freedom (i.e., high flexibility and
-expressiveness), are more information-rich than simpler or more constrained
-systems. The redundancy of a signal denotes the difference how expressive the
-signal \textit{could} be (i.e., proportional to the number of unique states or
-symbols used to transmit the signal) and the actual information rate (i.e., the
-entropy of each individual state or symbol). If a brain network's nodes are
-fully independent, then the number of bits required to express a single
-activity pattern is proportional to the number of nodes. The network would also
-be minimally redundant, since the status of every node would be needed to fully
-express a single brain activity pattern. If a brain network's nodes are fully
-coupled and identical, then the number of bits required to express a single
-activity pattern is proportional to the number of unique states or values any
-individual node can take on. Such a network would be highly redundant, since
-knowing any individual node's state would be sufficient to recover the
-full-brain activity pattern. Highly redundant systems are also robust, since
-there is little information loss from losing any given observation.
+pattern, and how \textit{redundant} a signal is~\citep{Shan48}. Formally,
+information is defined as the amount of uncertainty about a given variables'
+outcomes (i.e., entropy), measured in \textit{bits}, or the optimal number of
+yes/no questions needed to reduce uncertainty about the variable's outcomes to
+zero. Highly complex systems with many degrees of freedom (i.e., high
+flexibility and expressiveness), are more information-rich than simpler or more
+constrained systems. The redundancy of a signal denotes the difference how
+expressive the signal \textit{could} be (i.e., proportional to the number of
+unique states or symbols used to transmit the signal) and the actual
+information rate (i.e., the entropy of each individual state or symbol). If a
+brain network's nodes are fully independent, then the number of bits required
+to express a single activity pattern is proportional to the number of nodes.
+The network would also be minimally redundant, since the status of every node
+would be needed to fully express a single brain activity pattern. If a brain
+network's nodes are fully coupled and identical, then the number of bits
+required to express a single activity pattern is proportional to the number of
+unique states or values any individual node can take on. Such a network would
+be highly redundant, since knowing any individual node's state would be
+sufficient to recover the full-brain activity pattern. Highly redundant systems
+are also robust, since there is little information loss from losing any given
+observation.
 
-% Some papers to add in:
+We take as a given that brain activity is highly flexible: our brains can
+exhibit nearly infinite activity patterns. This flexibility implies that our
+brains activity patterns are highly information rich. However, brain activity
+patterns are also highly structured. For example, full-brain correlation
+matrices are stable within~\citep{FinnEtal15, FinnEtal17, GratEtal18} and
+across~\citep{YeoEtal11, GlerEtal12, GratEtal18, ColeEtal14} individuals. This
+stability suggests that our brains' activity patterns are at least partially
+constrained, for example by anatomical, external, or internal factors.
+Constraints on brain activity that limit its flexibility decrease
+expressiveness (i.e., its information rate). However, constraints on brain
+activity also increase its robustness to noise (e.g., ``missing'' or corrupted
+signals may be partially recovered). For example, recent work has shown that
+full-brain activity patterns may be reliably recovered from only a relatively
+small number of implanted electrodes~\citep{OwenEtal20, ScanEtal21}. This
+robustness property suggests that the relevant signal (e.g., underlying factors
+that have some influence over brain activity patterns) are compressible.
 
-% https://www.nature.com/articles/s41467-019-13930-8
-% https://onlinelibrary.wiley.com/doi/full/10.1002/jnr.24316?casa_token=PjnffsBh3vgAAAAA%3AynPc_easF6EXPrEK7ihnQ6Jc8QeWq6x0u-ytDsMwxQ4a0jnIvXhg8xBQDDVnAoMbYhUWiwUtlj4vTA
-% https://www.sciencedirect.com/science/article/pii/S1053811918305238?casa_token=xSH5EIN1rZYAAAAA:R2Zf9Lu_np3v0t5-lNZNal0JaJLk1JyYe4QxtmHnba9_lMGJUJgKNK4lHoybuITemQqYUIcuNA
-% https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3174820/
-% https://www.sciencedirect.com/science/article/pii/S0896627314004000
-% https://www.pnas.org/doi/abs/10.1073/pnas.0905267106
-% https://www.sciencedirect.com/science/article/pii/S0896627318302411
-% https://www.liebertpub.com/doi/full/10.1089/brain.2011.0068
-% https://www.sciencedirect.com/science/article/pii/S1053811917302872#f0015
-% https://www.sciencedirect.com/science/article/abs/pii/S1053811919303027
-% https://pubmed.ncbi.nlm.nih.gov/34625348/
+To the extent that brain activity patterns contain rich task-relevant
+information, we should be able to use the activity patterns to accurately
+differentiate between different aspects of the task~\citep[e.g., using pattern
+classifiers;][]{NormEtal06b}. For example, prior work has shown a direct
+correspondence between classification accuracy and the information content of a
+signal~\citep{Alva02}. To the extent that brain activity patterns are
+compressible, we should be able to generate simplified (e.g., lower
+dimensional) representations of the data while still preserving the relevant or
+important aspects of the original signal. In general, information content and
+compressibility are related but are partially dissociable
+(Fig.~\ref{fig:information-compression}).
 
+\begin{figure}[tp]
 
-If brain activity patterns contain rich task-relevant information, we should be
-able to use the activity patterns to accurately differentiate between different
-aspects of the task~\citep[e.g., using pattern classifiers;][]{NormEtal06b}.
-For example, prior work has shown a direct correspondence between
-classification accuracy and the information content of a signal~\citep{Alva02}.
-If brain activity patterns are 
+\centering
+\includegraphics[width=\textwidth]{figs/information_and_compressibility}
 
+\caption{\textbf{Information content and compressibility.} \textbf{A. Variance
+explained for two images.} We applied principal components analysis to a
+photograph and drawing, treating each row of the images as ``observations.''
+Across columns, we identified the number of components required to explain
+100\%, 95\%, 75\%, or 50\% of the cumulative variance in each image (the 100\%
+columns denote the original images). The numbers of components are indicate in
+parentheses, and the resulting ``compressed'' images are displayed. \textbf{B.
+Representing two images with different numbers of components.} Using the same
+principal component decompositions as in Panel A, we computed the cumulative
+proportion of variance explained with 380 (original images), 20, 4, or 2
+components. \textbf{C. Cumulative variance explained versus number of
+components.} For the images displayed in Panels A and B, we plot the cumulative
+proportion of variance explained as a function of the number of components used
+to represent each image. \textbf{D. Information rate and compressibility.}
+Across multiple images, the information rate (i.e., the amount of information
+contained in each image; horizontal axis) is high when each individual pixel
+provides information that cannot be inferred from other pixels.
+High-information rate images tend to be high-resolution, and low-information
+rate images tend to be low-resolution. Compressibility is related to the
+difference between the information required to specify the original versus
+compressed images (vertical axis). Highly compressible images often contain
+predictable structure (redundancies) that can be leveraged to represent the
+images much more efficiently than in their original feature spaces.}
 
-
-
-%   - e.g., you could have something that is highly compressible (just a few components are sufficient to achieve some threshold information level) but
-%     *also* very rich-- e.g., the maximum number of informative components is large
-% compression and task demands -- MackEtal20, ZhouEtal19
-% superEEG -- prediction of held-out data; implies redundancy
-% timecorr -- higher order network patterns during higher order cognition implies more complexity
-% cognitive richness and scrambling-- various Hasson lab papers
-
-
-
-
-We're interested in the complexity of brain patterns that underly different
-types of thoughts. To explore this question space, we will take brain patterns
-recorded under different experimental conditions used in Aim 2, and project
-them into lower dimensional spaces using principle components analysis. We can
-then ask how well those low-dimensional embeddings of the data retain
-cognitively relevant information like when in a story someone is listening to.
-
-This work has been inspired, in part, by~\cite{MackEtal20}. In this paper, they
-investigated the role of the prefrontal cortex in filtering out irrelevant
-content. Specifically, they looked at if the vmPFC performs data reduction on
-incoming information through compression. This was motivated, in part, by
-orbital frontal cortex (OFC) compression in rats~\citep{ZhouEtal19}. They
-studied this using a learning paradigm in which participants had to classify
-insects based on different numbers of feature dimensions. The idea was that
-participants in some learning blocks, participants could identify the insects
-based on one feature (low complexity) or several features (high complexity),
-but importantly the stimuli remained the same across all learning problems.
-They found that complexity and compression had an inverse relationship; the
-lower complexity of a conceptual space, the higher the degree of compression.
-Building on this idea, we wonder if varying degrees of compression is performed
-throughout the brain. We also want to test this idea, but using varying levels
-of engagement listening to a naturalistic stimuli.
-
-To understand the degree of compression throughout the brain during cognition,
-we will use the same fMRI data from Aim 2, collected while participants
-listened to a story in different scrambling conditions. We will measure the
-degree that multivoxel activation patterns are compressed during story
-listening using principle components analysis (PCA) a method for low-rank
-approximation of multidimensional data~\citep{EckaYoun36}. We will explore this
-using decoding accuracy as a function of the number of components, or
-dimensions, in the low-dimensional space under different cognitive conditions.
-
-You can imagine two reasonable predictions of how cognition is reflected in
-brain patterns. The first is as our thoughts become more complex, they are
-supported by more complex brain patterns, and require more components to
-decode. The second is that when thoughts are deeper and more complicated, the
-units of neural activity would carry more information, and would require
-therefore fewer components to decode.
-
-
-This idea can be explored in this visual analogy (Fig.~\ref{fig: pie_example})
-for neural compression. Here there are two images of pies, the top pie is more
-complex than the bottom. On the left we're illustrating that it takes fewer
-components to reach the same 95 percent variance explained in the less complex
-pie, which corresponds to higher compression. However, on the right with very
-few components similar variance is explaining both pies.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{figs/pie_example.pdf}
-  \caption{\textbf{Illustration of compression.} Visual analogy for
-    neural compression. Here are 2 images of pies, one more complex
-    than the other. \textbf{a.} It takes fewer components to reach the same percent
-    variance explained in the less complex pie, which corresponds to
-    higher compression. \textbf{b.} However, with very few components, similar variance is explained in both pies.
-\textbf{c.} Plots the cumulative explained variance for more and more components.}
-  \label{fig:pie_example}
+\label{fig:information-compression} 
 \end{figure}
 
 
-We investigated the dimensionality of neural patterns by training
-classifiers using more and more principle components. Or, in other
-words, we used less and less compression to decode.
-We applied the approach to
-a neuroimaging dataset comprising data collected as participants
-listened to a story varying in cognitive richness~\citep{SimoEtal16}.
+% Specifically, if a given signal
+% (e.g., a representation of brain activity patterns) contains more information
+% about ongoing cognitive processes, then the peak decoding accuracy should be
+% high. And if the signal is compressible, a low-dimensional embedding of the
+% signal will be similarly informative to the original signal. A signal can be
+% informative but not compressible, informative but
 
 
 
-% PCA, or the closely related factor analysis and singular value decomposition (SVD) (Hastie et al., 2009), is widely used in the study of individual differences and aids estimating how many latent components, or “factors”, underlie a pattern of (item) responses within or across participants, as for instance in the context of intelligence (Spearman, 1904) or personality tests (Cattell, 1947). In the context of neuroimaging, PCA has been used to identify brain networks (Huth et al., 2012; Friston et al., 1993). 
 
- % add citation:
-% S.M.Smith,A.Hyva ̈rinen,G.Varoquaux,K.L.Miller,and C. F. Beckmann, “Group-PCA for very large fMRI datasets,” NeuroImage, vol. 101, pp. 738, 2014.
-
-
-\subsection*{Evaluation metrics}
- We will evaluate the degree of
-compression of held-out
-neuroimaging data by assessing the time at which it was collected.  We will use this evaluation (timepoint
-decoding) as a proxy for
-gauging how much explanatory power the compressed data held
-with respect to the observed data.
+% %   - e.g., you could have something that is highly compressible (just a few components are sufficient to achieve some threshold information level) but
+% %     *also* very rich-- e.g., the maximum number of informative components is large
+% % compression and task demands -- MackEtal20, ZhouEtal19
+% % superEEG -- prediction of held-out data; implies redundancy
+% % timecorr -- higher order network patterns during higher order cognition implies more complexity
+% % cognitive richness and scrambling-- various Hasson lab papers
 
 
 
-\subsubsection*{Timepoint decoding}
 
-To explore how compression varies with complexity, we will use a previous neuroimaging dataset
-~\cite{SimoEtal16}  in which participants listened to an audio recording of a story; 36 particpants listen to an intact version of the story, 17 participants listen to time-scrambled recordings of the same story where paragraphs were scrambled, 36 particpants listen to word-scrambled version and 36 participants lay in rest condition.
+% We're interested in the complexity of brain patterns that underly different
+% types of thoughts. To explore this question space, we will take brain patterns
+% recorded under different experimental conditions used in Aim 2, and project
+% them into lower dimensional spaces using principle components analysis. We can
+% then ask how well those low-dimensional embeddings of the data retain
+% cognitively relevant information like when in a story someone is listening to.
+
+% This work has been inspired, in part, by~\cite{MackEtal20}. In this paper, they
+% investigated the role of the prefrontal cortex in filtering out irrelevant
+% content. Specifically, they looked at if the vmPFC performs data reduction on
+% incoming information through compression. This was motivated, in part, by
+% orbital frontal cortex (OFC) compression in rats~\citep{ZhouEtal19}. They
+% studied this using a learning paradigm in which participants had to classify
+% insects based on different numbers of feature dimensions. The idea was that
+% participants in some learning blocks, participants could identify the insects
+% based on one feature (low complexity) or several features (high complexity),
+% but importantly the stimuli remained the same across all learning problems.
+% They found that complexity and compression had an inverse relationship; the
+% lower complexity of a conceptual space, the higher the degree of compression.
+% Building on this idea, we wonder if varying degrees of compression is performed
+% throughout the brain. We also want to test this idea, but using varying levels
+% of engagement listening to a naturalistic stimuli.
+
+% To understand the degree of compression throughout the brain during cognition,
+% we will use the same fMRI data from Aim 2, collected while participants
+% listened to a story in different scrambling conditions. We will measure the
+% degree that multivoxel activation patterns are compressed during story
+% listening using principle components analysis (PCA) a method for low-rank
+% approximation of multidimensional data~\citep{EckaYoun36}. We will explore this
+% using decoding accuracy as a function of the number of components, or
+% dimensions, in the low-dimensional space under different cognitive conditions.
+
+% You can imagine two reasonable predictions of how cognition is reflected in
+% brain patterns. The first is as our thoughts become more complex, they are
+% supported by more complex brain patterns, and require more components to
+% decode. The second is that when thoughts are deeper and more complicated, the
+% units of neural activity would carry more information, and would require
+% therefore fewer components to decode.
 
 
-Following the analyses conducted by (HTFA)~\cite{MannEtal18}, we first
-apply \textit{hierarchical topographic factor analysis} (HTFA) to
-the fMRI datasets to obtain a time series of 700 node activities for
-every participant.  We then apply dimensionality reduction
-(Incremental PCA) for each group.
+% This idea can be explored in this visual analogy (Fig.~\ref{fig: pie_example})
+% for neural compression. Here there are two images of pies, the top pie is more
+% complex than the bottom. On the left we're illustrating that it takes fewer
+% components to reach the same 95 percent variance explained in the less complex
+% pie, which corresponds to higher compression. However, on the right with very
+% few components similar variance is explaining both pies.
 
-We then compare the groups’ activity patterns (using Pearson
-correlations) to estimate the story times each corresponding pattern
-using more and more principle components.   
 
-To assess decoding accuracy, we randomly divide participants for each
-stimulus into training and testing groups. We then compare the
-groups’ activity patterns (using Pearson correlations) to estimate the
-story times each corresponding pattern using more and more principle
-components (as the data became less compressed). Specifically, we ask, for each timepoint: what are the correlations
-between the first group's and second group's activity patterns at each
-order. We note that the decoding test we used is a conservative in which we count a timepoint label as incorrect if it is not an exact match.
+% We investigated the dimensionality of neural patterns by training
+% classifiers using more and more principle components. Or, in other
+% words, we used less and less compression to decode.
+% We applied the approach to
+% a neuroimaging dataset comprising data collected as participants
+% listened to a story varying in cognitive richness~\citep{SimoEtal16}.
+
+
+
+% % PCA, or the closely related factor analysis and singular value decomposition (SVD) (Hastie et al., 2009), is widely used in the study of individual differences and aids estimating how many latent components, or “factors”, underlie a pattern of (item) responses within or across participants, as for instance in the context of intelligence (Spearman, 1904) or personality tests (Cattell, 1947). In the context of neuroimaging, PCA has been used to identify brain networks (Huth et al., 2012; Friston et al., 1993). 
+
+%  % add citation:
+% % S.M.Smith,A.Hyva ̈rinen,G.Varoquaux,K.L.Miller,and C. F. Beckmann, “Group-PCA for very large fMRI datasets,” NeuroImage, vol. 101, pp. 738, 2014.
+
+
+% \subsection*{Evaluation metrics}
+%  We will evaluate the degree of
+% compression of held-out
+% neuroimaging data by assessing the time at which it was collected.  We will use this evaluation (timepoint
+% decoding) as a proxy for
+% gauging how much explanatory power the compressed data held
+% with respect to the observed data.
+
+
+
+% \subsubsection*{Timepoint decoding}
+
+% To explore how compression varies with complexity, we will use a previous neuroimaging dataset
+% ~\cite{SimoEtal16}  in which participants listened to an audio recording of a story; 36 particpants listen to an intact version of the story, 17 participants listen to time-scrambled recordings of the same story where paragraphs were scrambled, 36 particpants listen to word-scrambled version and 36 participants lay in rest condition.
+
+
+% Following the analyses conducted by (HTFA)~\cite{MannEtal18}, we first
+% apply \textit{hierarchical topographic factor analysis} (HTFA) to
+% the fMRI datasets to obtain a time series of 700 node activities for
+% every participant.  We then apply dimensionality reduction
+% (Incremental PCA) for each group.
+
+% We then compare the groups’ activity patterns (using Pearson
+% correlations) to estimate the story times each corresponding pattern
+% using more and more principle components.   
+
+% To assess decoding accuracy, we randomly divide participants for each
+% stimulus into training and testing groups. We then compare the
+% groups’ activity patterns (using Pearson correlations) to estimate the
+% story times each corresponding pattern using more and more principle
+% components (as the data became less compressed). Specifically, we ask, for each timepoint: what are the correlations
+% between the first group's and second group's activity patterns at each
+% order. We note that the decoding test we used is a conservative in which we count a timepoint label as incorrect if it is not an exact match.
 
 
 
