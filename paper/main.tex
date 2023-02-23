@@ -125,7 +125,12 @@ compressible, we should be able to generate simplified (e.g., lower
 dimensional) representations of the data while still preserving the relevant or
 important aspects of the original signal. In general, information content and
 compressibility are related but are partially dissociable
-(Fig.~\ref{fig:information-compression}).
+(Fig.~\ref{fig:information-compression}). If a given signal (e.g., a
+representation of brain activity patterns) contains more information about
+ongoing cognitive processes, then the peak decoding accuracy should be high.
+And if the signal is compressible, a low-dimensional embedding of the signal
+will be similarly informative to the original signal
+(Fig.~\ref{fig:information-compression}D).
 
 \begin{figure}[tp]
 
@@ -159,21 +164,23 @@ images much more efficiently than in their original feature spaces.}
 \label{fig:information-compression} 
 \end{figure}
 
+Several recent studies suggest that the complexity of brain activity is
+task-dependent, whereby simpler tasks with lower cognitive demands are
+reflected by simpler and more compressible brain activity patterns, and more
+complex tasks with higher cognitive demands are reflected by more complex and
+less compressible brain activity patterns~\citep{MackEtal20, OwenEtal21}. These
+findings complement other work suggesting that functional connectivity
+(correlation) patterns are task-dependent~\citep{FinnEtal17, OwenEtal20,
+ColeEtal14}, although see~\cite{GratEtal18}. Higher-order cognitive processing
+of a common stimulus also appears to drive more stereotyped task-related
+activity and functional connectivity across individuals~\citep{HassEtal08,
+LernEtal11, SimoChan20, SimoEtal16}.
 
-% Specifically, if a given signal
-% (e.g., a representation of brain activity patterns) contains more information
-% about ongoing cognitive processes, then the peak decoding accuracy should be
-% high. And if the signal is compressible, a low-dimensional embedding of the
-% signal will be similarly informative to the original signal. A signal can be
-% informative but not compressible, informative but
 
 
 
 
-% %   - e.g., you could have something that is highly compressible (just a few components are sufficient to achieve some threshold information level) but
-% %     *also* very rich-- e.g., the maximum number of informative components is large
 % % compression and task demands -- MackEtal20, ZhouEtal19
-% % superEEG -- prediction of held-out data; implies redundancy
 % % timecorr -- higher order network patterns during higher order cognition implies more complexity
 % % cognitive richness and scrambling-- various Hasson lab papers
 
