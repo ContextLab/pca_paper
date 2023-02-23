@@ -34,7 +34,7 @@ except OSError as err:
    print(err)
 
 
-factors = 100
+factors = 700
 
 if factors == 100:
     pieman_name = 'pieman_ica100.mat'
