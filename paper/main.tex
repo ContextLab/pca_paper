@@ -13,6 +13,7 @@
 \usepackage{soul}
 \linenumbers
 
+\newcommand{\synthThirds}{S1}
 
 \title{High-order cognition is supported by complex but compressible brain activity patterns} 
 
@@ -265,7 +266,7 @@ confidence intervals.}
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.8\textwidth]{figs/information_and_compression_over_time.pdf}
+  \includegraphics[width=0.8\textwidth]{figs/information_and_compression_over_time}
 
 \caption{\textbf{Changes in decoding accuracy and compression over time.}
 \textbf{A. Decoding accuracy by number of components, by story segment.} Each
@@ -286,119 +287,65 @@ error ribbons denote bootstrap-estimated 95\% confidence intervals.}
 
 \end{figure}
 
-We were also curious how compression would change across time.  If, there is some understanding of the narrative that accumulates over time, we should be able to see that difference. We found increases in decoding accuracy with the same number or fewer components for more complex, cognitively rich, conditions.
-We also found decreases in decoding accuracy for the word-scrambled and rest
-condition.
 
-Overall, we found that as story listening conditions become more complex, more components are required to decode. We also found we could decode better with more impoverished data when
-there is the underlying structure of the narrative providing more cognitive richness. We posit that as the complexity of our thoughts increases, neural compression decreases. However, as our thoughts become deeper and richer, more reliable information is available at higher neural compression.
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{figs/pca_neurosynth}
+
+\caption{\textbf{Top terms associated with the highest-weighted components by
+condition.} Each row corresponds to an experimental condition, and the colors
+correspond to the component number (ranked by proportion of variance
+explained). The inflated brain plots display the spatial distributions of each
+components' hubs (see \textit{Topographic Factor Analysis}). The lists on the
+right display the top five Neurosynth terms~\citep{RubiEtal17} decoded from
+each components' brain map. Analogous maps computed separately for each story
+segment may be found in Figure~\synthThirds.}
+
+\label{fig:neurosynth-pca}
+
+\end{figure}
 
 
 
-% - Increases in decoding accuracy with the same number or fewer components for more complex, cognitively rich, conditions.
-% - Decreases in decoding accuracy for the word-scrambled and rest
-% condition.
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{figs/pca_changes_neurosynth}
+
+\caption{\textbf{Changes in decoding accuracy and compression over time.} Each
+row corresponds to an experimental condition, and the colors correspond to
+change direction (positive: red; negative: blue). The saturation denotes the
+component number (columns on the right).  The lists on the
+right display the top five Neurosynth terms~\citep{RubiEtal17} decoded from
+each components' brain map.}
+
+\label{fig:neurosynth-changes}
+
+\end{figure}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section*{Discussion}
 
-
-- We trained classifiers using more and more principle components to decode, and compared across condi- tions with varying degrees of cognitive richness.
--We found that as listening conditions become more cognitively rich,
-decoding accuracy increased.
--Also, decoding accuracy increased as understanding of the narrative
-accumulated over time, in more complex listening conditions.
-- Decoding accuracy also increased in higher cognitive areas, in more complex listening conditions.
--We found that as story listening conditions become more complex, more
-components are required to decode.
--We also found we could decode better with more impoverished data when
-there is the underlying structure of the narrative providing more cognitive richness.
--We posit that as the complexity of our thoughts increases, neural
-compression decreases. However, as our thoughts become deeper and richer, more reliable information is available at higher neural compression.
+\section*{Methods}
 
 
 
 
+\section*{Acknowledgements} 
+
+We acknowledge discussions with Rick Betzel, Emily Finn, and Jim Haxby. Our
+work was supported in part by NSF CAREER Award Number 2145172 to J.R.M. The
+content is solely the responsibility of the authors and does not necessarily
+represent the official views of our supporting organizations. The funders had
+no role in study design, data collection and analysis, decision to publish, or
+preparation of the manuscript.
 
 
+\section*{Author contributions} 
 
-Based on prior work ~\citep{Deme19} and following the direction of the field ~\citep{Turk13} we think our thoughts might be encoded in
-dynamic network patterns, and possibly higher order network
-patterns (Fig.~\ref{fig:direction_of_field}). We sought to test this hypothesis by developing an approach
-to inferring high-order network dynamics from timeseries data. 
-
-One challenge in studying dynamic interactions is the
-computational resources required to calculate higher-order correlations. 
-We developed a computationally tractable model of network dynamics (Fig.~\ref{fig:methods_fig}) that takes in a feature
-timeseries and outputs approximated first-order dynamics (i.e.,
-dynamic functional correlations), second-order dynamics
-(reflecting homologous networks that dynamically form and disperse),
-and higher-order network dynamics (up to tenth-order dynamic
-correlations).
-
-We first validated our model using synthetic data, and explored how
-recovery varied with different underlying data structures and kernels.   We then 
-applied the approach to an fMRI dataset
-~\citep{SimoEtal16} in which participants listened to an audio
-recording of a story, as well as scrambled versions of the same story
-(where the scrambling was applied at different temporal scales).  We
-trained classifiers to take the output of the model and decode the
-timepoint in the story (or scrambled story) that the participants were
-listening to. We found that, during the intact listening condition in the
-experiment, classifiers that incorporated higher-order correlations
-yielded consistently higher accuracy than classifiers trained only on
-lower-order patterns (Fig.~\ref{fig:decoding_level},  a.\&d.).  By contrast, these
-higher-order correlations were not necessary to support decoding the other
-listening conditions and (minimally
-above chance) during a control rest condition.  This suggests
-that the cognitive processing that supported the most cogntively rich listening conditions
-involved second-order (or higher) network dynamics.
-
-Although we found decoding accuracy was best when incorporating
-higher-order network dynamics for all but rest
-  condition, it is unclear if this is a product of the brain or the
-  data collection technique.  It could be that the brain is
-  second-order or it could be that fMRI can
-  only reliably give second-order interactions. Exploring this method
-  with other data collection technique will be important to
-  disentangle this question.
-
-
-
-  \subsection*{Concluding remarks}
-
-How can we better understand how brain patterns change over
-time? How can we quantify the potential network dynamics that might be
-driving these changes? One way to judge the techniques of the future is
-to look at the trajectory of the fMRI field so far has taken so far
-(Fig.~\ref{fig:methods_fig}).  The field started with 
-univariate activation, measuring the average activity for each voxel.
-Analyses of multivariate activation followed, looking at spatial patterns of
-activity over voxels. Next, correlations of activity were explored, first
-with measures like resting connectivity that take temporal correlation
-between a seed voxel and all other voxels then with full connectivty
-that measure all pairwise correlations.  Additionally, this path of increasing
-complexity also moved from static to dynamic measurements.  One
-logical next step in this trajectory would be dynamic higher-order
-correlations. We have created a method 
-to support these calculations by scalably approximating dynamic higher-order
-correlations.  
-
-\section*{Acknowledgements}
-We acknowledge discussions with Luke Chang, Hany Farid, Paxton
-Fitzpatrick, Andrew Heusser, Eshin Jolly, Qiang Liu, Matthijs van der
-Meer, Judith Mildner, Gina Notaro, Stephen Satterthwaite, Emily
-Whitaker, Weizhen Xie, and Kirsten Ziman. Our work was supported in
-part by NSF EPSCoR Award Number 1632738 to J.R.M. and by a sub-award
-of DARPA RAM Cooperative Agreement N66001-14-2-4-032 to J.R.M.  The
-content is solely the responsibility of the authors and does not
-necessarily represent the official views of our supporting
-organizations.
-
-\section*{Author contributions}
-Concept: J.R.M. and L.L.W.O. Implementation: L.L.W.O., and
-J.R.M.  Analyses: L.L.W.O and J.R.M.
+Conceptulization: J.R.M. and L.L.W.O. Methodology: J.R.M. and L.L.W.O.
+Implementation: L.L.W.O. Analysis: L.L.W.O. Writing, Reviewing, and Editing:
+J.R.M. and L.L.W.O. Supervision: J.R.M.
 
 \bibliographystyle{apacite}
 \bibliography{CDL-bibliography/cdl}
