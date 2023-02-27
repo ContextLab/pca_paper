@@ -295,9 +295,9 @@ error ribbons denote bootstrap-estimated 95\% confidence intervals.}
 \caption{\textbf{Top terms associated with the highest-weighted components by
 condition.} Each row corresponds to an experimental condition, and the colors
 correspond to the component number (ranked by proportion of variance
-explained). The inflated brain plots display the spatial distributions of each
-components' hubs (see \textit{Topographic Factor Analysis}). The lists on the
-right display the top five Neurosynth terms~\citep{RubiEtal17} decoded from
+explained). The inflated brain plots display the top 20 highest-weighted hubs
+(see \textit{Topographic Factor Analysis}) for each components'. The lists on
+the right display the top five Neurosynth terms~\citep{RubiEtal17} decoded from
 each components' brain map. Analogous maps computed separately for each story
 segment may be found in Figure~\synthThirds.}
 
@@ -307,29 +307,124 @@ segment may be found in Figure~\synthThirds.}
 
 
 
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{figs/pca_changes_neurosynth}
-
-\caption{\textbf{Changes in decoding accuracy and compression over time.} Each
-row corresponds to an experimental condition, and the colors correspond to
-change direction (positive: red; negative: blue). The saturation denotes the
-component number (columns on the right).  The lists on the
-right display the top five Neurosynth terms~\citep{RubiEtal17} decoded from
-each components' brain map.}
-
-\label{fig:neurosynth-changes}
-
-\end{figure}
-
-
-
 \section*{Discussion}
 
 \section*{Methods}
 
+We measured properties of recorded neuroimaging data under different task
+conditions that varied systematically in cognitive engagement and depth of
+processing. We were especially interested in how \textit{informative} and
+\textit{compressible} the activity patterns were under these different
+conditions (Fig.~\ref{fig:information-compression}).
 
 
+\subsection*{Functional neuroimaging data collected during story
+  listening}
+
+We examined an fMRI dataset collected by \cite{SimoEtal16} that the authors
+have made publicly available at
+\href{http://arks.princeton.edu/ark:/88435/dsp015d86p269k}{arks.princeton.edu/ark:/88435/dsp015d86p269k}.
+The dataset comprises neuroimaging data collected as participants listened to
+an audio recording of a story (intact condition; 36 participants), listened to
+temporally scrambled recordings of the same story (17 participants in the
+paragraph-scrambled condition listened to the paragraphs in a randomized order
+and 36 in the word-scrambled condition listened to the words in a randomized
+order), or lay resting with their eyes open in the scanner (rest condition; 36
+participants). Full neuroimaging details may be found in the original paper for
+which the data were collected~\cite{SimoEtal16}. Procedures were approved by
+the Princeton University Committee on Activities Involving Human Subjects, and
+by the Western Institutional Review Board (Puyallup, WA). All subjects were
+native English speakers with normal hearing and provided written informed
+consent.
+
+\subsection*{Hierarchical topographic factor analysis (HTFA)}
+
+Following our prior related work, we used HTFA~\cite{MannEtal18} to derive a
+compact representation of the neuroimaging data. In brief, this approach
+approximates the timeseries of voxel activations (44,415 voxels) using a much
+smaller number of radial basis function (RBF) nodes~\citep[in this case, 700
+nodes, as determined by an optimization procedure;][]{MannEtal18}). This
+provides a convenient representation for examining full-brain activity patterns
+and network dynamics. All of the analyses we carried out on the neuroimaging
+dataset were performed in this lower-dimensional space. In other words, each
+participant's data matrix, $\mathbf{X}$, was a number-of-timepoints ($T$) by 700
+matrix of HTFA-derived factor weights (where the row and column labels were
+matched across participants). Code for carrying out HTFA on fMRI data may be
+found as part of the BrainIAK toolbox~\cite{CapoEtal17, KumaEtal21}, which may
+be downloaded at \href{https://brainiak.org/}{brainiak.org}.
+
+\subsection*{Principal components analysis (PCA)}
+
+We applied group PCA~\citep{SmitEtal14} separately to the HTFA-derived
+representations of the data (i.e., factor loadings) from each experimental
+condition. Specifically, for each condition, we considered the set of all
+participants' $T$ by 700 factor weight matrices. We used group PCA to project
+these 700-dimensional matrices into a series of $k$-dimensional spaces, for $k
+\in \{3, 4, 5, ..., 700\}$. This yielded a set of number-of-participants
+matrices, each with $T$ rows and $k$ columns.
+
+\subsection*{Temporal decoding}
+
+We sought to identify neural patterns that reflected participants' ongoing
+cognitive processing of incoming stimulus information. As reviewed by
+\cite{SimoEtal16}, one way of homing in on these stimulus-driven neural
+patterns is to compare activity patterns across individuals. In particular,
+neural patterns will be similar across individuals to the extent that the
+neural patterns under consideration are stimulus-driven, and to the extent that
+the corresponding cognitive representations are reflected in similar spatial
+patterns across people~\cite{SimoChan20}. Following this logic, we used an
+across-participant temporal decoding test developed by \cite{MannEtal18} to
+assess the degree to which different neural patterns reflected ongoing
+stimulus-driven cognitive processing across people. The approach entails using
+a subset of the data to train a classifier to decode stimulus timepoints (i.e.,
+moments in the story participants listened to) from neural patterns. We use
+decoding (forward inference) accuracy on held-out data, from held-out
+participants, as a proxy for the extent to which the inputted neural patterns
+reflected stimulus-driven cognitive processing in a similar way across
+individuals.
+
+\subsubsection*{Forward inference and decoding accuracy}
+
+We used an across-participant correlation-based classifier to decode which
+stimulus timepoint matched each timepoint's neural pattern. For a given value
+of $k$ (i.e., number of principal components), we first used group PCA to
+project the data from each condition into a $k$-dimensional space. Next, we
+divided the participants into two groups: a template group,
+$\mathcal{G}_{\mathrm{template}}$ (i.e., training data), and a to-be-decoded
+group, $\mathcal{G}_{\mathrm{decode}}$ (i.e., test data). We averaged the
+projected data within each group to obtain a single $T$ by $k$ matrix for each
+group. Next, we correlated the rows of the two averaged matrices to form a $T$
+by $T$ decoding matrix, $\mathbf{\Lambda}$. In this way, the rows of
+$\mathbf{\Lambda}$ reflected timepoints from the template group, while the
+columns reflected timepoints from the to-be-decoded group. We used
+$\mathbf{\Lambda}$ to assign temporal labels to each timepoint (row) from the
+test group's matrix, using the row of the training group's matrix with which it
+was most highly correlated. We repeated this decoding procedure, but using
+$\mathcal{G}_{\mathrm{decode}}$ as the template group and
+$\mathcal{G}_{\mathrm{template}}$ as the to-be-decoded group. Given the true
+timepoint labels (for each group), we defined the decoding accuracy as the
+average proportion of correctly decoded timepoints, across both groups (where
+chance perfomance is $\frac{1}{T}$). In Figures~\ref{fig:inflection}
+and~\ref{fig:inflection-thirds} we report the decoding accuracy for each
+condition and value of $k$, averaged across $n = 1,000$ cross validation folds.
+
+\subsection*{Reverse inference}
+
+To help interpret the brain activity patterns we found within the contexts of
+other studies, we created summary maps of each principal component, for each
+experimental condition, by summing together the 20 HTFA-derived RBF nodes (see
+\textit{Hierarchical Topographic Factor Analysis}) with the highest absolute
+value weights for each of the top 5 components (Figs.~\ref{fig:neurosynth-pca},
+\synthThirds). We then carried out a meta analysis using
+Neurosynth~\cite{RubiEtal17} to identify the 5 terms most commonly associated
+with the given map.
+
+
+\section*{Data and code availability}
+
+All of the code used to produce the figures and results in this manuscript,
+along with links to the corresponding datasets, may be found at 
+\href{https://github.com/ContextLab/pca_paper}{github.com/ContextLab/pca\_paper}.
 
 \section*{Acknowledgements} 
 
