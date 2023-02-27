@@ -213,23 +213,27 @@ accuracy changed across the different experimental conditions.
   
   \includegraphics[width=0.8\textwidth]{figs/decoding_and_inflection}
 
-  \caption{\textbf{Decoding accuracy and compression.} \textbf{A. Decoding accuracy by
-      number of components.} Ribbons of each color display
-    cross-validated decoding performance for each condition (intact,
-    paragraph, word, and rest), as a function of the number of components (features) used to
-    represent the data.  The horizontal red line denotes chance performance, and the horizontal black
-    line denotes 5\% decoding accuracy (used as a reference in Panel B).  \textbf{B. Numbers of components
-    required to reach a fixed decoding accuracy threshold, by condition.}  The panel displays a zoomed-in
-    view of the inset in Panel A.  Intersections between each condition's decoding accuracy curve
-    and the 5\% decoding accuracy reference line are marked by arrows.  \textbf{C. Estimating
-    inflection points.}  We sought to identify an ``inflection point'' for each decoding curve, denoting
-    the number of components at which the decoding curve asymptotes.  We fit sigmoid functions to each
-    decoding curve (left sub-panel) and then computed the minimum number of components where the
-    second derivative of the sigmoid was both positive and less than a threshold value of 0.0001.
-    \textbf{D. Inflection points by condition.}  Each dot displays the number of components ($x$-axis)
-    and decoding accuracy ($y$-axis) at one condition's inflection point.}
+\caption{\textbf{Decoding accuracy and compression.} \textbf{A. Decoding
+accuracy by number of components.} Ribbons of each color display
+cross-validated decoding performance for each condition (intact, paragraph,
+word, and rest), as a function of the number of components (features) used to
+represent the data. The horizontal red line denotes chance performance, and the
+horizontal black line denotes 5\% decoding accuracy (used as a reference in
+Panel B). \textbf{B. Numbers of components required to reach a fixed decoding
+accuracy threshold, by condition.} The panel displays a zoomed-in view of the
+inset in Panel A. Intersections between each condition's decoding accuracy
+curve and the 5\% decoding accuracy reference line are marked by arrows.
+\textbf{C. Estimating inflection points.} We sought to identify an ``inflection
+point'' for each decoding curve, denoting the number of components at which the
+decoding curve asymptotes. We fit sigmoid functions to each decoding curve
+(left sub-panel) and then computed the minimum number of components where the
+second derivative of the sigmoid was both positive and less than a threshold
+value of 0.0001. \textbf{D. Inflection points by condition.} Each dot displays
+the number of components ($x$-axis) and decoding accuracy ($y$-axis) at one
+condition's inflection point. All error ribbons denote bootstrap-estimated 95\%
+confidence intervals.}
 
-    \label{fig:decoding-inflection}
+    \label{fig:inflection}
   \end{figure}
 
 
@@ -239,38 +243,47 @@ accuracy changed across the different experimental conditions.
 \begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{figs/decode_pcs_network}
-  \caption{\textbf{Inflection points by network.} \textbf{a.}
-    Inflection point was calculated as explained in
-    Fig.~\ref{fig:decode_interpret}, b. Analyses were limited by the
-    brain networks (using the \cite{YeoEtal11} network parcellation) and
-    arranged in increasing order relative to the intact condition.
-    \textbf{b. and c.} For the total time in the intact condition, we are plotting the relative inflection points (\textbf{b.}) and corresponding number of components (\textbf{c.}) by network. \textbf{d.} The network parcellation defined by \cite{YeoEtal11} is displayed on the inflated brain maps. The colors and network labels serve as a legend for \textbf{a.} and \textbf{d.}}
+
+  \caption{\textbf{Network-specific decoding accuracy and compression.}
+  \textbf{A. Decoding accuracy and number of components for network-specific
+  inflection points.} We considered the seven networks identified by
+  \cite{YeoEtal11}. We computed each network's inflection point, for each
+  experimental condition, using the procedure described in
+  Figure~\ref{fig:inflection}C. \textbf{B. Network-specific decoding
+  accuracy.} Each of the seven networks are colored according to the decoding
+  accuracy at the network's inflection point for the ``intact'' experimental
+  condition (corresponding to the dark blue curve in Panel A). \textbf{C.
+  Network-specific compression.} Each of the seven networks are colored
+  according to the number of components at the network's inflection point for
+  the intact experimental condition. Larger numbers of components reflect lower
+  compressibility.}
+
   \label{fig:networks}
 \end{figure}
 
-We also wondered how this compression would change across brain regions.  We repeated the analysis but limited the brain hubs to 7 networks using the Yeo et al. (2011) network parcellation shown here in the inflated brain (Fig.~\ref{fig:decode_pcs_network}, d.). We found that as complexity of the stimuli increases, decoding accuracy increases
-with higher cognitive areas. (Fig.~\ref{fig:decode_pcs_network}).
 
-
-% As complexity of the stimuli increases, decoding accuracy increases
-% with higher cognitive areas. (Fig.~\ref{fig: decode_pcs_network}).
-
-%  If, there is some understanding of the narrative that accumulates over time, we should be able to see that change.
 
 \begin{figure}
   \centering
-  \includegraphics[width=\textwidth]{figs/decode_pcs.pdf}
-  \caption{\textbf{Inflection points by thirds.} \textbf{a.}
-    Decoding accuracy by number of components not broken into thirds
-    (Fig.~\ref{fig:decode_interpret} a.). \textbf{b. and c.}
-    Quantifying changes in decoding accuracy across
-time. \textbf{b.} Slope of decoding accuracy was calculated by fitting
-a regression line for each component/condition for each
-third. \textbf{c.}  We also repeated the analysis
-(Fig.~\ref{fig:decode_interpret}, b.) to obtain the inflection point
-for each condition and for each third. \textbf{d.}  Decoding accuracy by number of components for each third of the scan time. We repeated the same analysis in Fig.~\ref{fig:decode_interpret} a. but breaking the scan time for each condition into 3 intervals.
-}
-  \label{fig:decode_pcs_thirds}
+  \includegraphics[width=0.8\textwidth]{figs/information_and_compression_over_time.pdf}
+
+\caption{\textbf{Changes in decoding accuracy and compression over time.}
+\textbf{A. Decoding accuracy by number of components, by story segment.} Each
+family of curves is plotted in the same format as Figure~\ref{fig:inflection}A
+but reflects data only from one third of the dataset. \textbf{B. Inflection
+points by condition and segment.} The dots re-plot the inflection points from
+Figure~\ref{fig:inflection}D for reference. The numbers denote the inflection
+points for each third of the dataset (1: first third; 2: second third; 3: third
+third; colors denote experimental conditions). \textbf{C. Change in decoding
+accuracy over time, by number of components.} For each number of components
+($x$-axis) and condition (color), we fit a regression line to the decoding
+accuracies obtained for the first, second, and third thirds of the dataset
+(corresponding to the left, middle, and right columns of Panel A,
+respectively). The $y$-axis denotes the slopes of the regression lines. All
+error ribbons denote bootstrap-estimated 95\% confidence intervals.}
+
+\label{fig:inflection-thirds}
+
 \end{figure}
 
 We were also curious how compression would change across time.  If, there is some understanding of the narrative that accumulates over time, we should be able to see that difference. We found increases in decoding accuracy with the same number or fewer components for more complex, cognitively rich, conditions.
