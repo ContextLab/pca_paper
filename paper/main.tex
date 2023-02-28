@@ -272,26 +272,73 @@ confidence intervals.}
 \label{fig:inflection}
 \end{figure}
 
+To evaluate the relation between informativeness and compression for brain
+activity from each experimental condition, we trained a series of
+across-participant temporal decoders on compressed representations of the data.
+Figure~\ref{fig:inflection}A displays the decoding accuracy as a function of
+the number of principal components used to represent the data. Several patterns
+were revealed by the analysis. First, in general (i.e., across experimental
+conditions), decoding accuracy improves as the number of components increases.
+However, decoding accuracy peaked at a higher level for experimental conditions
+that exposed participants to cognitively richer stimuli. The peak decoding
+accuracy was highest for the ``intact'' condition (versus paragraph: $t(XXX) =
+XXX, p = XXX$; versus word: $t(XXX) = XXX, p = XXX$; versus rest: $t(XXX) =
+XXX, p = XXX$), next highest for the ``paragraph'' condition (versus word:
+$t(XXX) = XXX, p = XXX$; versus rest: $t(XXX) = XXX, p = XXX$), and next
+highest for the ``word'' condition (versus rest: $t(XXX) = XXX, p = XXX$). 
+This ordering implies that cognitively richer conditions evoke more stable brain
+activity patterns across people.
+
+The cognitively richer conditions also displayed steeper initial slopes. For
+example, the intact condition decoders reached an arbitrarily chosen threshold
+of 5\% accuracy using fewer components than the paragraph condition decoders
+($t(XXX) = XXX, p = XXX$) or word condition decoders ($t(XXX) = XXX, p = XXX$),
+and decoding accuracy never exceeded 5\% for the rest condition. This suggests
+that brain activity patterns evoked by cognitively richer conditions are more
+compressible, such that representing the data using the same number of
+principal components provides more information to the temporal decoders
+(Fig.~\ref{fig:inflection}B).
+
+In every experimental condition, decoding accuracy appeared to asymptote (i.e.,
+hit an upper limit) beyond some characteristic number of components that
+differed across conditions. To quantify the ``inflection points'' at which the
+decoding curves in Figure~\ref{fig:inflection}A flattened out, we fit a sigmoid
+function to the average decoding curve for each condition. We defined the
+inflection point for each condition as the point on the fitted sigmoid where
+the second derivative was both positive and less than a threshold value of
+0.0001 (i.e., approaching 0 from the right). These inflection points reflect a
+``balance'' between higher decoding accuracy (which tends to be better when
+more components are used) and compression (which is better for fewer
+components). Plotting each condition's inflection point
+(Fig.~\ref{fig:inflection}D) reveals that both the number of components and the
+decoding accuracy at each inflection point increase systematically across
+conditions in proportion to cognitive richness.
 
 
-% decoding accuracy by number of components:
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{figs/information_and_compression_over_time}
 
-%   - richer conditions have higher peak accuracy (ttests between pairs of
-%   conditions). implies that richer conditions evoke more stable brain patterns
-%   across people.  (Fig 2A)
+\caption{\textbf{Changes in decoding accuracy and compression over time.}
+\textbf{A. Decoding accuracy by number of components, by story segment.} Each
+family of curves is plotted in the same format as Figure~\ref{fig:inflection}A
+but reflects data only from one third of the dataset. \textbf{B. Inflection
+points by condition and segment.} The dots re-plot the inflection points from
+Figure~\ref{fig:inflection}D for reference. The numbers denote the inflection
+points for each third of the dataset (1: first third; 2: second third; 3: third
+third; colors denote experimental conditions). \textbf{C. Change in decoding
+accuracy over time, by number of components.} For each number of components
+($x$-axis) and condition (color), we fit a regression line to the decoding
+accuracies obtained for the first, second, and third thirds of the dataset
+(corresponding to the left, middle, and right columns of Panel A,
+respectively). The $y$-axis denotes the slopes of the regression lines. All
+error ribbons denote bootstrap-estimated 95\% confidence intervals.}
 
-%   - richer conditions have steeper initial slopes: intact condition reaches a
-%   threshold of 5% decoding accuracy faster than paragraph-scrambled (ttest) or
-%   word-scrambled (ttest), and decoding accuracy never exceeds 5% in the rest
-%   condition. implies richer conditions are more compressible, such that the
-%   same number of components can be more informative.  (Fig 2B)
+\label{fig:inflection-thirds}
 
-%   - decoding accuracy appears to assymptote beyond some number of components.
-%   used sigmoid procedure to find the inflection point where the curve flattens
-%   out (Fig 2C). this represents a "balance" point between higher decoding
-%   accuracy (generally better for more components) and compression (better for
-%   fewer components). these inflection points change systematically across
-%   conditions (num components and decoding accuracy; Fig 2D)
+\end{figure}
+
+
 
 
 
@@ -318,28 +365,8 @@ confidence intervals.}
 
 
 
-\begin{figure}
-  \centering
-  \includegraphics[width=0.8\textwidth]{figs/information_and_compression_over_time}
 
-\caption{\textbf{Changes in decoding accuracy and compression over time.}
-\textbf{A. Decoding accuracy by number of components, by story segment.} Each
-family of curves is plotted in the same format as Figure~\ref{fig:inflection}A
-but reflects data only from one third of the dataset. \textbf{B. Inflection
-points by condition and segment.} The dots re-plot the inflection points from
-Figure~\ref{fig:inflection}D for reference. The numbers denote the inflection
-points for each third of the dataset (1: first third; 2: second third; 3: third
-third; colors denote experimental conditions). \textbf{C. Change in decoding
-accuracy over time, by number of components.} For each number of components
-($x$-axis) and condition (color), we fit a regression line to the decoding
-accuracies obtained for the first, second, and third thirds of the dataset
-(corresponding to the left, middle, and right columns of Panel A,
-respectively). The $y$-axis denotes the slopes of the regression lines. All
-error ribbons denote bootstrap-estimated 95\% confidence intervals.}
 
-\label{fig:inflection-thirds}
-
-\end{figure}
 
 
 \begin{figure}
