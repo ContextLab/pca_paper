@@ -1,4 +1,4 @@
-\documentclass[english]{article}
+\documentclass[english, 11pt]{article}
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{hyperref}
@@ -50,6 +50,10 @@ and high engagement are both more complex and more compressible than the
 activity patterns associated with lower-order tasks and lower levels of
 engagement.
 
+\bigskip
+\noindent
+\textbf{Keywords: information, compression, temporal decoding, dimensionality reduction, neuroimaging}
+
 \end{abstract}
 
 \doublespacing
@@ -72,8 +76,6 @@ reconfigure itself to be more flexible or more robust according to ongoing
 demands? In other words, might the brain reconfigure its connections or
 behaviors under different circumstances to change its position along this
 continuum?
-
-% compression (redundancy) vs. complexity -- appear to balance each other, butnot necessarily. 
 
 Closely related to the above notions of expressiveness versus robustness are
 measures of how much \textit{information} is contained in a given signal or
@@ -144,9 +146,9 @@ that have some influence over brain activity patterns) are compressible.
   compressed images (vertical axis). Highly compressible images often contain
   predictable structure (redundancies) that can be leveraged to represent the
   images much more efficiently than in their original feature spaces.}
-  
-  \label{fig:information-compression} 
-  \end{figure}
+
+\label{fig:information-compression} 
+\end{figure}
 
 To the extent that brain activity patterns contain rich task-relevant
 information, we should be able to use the activity patterns to accurately
@@ -178,7 +180,7 @@ of a common stimulus also appears to drive more stereotyped task-related
 activity and functional connectivity across individuals~\citep{HassEtal08,
 LernEtal11, SimoChan20, SimoEtal16}.
 
-The above prior studies are consistent with two potential descriptions of how
+The above studies are consistent with two potential descriptions of how
 cognitive processes are reflects in brain activity patterns. One possibility is
 that the information rate of brain activity increases during more complex or
 higher-level cognitive processing. If so, then the ability to reliably decode
@@ -209,6 +211,39 @@ accuracy changed across the different experimental conditions.
 
 \section*{Results}
 
+We sought to understand whether higher-level cognition is reflected by more
+reliable and informative brain activity patterns, and how compressibility of
+brain activity patterns relates to cognitive complexity. We developed a
+computational framework for systematically assessing the informativeness and
+compressibility of brain activity patterns recorded under different cognitive
+circumstances. We used across-participant decoding accuracy (see
+\textit{Forward inference and decoding accuracy}) as a proxy for
+informativeness. To estimate the compressibility of the brain patterns, we used
+group principal components analysis (PCA) to project the brain patterns into
+$k$-dimensional spaces, for different values of $k$ (see \textit{Hierarchical
+Topographic Factor Analysis (HTFA)} and \textit{Principal components analysis
+(PCA)}). For more compressible brain patterns, decoding accuracy should be more
+robust to small values of $k$.
+
+We analyzed a dataset collected by \cite{SimoEtal16} that comprised four
+experimental conditions. These conditions exposed participants to stimuli that
+systematically varied in cognitive engagement. In the \textit{intact}
+experimental condition, participants listened to an audio recording of a
+10-minute story. In the \textit{paragraph}-scrambled experimental condition,
+partipants listened to a temporally scrambled version of the story, where the
+paragraphs occurred out of order, but where the same set of paragraphs was
+presented over the entire listening interval. All participants in this
+condition experienced the scrambled paragraphs in the same order. In the
+\textit{word}-scrambled experimental condition, participants listened to a
+temporally scrambled version of the story, where the words occurred in a random
+order. Again, all participants in this condition experienced the scrambled
+words in the same order. Finally, in the \textit{rest} experimental condition,
+participants lay in the scanner with no overt stimulus, while keeping their
+eyes open and blinking as needed. This public dataset provided a convenient
+means for testing our hypothesis that different levels of cognitive processing
+and engagement affect how informative and compressible the associated brain
+patterns are.
+
 \begin{figure}
   \centering
   
@@ -234,8 +269,10 @@ the number of components ($x$-axis) and decoding accuracy ($y$-axis) at one
 condition's inflection point. All error ribbons denote bootstrap-estimated 95\%
 confidence intervals.}
 
-    \label{fig:inflection}
-  \end{figure}
+\label{fig:inflection}
+\end{figure}
+
+
 
 
 
@@ -406,7 +443,7 @@ timepoint labels (for each group), we defined the decoding accuracy as the
 average proportion of correctly decoded timepoints, across both groups (where
 chance perfomance is $\frac{1}{T}$). In Figures~\ref{fig:inflection}
 and~\ref{fig:inflection-thirds} we report the decoding accuracy for each
-condition and value of $k$, averaged across $n = 1,000$ cross validation folds.
+condition and value of $k$, averaged across $n = 100$ cross validation folds.
 
 \subsection*{Reverse inference}
 
