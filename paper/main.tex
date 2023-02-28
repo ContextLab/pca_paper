@@ -14,6 +14,8 @@
 \linenumbers
 
 \newcommand{\synthThirds}{S1}
+\newcommand{\accuracyNetworks}{S2}
+\newcommand{\componentsNetworks}{S3}
 
 \title{High-order cognition is supported by complex but compressible brain activity patterns} 
 
@@ -380,11 +382,23 @@ attentional resources in the less-engaging word and rest conditions.
   \label{fig:networks}
 \end{figure}
 
-
-
-
-
-
+We also wondered how informativeness and compressibility in the different
+experimental conditions might vary across brain networks. We used a network
+parcellation identified by \cite{YeoEtal11} to segment the brain into seven
+distinct networks. The networks can be sorted (roughly) in order from
+lower-level to higher-level cortex as follows (Fig.~\ref{fig:networks}A):
+visual, somatomotor, dorsal attention, ventral attention, limbic,
+frontoparietal, and default mode. Next, we computed decoding curves separately
+for the activity patterns within each network and identified each network's
+inflection point, for each experimental condition. Moving from low-order
+networks to higher-order networks, we found that decoding accuracy (for the
+intact condition) tended to increase
+(Figs.~\ref{fig:networks}B,~\accuracyNetworks). This suggests that higher-order
+networks may carry more content-relevant or stimulus-driven ``information.'' We
+found no clear trends in the numbers of components at each network's inflection
+point across networks or conditions
+(Figs.~\ref{fig:networks}C,~\componentsNetworks). \textbf{JRM NOTE: expand on
+this once we have the new figures.}
 
 \begin{figure}[tp]
   \centering
@@ -403,9 +417,42 @@ segment may be found in Figure~\synthThirds.}
 
 \end{figure}
 
-
+In addition to examining different networks in isolation, we wondered about the
+general structure of the full-brain (i.e., potentially multi-network) activity
+patterns reflected by different principal components across different
+experimental conditions. Figure~\ref{fig:neurosynth-pca} displays inflated
+brain maps of the top five highest-weighted components, for each experimental
+condition. We also used Neurosynth~\citep{RubiEtal17} to identify, for each
+component, the top five terms associated with each map (see \textit{Reverse
+inference}). We noticed (by inspection) several common themes across the sets
+of terms associated with each component and condition. Memory-related
+components included terms like ``middle temporal,'' ``memory retrieval,'' and
+``working memory.'' Sensory processing related components included terms like
+``primary visual,'' ``auditory cortex,'' ``v1,'' and so on. Other components
+were associated with sensory integration (e.g., ``thalamic,'' ``cingulate,''
+etc.), sentence comprehension (e.g., ``sentence,'' ``comprehension''), emotion
+and valence (e.g., ``amygdala,'' ``valance''), or the default mode network
+(e.g., ``default mode'').  The components we identified were relatively stable
+across story segments (Fig.~\synthThirds).
 
 \section*{Discussion}
+
+\begin{figure}[tp]
+  \centering
+  \includegraphics[width=\textwidth]{figs/discussion}
+
+\caption{\textbf{Summary of functions associated with top-weighted components
+by condition.} Each column corresponds to an experimental condition. Brain maps
+in the top row are reproduced from Figure~\ref{fig:neurosynth-pca}, for
+reference. Cognitive functions summarized from the top Neurosynth-derived terms
+in Figure~\ref{fig:neurosynth-pca} are listed in the rows on the left.  Shaded cells
+denote which experimental conditions were associated with one or more top-weighted
+principal components associated with the given function.}
+
+\label{fig:discussion}
+\end{figure}
+
+
 
 \section*{Methods}
 
