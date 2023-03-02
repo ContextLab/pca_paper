@@ -5,7 +5,7 @@
 \usepackage{setspace}
 \usepackage{apacite}
 \usepackage{hyperref}
-\usepackage{natbib}
+\usepackage[sort]{natbib}
 \usepackage{pxfonts}
 \usepackage[utf8]{inputenc}
 \usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
@@ -485,41 +485,75 @@ principal components associated with the given function.}
 \label{fig:discussion}
 \end{figure}
 
-Correlations or causal associations between different brain regions
-simultaneously imply that full-brain activity patterns will be compressible and
-also that those activity patterns will contain redundancies. For example, the
-extent that activity patterns at one brain area can be inferred or predicted
-from activity patterns at other areas~\citep[e.g.,][]{OwenEtal20, ScanEtal21},
-reflects overlap in the information available in or represented by those brain
-areas. If brain patterns in one area are recoverable using brain patterns in
-another area, then the ``signal'' used to convey the activity patterns could be
-compressed by removing the recoverable activity. Predictable (and therefore
-redundant) brain activity patterns are also more robust to signal corruption.
-For example, even if the activity patterns at one region are unreadable or
-unreliable at a given moment, that unreliability could be compensated for by
-other region's activity patterns that are predictive of the unreliable region.
+Our explorations of informativeness and compressibility are related to a much
+broader literature on the correlational and causal structure of brain activity
+patterns~\citep{PretEtal17, OwenEtal21, RogeEtal07, RubiSpor10, SizeEtal18,
+SmitEtal13b, SmitEtal13c, SrinEtal07, TomaVolk11, YeoEtal11, AdacEtal12,
+BassSpor17, BullSpor09, SporHone06, SporBetz16, SporZwi04, DhamEtal08,
+KorzEtal08, BrovEtal04}. Correlations or causal associations between different
+brain regions simultaneously imply that full-brain activity patterns will be
+compressible and also that those activity patterns will contain redundancies.
+For example, the extent that activity patterns at one brain area can be
+inferred or predicted from activity patterns at other
+areas~\citep[e.g.,][]{OwenEtal20, ScanEtal21}, reflects overlap in the
+information available in or represented by those brain areas. If brain patterns
+in one area are recoverable using brain patterns in another area, then the
+``signal'' used to convey the activity patterns could be compressed by removing
+the recoverable activity. Predictable (and therefore redundant) brain activity
+patterns are also more robust to signal corruption. For example, even if the
+activity patterns at one region are unreadable or unreliable at a given moment,
+that unreliability could be compensated for by other region's activity patterns
+that are predictive of the unreliable region.
 
-other themes:
+Our findings that informativeness and compressibility change with task demands
+may follow from task-dependent changes in full-brain correlation patterns. A
+number of prior studies have found that so-called ``functional connectivity''
+(i.e., correlational) patterns vary reliably across tasks, events, and
+situations~\citep{SimoEtal16, ColeEtal14, SmitEtal09, OwenEtal21}. By examining
+how these task-dependent changes in correlations affect informativeness and
+compressibility, our work suggests a potential reason for why the statistical
+structure of brain activity patterns might vary with cognitive task or with
+cognitive demands. For lower-level tasks, or for tasks that require relatively
+little ``deep'' cognitive processing, our brains may optimize activity patterns
+for robustness and redundancy over expressiveness, for example to maximize
+reliability. For higher-level tasks, or for tasks that require deeper cognitive
+processing, our brains may sacrifice some redundancy in favor of greater
+expressiveness.
 
-- the structure of our brain patterns changes with cognitive task. maybe
-something about flexibility or adaptability? why might some states benefit from
-more compressibiilty or more informativeness?
+In the information theory sense~\citep{Shan48}, when a signal is transmitted
+using a fixed alphabet of ``symbols,'' the information rate decreases as the
+signal is compressed (e.g., fewer symbols transmitted per unit time, using an
+alphabet with fewer symbols, etc.). Our finding that each individual brain
+component (symbol) becomes more informative as cognitive richness increases
+suggests that the ``alphabet'' of brain activity patterns is also
+task-dependent. Other work suggests that the representations that are
+\textit{reflected} by brain activity patterns may also change with task
+demands. For example, our brains may represent the same perceptual stimulus
+differently depending on which aspects of the stimulus or which combinations of
+features are relevant~\citep{MackEtal20}.
 
-- for a fixed set of "symbols" the information rate decreases as the signal is
-compressed further. but our finding that each brain pattern component (symbol)
-becomes more informative as cognitive richness increases suggests that the
-"alphabet" of brain patterns is task dependent.
-
-- representations themselves may also change with task demands (e.g., Mack et al, 2020)
-
-- different brain networks appear to optimize in different ways, perhaps for different
-cognitive tasks or operations.
-
+Different brain networks also varied in how informative and compressible their
+activity patterns were across experimental conditions (e.g.,
+Fig.~\ref{fig:networks}). This might reflect evolutionary optimizations that
+reflect the relevant constraints or demands placed on those networks. One
+possibility is that cortex is organized in a hierarchy of networks concerned
+with different levels of processing or function. To the extent that different
+levels of processing (e.g., low-level sensory processing versus ``deeper''
+higher-level processing) reflect different stimulus
+timescales~\citep[e.g.,][]{Mann20}, the network differences we observed might
+also relate to the timescales ot which each network is maximally
+sensitive~\citep{RegeEtal18, BaldEtal17,LernEtal11, HassEtal08}.
 
 \subsection*{Concluding remarks}
 
-- something about the fundamental nature of brain activity and the neural basis of thought.
-
+Cognitive neuroscientists are still grappling with basic questions about the
+fundamental ``rules'' describing how our brains respond, and about how brain
+activity patterns and the associated cognitive representations and computations
+are linked. We identified two aspects of brain activity patterns,
+informativeness and compressibiilty, that appear to change systematically with
+task demands and across brain networks. Our work helps to clarify how the
+``neural code'' might be structured, and how the code might vary across tasks
+and brain areas.
 
 \section*{Methods}
 
