@@ -143,3 +143,10 @@ paper/*.log
 .idea
 paper/figs/source/.DS_Store
 paper/figs/source/.DS_Store
+
+paper/admin/*.fdb_latexmk
+paper/admin/*.aux
+paper/admin/*.fls
+paper/admin/*.out
+paper/admin/*.log
+paper/admin/*.synctex.gz

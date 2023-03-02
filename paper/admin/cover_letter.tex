@@ -1,0 +1,73 @@
+\title{cover letter}
+%
+% See http://texblog.org/2013/11/11/latexs-alternative-letter-class-newlfm/
+% and http://www.ctan.org/tex-archive/macros/latex/contrib/newlfm
+% for more information.
+%
+\documentclass[11pt,stdletter,orderfromtodate,sigleft]{newlfm}
+\usepackage{blindtext, xfrac, animate, hyperref, pxfonts, geometry}
+
+  \setlength{\voffset}{0in}
+
+\newlfmP{dateskipbefore=0pt}
+\newlfmP{sigsize=20pt}
+\newlfmP{sigskipbefore=10pt}
+ 
+\newlfmP{Headlinewd=0pt,Footlinewd=0pt}
+
+\newcommand{\journal}{Nature Neuroscience}
+\newcommand{\articletype}{Article}
+\newcommand{\myTitle}{High-order cognition is supported by information-rich but compressible brain activity patterns}
+\newcommand{\corresponding}{Jeremy R. Manning}
+
+
+\namefrom{\vspace{-0.3in}\corresponding}
+\addrfrom{
+  Dartmouth College\\
+  Department of Psychological \& Brain Sciences\\
+  Moore Hall\\
+  Hanover, NH, 03755}
+\addrto{}
+\dateset{\today}
+
+ 
+\greetto{To the editors of \textit{\journal}:}
+
+
+ 
+\closeline{Sincerely,}
+%\usepackage{setspace}
+%\linespread{0.85}
+% How will your work make others in the field think differently and move the field forward?
+% How does your work relate to the current literature on the topic?
+% Who do you consider to be the most relevant audience for this work?
+% Have you made clear in the letter what the work has and has not achieved?
+
+\begin{document}
+\begin{newlfm}
+
+  We have enclosed our manuscript entitled \textit{\myTitle} to be considered
+  for publication as an \textit{\articletype}. Our manuscript uses
+  dimensionality reduction algorithms and pattern classifiers to explore how
+  informative and compressible (in the information theory senses of those
+  words) brain activity patterns are, under different cognitive circumstances.
+
+  We developed a computational framework for evaluating our two measures of
+  interest (informativeness and compressibility), and we applied the framework
+  to a public fMRI dataset. In the dataset's experiment, participants either
+  listened to an auditory recording of a story, listened to temporally
+  scrambled recordings of the story, or underwent a resting state scan. Each
+  condition is designed to engage cognitive processing and engagement at
+  different depths. For example, listening to the intact story leads
+  participants to mentally engage with the narrative, and to deeply process
+  and connect narrative events in a way that leads to a rich understanding
+  of the story.  Listening to temporally scrambled versions of the story might
+  lead to understanding invidual words....
+
+
+Thank you for considering this manuscript, and I hope you will find it suitable
+for publication in \textit{\journal}.
+
+
+\end{newlfm}
+\end{document}
