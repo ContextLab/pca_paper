@@ -150,3 +150,6 @@ paper/admin/*.fls
 paper/admin/*.out
 paper/admin/*.log
 paper/admin/*.synctex.gz
+
+data/*.mat
+data/scratch/*.pkl
