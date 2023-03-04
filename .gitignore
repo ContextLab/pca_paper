@@ -162,3 +162,5 @@ data/nii/Pieman2/masks/avg152T1_gray_3mm.nii.gz
 data/nii/download_complete.txt
 data/pieman2.pkl
 .gitignore
+
+data/pieman2_organized.pkl
