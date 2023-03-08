@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import nibabel as nib
 import nilearn as nl
-from nilearn.input_data import NiftiMasker
+from nilearn.maskers import NiftiMasker
 
 import os
 import warnings
@@ -69,6 +69,10 @@ def nii2cmu(nifti_file, mask_file=None):
     vox_coords = fullfact(img.shape[0:3])[vmask, ::-1]-1
     
     R = np.array(np.dot(vox_coords, S[0:3, 0:3])) + S[:3, 3]
+
+    # center on the MNI152 brain (hard code this in)
+    mni_center = np.array([0.55741881, -21.52140703, 9.83783098])
+    R = R - R.mean(axis=0) + mni_center
     
     return {'Y': Y, 'R': R}
 

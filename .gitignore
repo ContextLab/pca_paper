@@ -152,7 +152,7 @@ paper/admin/*.log
 paper/admin/*.synctex.gz
 
 data/*.mat
-data/scratch/*.pkl
+data/scratch/pca*.pkl
 data/nii/Pieman2.zip
 data/nii/Pieman2/*/*/*.nii.gz
 data/nii/Pieman2/nii/__MACOSX/*
