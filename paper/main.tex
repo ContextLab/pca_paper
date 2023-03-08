@@ -251,27 +251,39 @@ patterns are.
 \begin{figure}[tp]
   \centering
   
-  \includegraphics[width=0.8\textwidth]{figs/decoding_and_inflection}
+  \includegraphics[width=\textwidth]{figs/decoding_and_inflection}
 
 \caption{\textbf{Decoding accuracy and compression.} \textbf{A. Decoding
 accuracy by number of components.} Ribbons of each color display
 cross-validated decoding performance for each condition (intact, paragraph,
 word, and rest), as a function of the number of components (features) used to
-represent the data. The horizontal red line denotes chance performance, and the
+represent the data. For each condition, decoding accuracy has been normalized
+by subtracting expected ``chance'' decoding performance (estimated as
+$\frac{1}{T}$, where $T$ is the number of timepoints in the given condition).
+This normalization was intended to enable fairer comparisons across conditions;
+a relative decoding accuracy of 0.0 denotes ``chance'' performance. The
 horizontal black line denotes 5\% decoding accuracy (used as a reference in
 Panel B). \textbf{B. Numbers of components required to reach a fixed decoding
 accuracy threshold, by condition.} The panel displays a zoomed-in view of the
 inset in Panel A. Intersections between each condition's decoding accuracy
-curve and the 5\% decoding accuracy reference line are marked by arrows.
-\textbf{C. Estimating inflection points.} We sought to identify an ``inflection
-point'' for each decoding curve, denoting the number of components at which the
-decoding curve asymptotes. We fit sigmoid functions to each decoding curve
-(left sub-panel) and then computed the minimum number of components for which
-the second derivative of the sigmoid was both positive and less than a
-threshold value of 0.0001. \textbf{D. Inflection points by condition.} Each dot
-displays the number of components ($x$-axis) and decoding accuracy ($y$-axis)
-at one condition's inflection point. All error ribbons denote
-bootstrap-estimated 95\% confidence intervals.}
+curve and the 5\% decoding accuracy reference line are marked by arrows. All
+error ribbons in Panels A and B denote bootstrap-estimated 95\% confidence
+intervals. \textbf{C. Estimating ``compressibility'' for each condition.} The
+density plots display the numbers of components required to reach at least 5\%
+(corrected) decoding accuracy, across all cross validation runs. For the
+``rest'' condition, where decoding accuracy never reached 5\% accuracy, we
+display the distribution of the numbers of components required to achieve the
+peak decoding accuracy in each fold. (This distribution is nearly flat, as
+illustrated in Panel E.) \textbf{D. Estimating ``informativeness'' for each
+condition.} The density plots display the peak (corrected) decoding accuracies
+achieved in each condition, across all cross validation runs. \textbf{E.
+Informativeness versus compressibility.} Each dot displays the minimum number
+of components required to achieve at least 5\% corrected decoding accuracy
+($x$-coordinate; for the rest condition the numbers of components are estimated
+using the peak decoding accuracies as in Panel C) and the peak (corrected)
+decoding accuracy ($y$-coordinate). The smaller dots correspond to individual
+cross validation runs and the larger dots display the averages across runs. The
+inset displays a zoomed-in view of the indicated region in the main panel.}
 
 \label{fig:inflection}
 \end{figure}
@@ -285,21 +297,21 @@ were revealed by the analysis. First, in general (i.e., across experimental
 conditions), decoding accuracy improves as the number of components increases.
 However, decoding accuracy peaked at higher levels for experimental conditions
 that exposed participants to cognitively richer stimuli. The peak decoding
-accuracy was highest for the ``intact'' condition (versus paragraph: $t(XXX) =
-XXX, p = XXX$; versus word: $t(XXX) = XXX, p = XXX$; versus rest: $t(XXX) =
-XXX, p = XXX$), next highest for the ``paragraph'' condition (versus word:
-$t(XXX) = XXX, p = XXX$; versus rest: $t(XXX) = XXX, p = XXX$), and next
-highest for the ``word'' condition (versus rest: $t(XXX) = XXX, p = XXX$). This
-ordering implies that cognitively richer conditions evoke more stable brain
-activity patterns across people.
+accuracy was highest for the ``intact'' condition (versus paragraph: $t(99) =
+35.205, p < 0.001)$; versus word: $t(99) = 43.172, p < 0.001)$; versus rest:
+$t(99) = 81.361, p < 0.001)$), next highest for the ``paragraph'' condition
+(versus word: $t(99) = 6.243, p < 0.001)$; versus rest: $t(99) = 50.748, p <
+0.001)$), and next highest for the ``word'' condition (versus rest: $t(99) =
+48.791, p < 0.001)$). This ordering implies that cognitively richer conditions
+evoke more stable brain activity patterns across people.
 
 The cognitively richer conditions also displayed steeper initial slopes. For
 example, the intact condition decoders reached an arbitrarily chosen threshold
 of 5\% accuracy using fewer components than the paragraph condition decoders
-($t(XXX) = XXX, p = XXX$) or word condition decoders ($t(XXX) = XXX, p = XXX$),
-and decoding accuracy never exceeded 5\% for the rest condition. This suggests
-that brain activity patterns evoked by cognitively richer conditions are more
-compressible, such that representing the data using the same number of
+($t(99) = -7.429, p < 0.001)$) or word condition decoders ($t(99) = -7.300, p <
+0.001)$), and decoding accuracy never exceeded 5\% for the rest condition. This
+suggests that brain activity patterns evoked by cognitively richer conditions
+are more compressible, such that representing the data using the same number of
 principal components provides more information to the temporal decoders
 (Fig.~\ref{fig:inflection}B).
 
@@ -321,22 +333,21 @@ conditions in proportion to cognitive richness.
 
 \begin{figure}[tp]
   \centering
-  \includegraphics[width=0.8\textwidth]{figs/information_and_compression_over_time}
+  \includegraphics[width=\textwidth]{figs/information_and_compression_over_time}
 
 \caption{\textbf{Changes in decoding accuracy and compression over time.}
 \textbf{A. Decoding accuracy by number of components, by story segment.} Each
 family of curves is plotted in the same format as Figure~\ref{fig:inflection}A
-but reflects data only from one third of the dataset. \textbf{B. Inflection
-points by condition and segment.} The dots re-plot the inflection points from
-Figure~\ref{fig:inflection}D for reference. The numbers denote the inflection
-points for each third of the dataset (1: first third; 2: second third; 3: third
-third; colors denote experimental conditions). \textbf{C. Change in decoding
-accuracy over time, by number of components.} For each number of components
-($x$-axis) and condition (color), we fit a regression line to the decoding
-accuracies obtained for the first, second, and third thirds of the dataset
-(corresponding to the left, middle, and right columns of Panel A,
-respectively). The $y$-axis denotes the slopes of the regression lines. All
-error ribbons denote bootstrap-estimated 95\% confidence intervals.}
+but reflects data only from one quarter of the dataset. \textbf{B.
+Informativeness versus compressibility by condition and segment.} Each scatter
+plot is in the same format as Figure~\ref{fig:inflection}E, but reflects data
+only from one quarter of the dataset. \textbf{C. Change in decoding accuracy
+over time, by number of components.} For each number of components ($x$-axis)
+and condition (color), we fit a regression line to the decoding accuracies
+obtained for the first, second, third, and fourth quarters of the dataset
+(corresponding to the columns of Panels A and B). The $y$-axis denotes the
+slopes of the regression lines. All error ribbons denote bootstrap-estimated
+95\% confidence intervals.}
 
 \label{fig:inflection-thirds}
 
@@ -354,14 +365,14 @@ computed decoding curves (Fig.~\ref{fig:inflection-thirds}A) and inflection
 points (Fig.~\ref{fig:inflection-thirds}B) for each segment and condition. We
 found that, in the two most cognitively rich conditions (intact and paragraph),
 both decoding accuracy and compressibility, as reflected by the change in
-decoding curves, increased with listening time (intact: $t(XXX) = XXX, p =
-XXX$; paragraph: $t(XXX) = XXX, p = XXX$). These changes may reflect an
-increase in comprehension or depth of processing with listening time. In
-contrast, the decoding accuracy and compressibility \textit{decreased} with
-listening time in the word condition ($t(XXX) = XXX, p = XXX$) and rest
-condition ($t(XXX) = XXX, p = XXX$). This might reflect the depletion of
-attentional resources in the less-engaging word and rest conditions.
-
+decoding curves, increased with listening time (e.g., at the annotated
+reference point of $k = 20$ components: intact: $t(99) = 7.915, p < 0.001)$;
+paragraph: $t(99) = 2.354, p = 0.021)$). These changes may reflect an increase
+in comprehension or depth of processing with listening time. In contrast, the
+decoding accuracy and compressibility \textit{decreased} with listening time in
+the word condition ($t(99) = -10.747, p < 0.001)$) and rest condition ($t(99) =
+-22.081, p < 0.001)$). This might reflect the depletion of attentional
+resources in the less-engaging word and rest conditions.
 
 \begin{figure}[tp]
   \centering
