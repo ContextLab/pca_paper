@@ -137,6 +137,14 @@ def rgb_to_dec(value):
     Returns: list (length 3) of decimal values'''
     return [v/256 for v in value]
 
+def get_cmap(hex_list, first_color=(0.5, 0.5, 0.5, 0.0), name='custom', N=256):
+    cmap_list = [first_color]
+    cmap_list.append([hex_to_rgb(c) for c in hex_list])
+
+    # create the new map
+    return LinearSegmentedColormap.from_list(name, cmap_list, N=N)
+
+
 def get_continuous_cmap(hex_list, float_list=None, name='cmap', N=256):
     ''' creates and returns a color map that can be used in heat map figures.
         If float_list is not provided, colour map graduates linearly between each color in hex_list.
