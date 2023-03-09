@@ -376,21 +376,36 @@ resources in the less-engaging word and rest conditions.
 
 \begin{figure}[tp]
   \centering
-  \includegraphics[width=0.7\textwidth]{figs/decode_pcs_network}
+  \includegraphics[width=0.9\textwidth]{figs/network_results}
 
   \caption{\textbf{Network-specific decoding accuracy and compression.}
-  \textbf{A. Decoding accuracy and number of components for network-specific
-  inflection points.} We considered the seven networks identified by
-  \cite{YeoEtal11}. We computed each network's inflection point, for each
-  experimental condition, using the procedure described in
-  Figure~\ref{fig:inflection}C. \textbf{B. Network-specific decoding
-  accuracy.} Each of the seven networks are colored according to the decoding
-  accuracy at the network's inflection point for the ``intact'' experimental
-  condition (corresponding to the dark blue curve in Panel A). \textbf{C.
-  Network-specific compression.} Each of the seven networks are colored
-  according to the number of components at the network's inflection point for
-  the intact experimental condition. Larger numbers of components reflect lower
-  compressibility.}
+  \textbf{A. Network parcellation map.} The glass brain displays the location
+  of each of seven networks identified by \cite{YeoEtal11}. \textbf{B. Node
+  labels.} We assigned network labels to each of 700 Hierarchical Topographic
+  Factor Analysis-derived nodes (see \textit{Hierarchical topographic factor
+  analysis (HTFA)}). For each node, we evaluated its radial basis function
+  (RBF) at the locations of every voxel in the parcellation map displayed in
+  Panel A. We summed up these RBF weights separately for the voxels in each
+  network. We defined each node's network label as its highest-weighted network
+  across all voxels. \textbf{C. Per-network node counts.} The bar plot displays
+  the total number of HTFA-derived nodes assigned to each network. \textbf{D.
+  Informativeness versus compressibility by network and condition.} Each dot
+  corresponds to a single cross validation run. The dots' coordinates denote
+  the minimum proportion of components (relative to the number of nodes in the
+  given network) required to achieve at least 5\% corrected decoding accuracy
+  ($x$-coordinate; for the rest condition these proportions are estimated using
+  the peak decoding accuracies) and peak (corrected) decoding accuracy
+  ($y$-coordinate). We repeated the analysis separately for each network
+  (color) and experimental condition (column). \textbf{E. Informativeness by
+  network.} For each network, sorted (roughly) from lower-order networks on the
+  left to higher-order networks on the right, the curves display the peak
+  (corrected) decoding accuracy for each experimental condition (color).
+  \textbf{F. Compressibility by network.} For each network, the curves display
+  the proportion of components (relative to the total possible number of
+  components displayed in Panel C) required to achieve at least 5\% decoding
+  accuracy (or, for the rest condition, peak decoding accuracy, as described
+  above). Error ribbons in Panels E and F denote 95\% bootstrap-estimated
+  confidence intervals.}
 
   \label{fig:networks}
 \end{figure}

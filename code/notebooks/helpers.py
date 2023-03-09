@@ -7,6 +7,8 @@ import seaborn as sns
 from nilearn.maskers import NiftiMasker
 from matplotlib import pyplot as plt
 from sklearn.decomposition import IncrementalPCA as PCA
+from tqdm import tqdm
+from scipy.spatial.distance import cdist
 
 import os
 import warnings
@@ -169,7 +171,7 @@ def accuracy(train, test):
     return np.mean([i == d for i, d in enumerate(labels)]) - 1 / len(labels)
 
 
-def cross_validation(data, n_iter=10, fname=None):
+def cross_validation(data, n_iter=10, fname=None, max_components=700):
     if fname is not None:
         if os.path.exists(fname):
             with open(fname, 'rb') as f:
@@ -227,6 +229,8 @@ def ridge_plot(x, column='Number of components', fname=None, xlim=[-99, 700], hu
     if fname is not None:
         g.savefig(os.path.join(figdir, fname + '.pdf'), bbox_inches='tight')
 
+    return fig
+
 
 def get_data():
     url = 'https://www.dropbox.com/s/29a48lv3j5ybcvw/pieman2_htfa.pkl?dl=1'
@@ -241,3 +245,42 @@ def get_data():
         data = pickle.load(open(fname, 'rb'))
     
     return data
+
+
+def info_and_compressibility(d, target=0.05):
+    def closest(x, target):
+        dists = np.abs(x.values - target)
+        dists[x.values < target] += 10 * np.max(dists)
+        return int(x.index.values[np.argmin(dists)])
+
+    df = []
+    for c in conditions:
+        dc = d[c].astype(float).pivot(index='Iteration', columns='Number of components', values='Relative decoding accuracy')
+        i = pd.DataFrame()
+        i['Number of components'] = dc.apply(lambda x: closest(x, target), axis=1, raw=False)
+        i['Relative decoding accuracy'] = dc.max(axis=1)
+        i['Condition'] = c
+        i['Iteration'] = dc.index.values.astype(int)
+        df.append(i)
+    return pd.concat(df, ignore_index=True, axis=0)
+
+
+def plot_info_and_compressibility_scatter(x, fname=None):
+    fig = plt.figure(figsize=(4, 3))
+    ax = plt.gca()
+
+    x = info_and_compressibility(x)
+    sns.scatterplot(x, x='Number of components', y='Relative decoding accuracy', hue='Condition', palette=[condition_colors[c] for c in conditions], legend=False, s=10, ax=ax)
+    sns.scatterplot(x.groupby('Condition').mean().loc[conditions].reset_index(), x='Number of components', y='Relative decoding accuracy', hue='Condition', palette=[condition_colors[c] for c in conditions], legend=False, s=100, ax=ax)
+
+    ax.set_xlabel('Number of components', fontsize=12)
+    ax.set_ylabel('Relative decoding accuracy', fontsize=12)
+    ax.set_ylim(-0.01, 0.35)
+    ax.set_xlim(3, 700)
+
+    ax.spines[['right', 'top']].set_visible(False)
+
+    if fname is not None:
+        fig.savefig(os.path.join(figdir, fname + '.pdf'), bbox_inches='tight')
+    
+    return fig
