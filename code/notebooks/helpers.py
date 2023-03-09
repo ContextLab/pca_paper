@@ -1,12 +1,33 @@
 import numpy as np
 import pandas as pd
 import nibabel as nib
-import nilearn as nl
+import datawrangler as dw
+import seaborn as sns
+
 from nilearn.maskers import NiftiMasker
-from matplotlib.colors import LinearSegmentedColormap
+from matplotlib import pyplot as plt
+from sklearn.decomposition import IncrementalPCA as PCA
 
 import os
 import warnings
+import pickle
+
+basedir = os.path.split(os.path.split(os.getcwd())[0])[0]
+datadir = os.path.join(basedir, 'data')
+figdir = os.path.join(basedir, 'paper', 'figs', 'source')
+
+scratch_dir = os.path.join(basedir, 'data', 'scratch')
+if not os.path.exists(scratch_dir):
+    os.makedirs(scratch_dir)
+
+condition_colors = {
+    'intact': '#21409A',
+    'paragraph': '#00A14B',
+    'word': '#FFDE17',
+    'rest': '#7F3F98'
+}
+
+conditions = list(condition_colors.keys())
 
 
 def nii2cmu(nifti_file, mask_file=None):
@@ -119,54 +140,104 @@ def cmu2nii(Y, R, template=None):
     return nib.Nifti1Image(data, affine=img.affine)
 
 
-# colormap tools-- source: https://towardsdatascience.com/beautiful-custom-colormaps-with-matplotlib-5bab3d1f0e72
-def hex_to_rgb(value):
-    '''
-    Converts hex to rgb colours
-    value: string of 6 characters representing a hex colour.
-    Returns: list length 3 of RGB values'''
-    value = value.strip("#") # removes hash symbol if present
-    lv = len(value)
-    return tuple(int(value[i:i + lv // 3], 16) for i in range(0, lv, lv // 3))
+def group_pca(data, n_components=None, fname=None):
+    if fname is not None:
+        if os.path.exists(fname):
+            with open(fname, 'rb') as f:
+                return pickle.load(f)
+    
+    pca = PCA(n_components=n_components)
+    
+    x = dw.stack(data)
+    y = pca.fit_transform(x)
+
+    y = dw.unstack(pd.DataFrame(index=x.index, data=y))
+
+    if fname is not None:
+        with open(fname, 'wb') as f:
+            pickle.dump((y, pca), f)
+    
+    return y, pca
 
 
-def rgb_to_dec(value):
-    '''
-    Converts rgb to decimal colours (i.e. divides each value by 256)
-    value: list (length 3) of RGB values
-    Returns: list (length 3) of decimal values'''
-    return [v/256 for v in value]
-
-def get_cmap(hex_list, first_color=(0.5, 0.5, 0.5, 0.0), name='custom', N=256):
-    cmap_list = [first_color]
-    cmap_list.append([hex_to_rgb(c) for c in hex_list])
-
-    # create the new map
-    return LinearSegmentedColormap.from_list(name, cmap_list, N=N)
+def accuracy(train, test):
+    train = np.mean(np.stack(train, axis=2), axis=2)
+    test = np.mean(np.stack(test, axis=2), axis=2)
+    dists = cdist(train, test, metric='correlation')
+    
+    labels = np.argmin(dists, axis=1)
+    return np.mean([i == d for i, d in enumerate(labels)]) - 1 / len(labels)
 
 
-def get_continuous_cmap(hex_list, float_list=None, name='cmap', N=256):
-    ''' creates and returns a color map that can be used in heat map figures.
-        If float_list is not provided, colour map graduates linearly between each color in hex_list.
-        If float_list is provided, each color in hex_list is mapped to the respective location in float_list. 
-        
-        Parameters
-        ----------
-        hex_list: list of hex code strings
-        float_list: list of floats between 0 and 1, same length as hex_list. Must start with 0 and end with 1.
-        
-        Returns
-        ----------
-        colour map'''
-    rgb_list = [rgb_to_dec(hex_to_rgb(i)) for i in hex_list]
-    if float_list:
-        pass
-    else:
-        float_list = list(np.linspace(0,1,len(rgb_list)))
-        
-    cdict = dict()
-    for num, col in enumerate(['red', 'green', 'blue']):
-        col_list = [[float_list[i], rgb_list[i][num], rgb_list[i][num]] for i in range(len(float_list))]
-        cdict[col] = col_list
-    cmp = LinearSegmentedColormap(name, segmentdata=cdict, N=N)
-    return cmp
+def cross_validation(data, n_iter=10, fname=None):
+    if fname is not None:
+        if os.path.exists(fname):
+            with open(fname, 'rb') as f:
+                return pickle.load(f)
+
+    results = pd.DataFrame(columns=['Iteration', 'Number of components', 'Relative decoding accuracy'])
+
+    n = len(data[3]) // 2
+    for i in tqdm(range(n_iter)):
+        order = np.random.permutation(len(data[3]))
+
+        for c in range(3, max_components + 1):
+            x = pd.DataFrame(columns=['Iteration', 'Number of components', 'Relative decoding accuracy'])
+            x.loc[0, 'Iteration'] = i
+            x.loc[0, 'Number of components'] = c
+
+            train = [data[c][o] for o in order[:n]]
+            test = [data[c][o] for o in order[n:]]
+            x.loc[0, 'Relative decoding accuracy'] = (accuracy(train, test) + accuracy(test, train)) / 2
+
+            results = pd.concat([results, x], ignore_index=True)
+    
+    if fname is not None:
+        with open(fname, 'wb') as f:
+            pickle.dump(results, f)
+    
+    return results
+
+
+def ridge_plot(x, column='Number of components', fname=None, xlim=[-99, 700], hue='Condition', palette=[condition_colors[c] for c in conditions]):
+
+    sns.set_theme(style="white", rc={"axes.facecolor": (0, 0, 0, 0)})
+    g = sns.FacetGrid(x, row=hue, hue=hue, palette=palette, height=1, aspect=6)
+    g.map(sns.kdeplot, column, bw_adjust=1, clip_on=True, fill=True, alpha=1, common_norm=True, linewidth=1.5)
+    g.refline(y=0, linewidth=1.5, linestyle='-', color=None, clip_on=False)
+
+    def label(x, color, label):
+        ax = plt.gca()
+        ax.text(0, 0.2, label.capitalize(), color=color, ha='left', va='center', transform=ax.transAxes)
+
+    g.map(label, hue)
+
+    g.figure.subplots_adjust(hspace=-0.5)
+    g.set_titles("")
+    g.set(yticks=[], ylabel="")
+    g.despine(bottom=True, left=True)
+
+    fig = plt.gcf()
+    fig.set_size_inches(4, 3)
+
+    ax = plt.gca()
+    ax.set_xlim(xlim[0], xlim[1])
+    ax.set_xlabel(column, fontsize=12)
+
+    if fname is not None:
+        g.savefig(os.path.join(figdir, fname + '.pdf'), bbox_inches='tight')
+
+
+def get_data():
+    url = 'https://www.dropbox.com/s/29a48lv3j5ybcvw/pieman2_htfa.pkl?dl=1'
+
+    fname = os.path.join(datadir, 'pieman2_htfa.pkl')
+    if not os.path.exists(fname):
+        with open(fname, 'wb') as f:
+            data = requests.get(url).content
+            f.write(data)
+
+    with open(fname, 'rb') as f:
+        data = pickle.load(open(fname, 'rb'))
+    
+    return data
