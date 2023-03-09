@@ -71,13 +71,19 @@ def nii2cmu(nifti_file, mask_file=None):
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
         
-        img = nib.load(nifti_file)
+        if type(nifti_file) == str:
+            img = nib.load(nifti_file)            
+        elif type(nifti_file) == nib.nifti1.Nifti1Image:
+            img = nifti_file
+        else:
+            raise ValueError('nifti_file must be a filename or nibabel Nifti1Image object')
+        
         mask = NiftiMasker(mask_strategy='background')
         if mask_file is None:
             mask.fit(nifti_file)
         else:
             mask.fit(mask_file)
-    
+
     hdr = img.header
     S = img.get_sform()
     vox_size = hdr.get_zooms()
