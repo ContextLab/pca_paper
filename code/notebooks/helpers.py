@@ -284,3 +284,6 @@ def plot_info_and_compressibility_scatter(x, fname=None):
         fig.savefig(os.path.join(figdir, fname + '.pdf'), bbox_inches='tight')
     
     return fig
+
+def rbf(R, center, width):
+    return np.exp(-np.sum((R - center) ** 2, axis=1) / width)

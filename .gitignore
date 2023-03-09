@@ -168,3 +168,4 @@ data/nii/new_pieman/*/func/*.nii
 data/nii/new_pieman/README.txt
 data/scratch/voxelwise/*.pkl
 data/pieman2_htfa.pkl
+data/neurosynth/*
