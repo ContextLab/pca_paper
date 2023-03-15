@@ -17,11 +17,12 @@
 \usepackage{longtable}
 \usepackage{lscape}
 \usepackage{rotating}
-\usepackage{supertabular}
+\usepackage{xtab}
 
-\linenumbers
+%\linenumbers
 
 \newcommand{\synth}{1}
+\newcommand{\neurosynth}{5}
 \renewcommand{\thefigure}{S\arabic{figure}}
 \renewcommand{\thetable}{S\arabic{table}}
 
@@ -64,7 +65,7 @@ jeremy.r.manning@dartmouth.edu}
   \tabletail{\bottomrule}
   \tiny
 
-\begin{supertabular}{rlllllllllll}
+\begin{xtabular}{rlllllllllll}
   Cognitive control and task performance &   Cognitive control &            tasks &       control &         network &     conditions &  comparison &      performed &        common &     correlates &    experiment &            pre \\
   Developmental aging and maturation &                   - &              age &        adults &        children &    development & adolescents &          aging & developmental &    adolescence &     childhood &          adult \\
   Eye movements and visual attention &           Attention &              eye &          gaze &            eyes &         visual &    saccades &      movements &       saccade &      direction &          gait &         target \\
@@ -146,7 +147,9 @@ Network interactions and evidence in human systems &                   - &      
 Visual perception of motion and form &  Sensory perception &           motion &        visual &      perception &     perceptual &  biological &        dynamic &        moving &          human &        static &       illusion \\
  Emotional processing and regulation &             Emotion &        emotional &       emotion &         neutral &         facial & expressions &      affective &     responses &       negative &    regulation &       emotions \\
 
-\end{supertabular}
+
+ \label{tab:topics}}
+\end{xtabular}
 
 \caption{\vspace{0.2cm} \normalsize \noindent Table S1: \textbf{Neurosynth-derived topics.} We report the top-weighted terms
 for each of 80 topics identified using Latent Dirichlet
@@ -175,11 +178,22 @@ functions reflected across the 80 topics. Topics that appeared unrelated to
 specific cognitive functions (e.g., topics related to specific methods or
 clinical themes) are designated with dashes.
 
-\label{tab:topics}}
 
 \end{landscape}
 
-\begin{figure}
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figs/variance_explained}
+
+\caption{\textbf{Cumulative variance explained by component, condition, and part.} 
+Each panel displays the cumulative variance explained in the neuroimaging data as a function of the number of principal components.
+Colors denote experimental conditions.  The left panel displays results for all data, and the right panels display results separated
+by story segment (Q1: first quarter; Q2: second quarter; Q3: third quarter; Q4: fourth quarter).}
+
+\label{fig:var-explained}
+\end{figure}
+
+\begin{figure}[t]
   \centering
   \includegraphics[width=\textwidth]{figs/top_terms_by_component}
 
@@ -194,15 +208,70 @@ front of many of the topics denote manually identified cognitive labels
 \label{fig:top-terms}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figs/component_brain_maps}
+
+\caption{\textbf{Brain maps by component and condition.} For the top five
+highest-weighted principal components (rows), from each experimental condition
+(columns), the components' brain maps are projected onto four views: left
+sagittal, axial, right sagittal, and coronal.  The color scale is the same for all panels and matches the coloring in Fig.~\neurosynth C.}
+
+\label{fig:components}
+\end{figure}
+
+\begin{figure}[t]
   \centering
   \includegraphics[width=\textwidth]{figs/topic_contrasts}
 
-\caption{\textbf{Fill this in...}}
+\caption{\textbf{Comparisons between per-component topic correlations across conditions.}  Each sub-panel displays a scatterplot comparing the per-topic correlations for two or more experimental conditions.
+Each dot donotes the correlations for a single topic (indicated by the legend on the right).  The topics are colored according to the ranked order of the correlations
+between the topic's brain maps and the brain map for the first principal component in the intact condition.  \textbf{A. Comparisons between correlations for each pair of experimental conditions.}  The
+conditions being compared are marked on the $x$ and $y$ axes.  Each sub-panel (column) reflects the correlations for one principal component.  \textbf{B. Comparisons between \textit{differences} in correlations for pairs of experimental conditions.}
+In these sub-panels, the $x$ and $y$ coordinates reflect differences in correlations for the indicated experimental conditions, for the given component (column).
+All panels: the across-topic correlations reported in each panel are between each topic's $x$ and $y$ coordinates.}
 
 \label{fig:contrasts}
 
 \end{figure}
+
+
+\begin{figure}[tp]
+  \centering
+  \includegraphics[width=\textwidth]{figs/components_neurosynth_full}
+
+\caption{\textbf{Functions associated with top-weighted components by
+condition.} \textbf{A. Top-weighted topics by condition.} Here we display
+per-condition (rows, indicated by colored dots) topic correlations, averaged
+across topics that pertain to each of several broad cognitive functions
+(columns within each sub-panel, indicated by colored dots). Each sub-panel
+reflects correlations for the components indicated in the panel titles. A
+legend for the condition and cognitive function classifications is displayed in
+the lower right of the figure. Table~S1 provides a list of each topic's
+top-weighted terms, along with each topic's manually labeled cognitive
+classification. A full list of the topics most highly associated with each
+component may be found in Figure~\ref{fig:top-terms}. \textbf{B. Associations
+between per-condition components and cognitive functions.} The network plots
+denote positive average correlations between the component images for each
+condition (gray-outlined dots on the left sides of each network; colors denote
+conditions) and topic-specific brain maps associated with each indicated
+cognitive function (black-outlined dots on the right sides of each network;
+colors denote cognitive functions). The line thicknesses are proportional to
+the correlation values (correlation coefficients are noted in the heatmaps in
+Panel A). \textbf{C. Correlations between each principal component, by
+condition.} The heatmaps display the correlations between the brain maps
+(Fig.~\componentBrains) for each principal component (sub-panel), across each
+pair of conditions (rows and columns of each sub-panel's matrix, indicated by
+colored dots). \textbf{D. Associations between per-condition topic weights, by
+component.} Each sub-panels network plot summarizes the pattern of correlations
+between the topic correlations from each of the $n$\textsuperscript{th} top-weighted principal components
+(sub-panel), for each experimental condition (gray-outlined dots). The line
+thicknesses are proportional to the correlation values (correlation
+coefficients are noted in the heatmaps in Panel C).}
+
+\label{fig:neurosynth-full}
+\end{figure}
+
 
 \newpage
 \renewcommand{\refname}{Supplemental references}
@@ -210,5 +279,4 @@ front of many of the topics denote manually identified cognitive labels
 \bibliography{CDL-bibliography/cdl}
 
 \end{document}
-
 
