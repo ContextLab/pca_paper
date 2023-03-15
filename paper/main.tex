@@ -13,12 +13,11 @@
 \usepackage{soul}
 \linenumbers
 
-\newcommand{\synthThirds}{S1}
-\newcommand{\accuracyNetworks}{S2}
-\newcommand{\componentsNetworks}{S3}
-\newcommand{\componentBrains}{S4}
-\newcommand{\topTerms}{S5}
-\newcommand{\neurosynthFull}{S6}
+\newcommand{\varExplained}{S1}
+\newcommand{\topTerms}{S2}
+\newcommand{\componentBrains}{S3}
+\newcommand{\topicContrasts}{S4}
+\newcommand{\neurosynthFull}{S5}
 
 \newcommand{\topics}{S1}
 
@@ -110,7 +109,7 @@ are also robust, since there is little total information loss due to removing
 any given observation.
 
 We take as a given that brain activity is highly flexible: our brains can
-exhibit nearly infinite activity patterns. This flexibility implies that our
+exhibit nearly infinite varieties of activity patterns. This flexibility implies that our
 brains activity patterns are highly information rich. However, brain activity
 patterns are also highly structured. For example, full-brain correlation
 matrices are stable within~\citep{FinnEtal15, FinnEtal17, GratEtal18} and
@@ -210,7 +209,7 @@ scan~\citep{SimoEtal16}. Each of these experimental conditions evokes different
 depths of cognitive processing~\citep{SimoEtal16,LernEtal11,
 HassEtal08,OwenEtal21}. We used across-participant classifiers to decode
 listening times in each condition, as a proxy for how ``informative'' the
-task-specific activity patterns were~\citep{SimoChan20}. We also use principle
+task-specific activity patterns were~\citep{SimoChan20}. We also used principle
 components analysis to generate lower-dimensional representations of the
 activity patterns. We then repeated the classification analyses after
 preserving different numbers of components and examined how classification
@@ -297,11 +296,12 @@ To evaluate the relation between informativeness and compressibiilty for brain
 activity from each experimental condition, we trained a series of
 across-participant temporal decoders on compressed representations of the data.
 Figure~\ref{fig:inflection}A displays the decoding accuracy as a function of
-the number of principal components used to represent the data. Several patterns
-were revealed by the analysis. First, in general (i.e., across experimental
-conditions), decoding accuracy improves as the number of components increases.
-However, decoding accuracy peaked at higher levels for experimental conditions
-that exposed participants to cognitively richer stimuli. The peak decoding
+the number of principal components used to represent the data (also see
+Fig.~\varExplained). Several patterns were revealed by the analysis. First, in
+general (i.e., across experimental conditions), decoding accuracy tends to
+improve as the number of components are increased. However, decoding accuracy
+peaked at higher levels for experimental conditions that exposed participants
+to cognitively richer stimuli (Fig.~\ref{fig:inflection}D). The peak decoding
 accuracy was highest for the ``intact'' condition (versus paragraph: $t(99) =
 35.205, p < 0.001)$; versus word: $t(99) = 43.172, p < 0.001)$; versus rest:
 $t(99) = 81.361, p < 0.001)$), next highest for the ``paragraph'' condition
@@ -318,22 +318,11 @@ of 5\% accuracy using fewer components than the paragraph condition decoders
 suggests that brain activity patterns evoked by cognitively richer conditions
 are more compressible, such that representing the data using the same number of
 principal components provides more information to the temporal decoders
-(Fig.~\ref{fig:inflection}B).
-
-In every experimental condition, decoding accuracy appeared to asymptote (i.e.,
-hit an upper limit) beyond some characteristic number of components that
-differed across conditions. To quantify the ``inflection points'' at which the
-decoding curves in Figure~\ref{fig:inflection}A flattened out, we fit a sigmoid
-function to the average decoding curve for each condition. We defined the
-inflection point for each condition as the point on the fitted sigmoid where
-the second derivative was both positive and less than a threshold value of
-0.0001 (i.e., approaching 0 from the right). These inflection points reflect a
-``balance'' between higher decoding accuracy (which tends to be better when
-more components are used) and compression (which is better for fewer
-components). Plotting each condition's inflection point
-(Fig.~\ref{fig:inflection}D) reveals that both the number of components and the
-decoding accuracy at each inflection point increase systematically across
-conditions in proportion to cognitive richness.
+(Figs.~\ref{fig:inflection}B, C). Taken together, as shown in
+Figure~\ref{fig:inflection}E, we found that brain activity patterns evoked by
+cognitively richer conditions tended to be both more informative (i.e.,
+associated with higher decoding accuracies) \textit{and} more compressible
+(i.e., requiring fewer components to achieve the 5\% accuracy threshold).
 
 
 \begin{figure}[tp]
@@ -354,7 +343,7 @@ obtained for the first, second, third, and fourth quarters of the dataset
 slopes of the regression lines. All error ribbons denote bootstrap-estimated
 95\% confidence intervals.}
 
-\label{fig:inflection-thirds}
+\label{fig:inflection-quarters}
 
 \end{figure}
 
@@ -365,19 +354,21 @@ cognitive richness of the stimulus, might these measures also vary over time
 condition might process the ongoing story more deeply later on in the story
 (compared with earlier in the story) given the additional narrative background
 and context they had been exposed to by that point. To examine this
-possibility, we divided each condition into three successive time segments. We
-computed decoding curves (Fig.~\ref{fig:inflection-thirds}A) and inflection
-points (Fig.~\ref{fig:inflection-thirds}B) for each segment and condition. We
-found that, in the two most cognitively rich conditions (intact and paragraph),
-both decoding accuracy and compressibility, as reflected by the change in
-decoding curves, increased with listening time (e.g., at the annotated
-reference point of $k = 20$ components: intact: $t(99) = 7.915, p < 0.001)$;
-paragraph: $t(99) = 2.354, p = 0.021)$). These changes may reflect an increase
-in comprehension or depth of processing with listening time. In contrast, the
-decoding accuracy and compressibility \textit{decreased} with listening time in
-the word condition ($t(99) = -10.747, p < 0.001)$) and rest condition ($t(99) =
--22.081, p < 0.001)$). This might reflect the depletion of attentional
-resources in the less-engaging word and rest conditions.
+possibility, we divided each condition into four successive time segments. We
+computed decoding curves (Fig.~\ref{fig:inflection-quarters}A) and the numbers
+of components required to achieve 5\% decoding accuracy
+(Fig.~\ref{fig:inflection-quarters}B) for each segment and condition. We found
+that, in the two most cognitively rich conditions (intact and paragraph), both
+decoding accuracy and compressibility, as reflected by the change in decoding
+curves, increased with listening time (e.g., at the annotated reference point
+of $k = 20$ components in Fig.~\ref{fig:inflection-quarters}C: intact: $t(99) =
+7.915, p < 0.001)$; paragraph: $t(99) = 2.354, p = 0.021)$). These changes may
+reflect an increase in comprehension or depth of processing with listening
+time. In contrast, the decoding accuracy and compressibility \textit{decreased}
+with listening time in the word condition ($t(99) = -10.747, p < 0.001)$) and
+rest condition ($t(99) = -22.081, p < 0.001)$). This might reflect the
+depletion of attentional resources in the less-engaging word and rest
+conditions.
 
 \begin{figure}[tp]
   \centering
@@ -419,17 +410,17 @@ We also wondered how informativeness and compressibility in the different
 experimental conditions might vary across brain networks. We used a network
 parcellation identified by \cite{YeoEtal11} to segment the brain into seven
 distinct networks. The networks can be sorted (roughly) in order from
-lower-level to higher-level cortex as follows (Fig.~\ref{fig:networks}A):
+lower-level to higher-level cortex as follows (Figs.~\ref{fig:networks}A--C):
 visual, somatomotor, dorsal attention, ventral attention, limbic,
 frontoparietal, and default mode. Next, we computed decoding curves separately
 for the activity patterns within each network and identified each network's
 inflection point, for each experimental condition. Moving from low-order
-networks to higher-order networks, we found that decoding accuracy (for the
-intact condition) tended to increase (Fig.~\ref{fig:networks}B). This suggests
-that higher-order networks may carry more content-relevant or stimulus-driven
-``information.'' We found no clear trends in the numbers of components at each
-network's inflection point across networks or conditions
-(Fig.~\ref{fig:networks}C).
+networks to higher-order networks, we found that decoding accuracy tended to
+increase, particularly in the higer-order experimental conditions
+(Fig.~\ref{fig:networks}D, E). This suggests that higher-order networks may
+carry more content-relevant or stimulus-driven ``information.'' We found no
+clear trends in the proportions of components required to achieve 5\% decoding
+accuracy across networks or conditions (Fig.~\ref{fig:networks}F).
 
 \begin{figure}[tp]
   \centering
@@ -444,14 +435,16 @@ principal components (columns) derived from each experimental condition
 (colors), the radar plots display the correlations between the component images
 and the per-topic images derived for each topic (topic identities are denoted
 by the blue dots; a legend for the topic labels is in the lower right of the
-figure). The top-weighted terms for each topic may be found in Table~\topics.
-\textbf{B. Topic correlations averaged across components.} The radar plot is in
-the same format as the plots in Panel A, but here we display the per-condition
-average correlations across the top five components (for each condition)
-reflected in Panel A. \textbf{C. Component images.} Each plot diplays a right
-sagittal view of a glass brain projection of the top five principal components
-(columns) for each experimental conditions (rows). Additional projections for
-each component may be found in Figure~\componentBrains.}
+figure). An annotated list of the top-weighted topics for each component and
+condition may be found in Figure~\topTerms~and the top-weighted terms for each
+topic may be found in Table~\topics. \textbf{B. Topic correlations averaged
+across components.} The radar plot is in the same format as the plots in Panel
+A, but here we display the per-condition average correlations across the top
+five components (for each condition) reflected in Panel A. \textbf{C. Component
+images.} Each plot diplays a right sagittal view of a glass brain projection of
+the top five principal components (columns) for each experimental conditions
+(rows). Additional projections for each component may be found in
+Figure~\componentBrains.}
 
 \label{fig:neurosynth-pca}
 
@@ -460,24 +453,31 @@ each component may be found in Figure~\componentBrains.}
 In addition to examining different networks in isolation, we wondered about the
 general structure of the full-brain (i.e., potentially multi-network) activity
 patterns reflected by different principal components across different
-experimental conditions. Figure~\ref{fig:neurosynth-pca} displays inflated
-brain maps of the top five highest-weighted components, for each experimental
-condition. We also used Neurosynth~\citep{RubiEtal17} to identify, for each
-component, the top five terms associated with each map (see \textit{Reverse
-inference}). We noticed (by inspection) several common themes across the sets
-of terms associated with each component and condition. Memory-related
-components included terms like ``middle temporal,'' ``memory retrieval,'' and
-``working memory.'' Sensory processing related components included terms like
-``primary visual,'' ``auditory cortex,'' ``v1,'' and so on. Other components
-were associated with sensory integration (e.g., ``thalamic,'' ``cingulate,''
-etc.), sentence comprehension (e.g., ``sentence,'' ``comprehension''), emotion
-and valence (e.g., ``amygdala,'' ``valance''), or the default mode network
-(e.g., ``default mode'').  The components we identified were relatively stable
-across story segments (Fig.~\synthThirds).
+experimental conditions. As shown in Figure~\ref{fig:neurosynth-pca}, we used
+Neurosynth~\citep{RubiEtal17} to identify, for each component, the associations
+with each of 80 themes (see \textit{Reverse inference}).  In general, the first
+principal components across all of the experimental conditions tended to weight
+most heavily on themes related to cognitive control, memory,
+language processing, attention, and perception.  
+
+To elucidate....\textbf{JRM STOPPED HERE}
+
+
+We noticed (by
+inspection) several common themes across the sets of terms associated with each
+component and condition. Memory-related components included terms like ``middle
+temporal,'' ``memory retrieval,'' and ``working memory.'' Sensory processing
+related components included terms like ``primary visual,'' ``auditory cortex,''
+``v1,'' and so on. Other components were associated with sensory integration
+(e.g., ``thalamic,'' ``cingulate,'' etc.), sentence comprehension (e.g.,
+``sentence,'' ``comprehension''), emotion and valence (e.g., ``amygdala,''
+``valance''), or the default mode network (e.g., ``default mode''). The
+components we identified were relatively stable across story segments
+(Fig.~\synthThirds).
 
 \begin{figure}[tp]
   \centering
-  \includegraphics[width=\textwidth]{figs/components_neurosynth_summary}
+  \includegraphics[width=0.9\textwidth]{figs/components_neurosynth_summary}
 
 \caption{\textbf{Summary of functions associated with top-weighted components
 by condition.} \textbf{A. Top-weighted topics by condition.} Here we display
@@ -506,7 +506,12 @@ component.} Each sub-panels network plot summarizes the pattern of correlations
 between the $n$\textsuperscript{th} top-weighted principal components
 (sub-panel) for each experimental condition (gray-outlined dots). The line
 thicknesses are proportional to the correlation values (correlation
-coefficients are noted in the heatmaps in Panel C). Also see
+coefficients are noted in the heatmaps in Panel C). \textbf{E. Change in
+weights by condition.} The bar heights reflect the slopes of regression lines,
+fit separately to the top five components from each condition, between the
+ChatGPT-derived ``rank'' of each cognitive classification and the correlations
+between the component and topic maps associated with cognitive processes at the
+given rank (see \textit{Ranking cognitive processes}).  Also see
 Fig.~\neurosynthFull~for additional information.}
 
 \label{fig:neurosynth-summary}
