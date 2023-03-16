@@ -20,6 +20,7 @@
 \newcommand{\neurosynthFull}{S5}
 
 \newcommand{\topics}{S1}
+\newcommand{\topicTags}{S2}
 
 \title{High-order cognition is supported by information-rich but compressible brain activity patterns}
 
@@ -458,22 +459,46 @@ Neurosynth~\citep{RubiEtal17} to identify, for each component, the associations
 with each of 80 themes (see \textit{Reverse inference}).  In general, the first
 principal components across all of the experimental conditions tended to weight
 most heavily on themes related to cognitive control, memory,
-language processing, attention, and perception.  
+language processing, attention, and perception.  Other components appeared to
+vary more across conditions.
 
-To elucidate....\textbf{JRM STOPPED HERE}
-
-
-We noticed (by
-inspection) several common themes across the sets of terms associated with each
-component and condition. Memory-related components included terms like ``middle
-temporal,'' ``memory retrieval,'' and ``working memory.'' Sensory processing
-related components included terms like ``primary visual,'' ``auditory cortex,''
-``v1,'' and so on. Other components were associated with sensory integration
-(e.g., ``thalamic,'' ``cingulate,'' etc.), sentence comprehension (e.g.,
-``sentence,'' ``comprehension''), emotion and valence (e.g., ``amygdala,''
-``valance''), or the default mode network (e.g., ``default mode''). The
-components we identified were relatively stable across story segments
-(Fig.~\synthThirds).
+To gain further insights into which brain functions might be most closely
+associated with the top-weighted components from each experimental condition,
+we manually grouped each Neurosynth-derived topic into a smaller set of core
+cognitive functions. Separately for each component, we computed the average
+weightings across all topics that were tagged as being associated with each of
+these cognitive functions (Figs.~\ref{fig:neurosynth-summary}A,~\neurosynthFull
+A). To help visualize these associations, we used the patterns of associations
+for each component to construct graphs whose nodes were experimental conditions
+and cognitive functions (Figs.~\ref{fig:neurosynth-summary}B,~\neurosynthFull
+B). We also computed correlations between the sets of per-topic weightings from
+each of the top-weighted components from each experimental condition
+(Fig.~\ref{fig:neurosynth-summary}C, D) and between the brain maps for each
+condition's components (Fig.~\neurosynthFull C, D). Taken together, we found
+that each component appeared to weight on a fundamental set of cognitive
+functions that varied by experimental condition. For example, the top principal
+components from every condition weighted similarly on the full set of
+Neurosynth topics (Fig.~\ref{fig:neurosynth-pca}A) and cognitive functions
+(Figs.~\ref{fig:neurosynth-summary}A, B and~\neurosynthFull~A, B), suggesting
+that these components might reflect a set of functions or activity patterns
+that are common across all conditions. The second components' weightings were
+similar across the intact, paragraph, and rest conditions (highest-weighted
+functions: cognitive control, memory, social cognition, and resting state), but
+different for the word condition (highest-weighted functions: sensory
+perception and cognitive control). The fourth components' weighting were
+grouped the paragraph and word conditions (highest-weighted functions: memory,
+language processing, and cognitive control) and the intact and rest conditions
+(highest-weighted functions: emotion, social cognition). We also used
+ChatGPT~\citep{ChatGPT} to sort the list of manually tagged cognitive functions
+from lowest-level to highest-level (Tab.~\topicTags,
+Fig.~\ref{fig:neurosynth-summary}E; also see \textit{Ranking cognititive
+processes}). We found that higher-level functions tended to be weighted on more
+heavily by top components from the intact and paragraph conditions than
+lower-level functions. The top components from the word condition showed the
+opposite tendancy, whereby \textit{lower}-level functions tended to be weighted
+on more heavily than higher-level functions. The components from the rest
+condition showed almost no differences in the weights associated with
+high-level versus low-level functions.
 
 \begin{figure}[tp]
   \centering
@@ -723,6 +748,7 @@ chance perfomance is $\frac{1}{T}$). In Figures~\ref{fig:inflection}
 and~\ref{fig:inflection-thirds} we report the decoding accuracy for each
 condition and value of $k$, averaged across $n = 100$ cross validation folds.
 
+\textbf{JRM NOTE: UPDATE THE NEXT TWO SUB-SECTIONS}
 \subsection*{Reverse inference}
 
 To help interpret the brain activity patterns we found within the contexts of
@@ -733,6 +759,10 @@ value weights for each of the top 5 components (Figs.~\ref{fig:neurosynth-pca},
 \synthThirds). We then carried out a meta analysis using
 Neurosynth~\citep{RubiEtal17} to identify the 5 terms most commonly associated
 with the given map.
+
+\subsection*{Ranking cognitive processes}
+
+
 
 
 \section*{Data and code availability}
