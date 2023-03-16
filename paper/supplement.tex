@@ -11,13 +11,9 @@
 \usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
 \usepackage[left]{lineno}
 \usepackage{soul}
-\usepackage[table]{xcolor}
-\usepackage{colortbl}
 \usepackage{booktabs}
-\usepackage{longtable}
+\usepackage{supertabular}
 \usepackage{lscape}
-\usepackage{rotating}
-\usepackage{xtab}
 
 %\linenumbers
 
@@ -57,15 +53,28 @@ jeremy.r.manning@dartmouth.edu}
 
 % \end{figure}
 
-\begin{landscape}
-  \tablehead{\toprule
-  Topic label &     Cognitive label &           Term 1 &        Term 2 &          Term 3 &         Term 4 &      Term 5 &         Term 6 &        Term 7 &         Term 8 &        Term 9 &        Term 10 \\
-  \midrule
-  }
-  \tabletail{\bottomrule}
-  \tiny
+%\begin{landscape}
+ 
 
-\begin{xtabular}{rlllllllllll}
+  \begin{landscape}
+  \begin{center}
+\tiny
+  \tablehead{
+  \toprule
+  Topic label &     Cognitive label &           Term 1 &        Term 2 &          Term 3 &         Term 4 &      Term 5 &         Term 6 &        Term 7 &         Term 8 &        Term 9 &        Term 10 \\
+  \midrule}
+  %\midrule
+  %}
+  \tabletail{\bottomrule}
+
+  \bottomcaption{\textbf{Neurosynth-derived topics.} We report the top-weighted terms for each
+  of 80 topics identified using Latent Dirichlet Allocation~\citep{BleiEtal03}
+  applied to 9,204 functional neuroimaging articles in the Neurosynth
+  database~\citep{RubiEtal17}. See \textit{Reverse inference} for additional
+  information.}
+%\begin{xtabular}{rlllllllllll}
+
+  \begin{supertabular}{rlllllllllll}
   Cognitive control and task performance &   Cognitive control &            tasks &       control &         network &     conditions &  comparison &      performed &        common &     correlates &    experiment &            pre \\
   Developmental aging and maturation &                   - &              age &        adults &        children &    development & adolescents &          aging & developmental &    adolescence &     childhood &          adult \\
   Eye movements and visual attention &           Attention &              eye &          gaze &            eyes &         visual &    saccades &      movements &       saccade &      direction &          gait &         target \\
@@ -148,38 +157,49 @@ Visual perception of motion and form &  Sensory perception &           motion & 
  Emotional processing and regulation &             Emotion &        emotional &       emotion &         neutral &         facial & expressions &      affective &     responses &       negative &    regulation &       emotions \\
 
 
- \label{tab:topics}}
-\end{xtabular}
 
-\caption{\vspace{0.2cm} \normalsize \noindent Table S1: \textbf{Neurosynth-derived topics.} We report the top-weighted terms
-for each of 80 topics identified using Latent Dirichlet
-Allocation~\citep{BleiEtal03} applied to 9,204 functional neuroimaging articles
-in the Neurosynth database~\citep{RubiEtal17}. The topics, as well as
-associated brain maps identified using Neurosynth, were identified and reported
-in several prior studies~\citep{FoxEtal14, SulEtal17, ChenEtal20}. The topic
-labels for each topic were generated automatically with the following ChatGPT
-(chat.openai.com) prompt: ``Please help me come up with intuitive labels for
-topic topics I found by fitting a topic model to thousands of neuroscience and
-psychology articles. I'll paste in the top 10 highest-weighted words for each
-topic, and I'd like you to respond with a suggested label. For each topic,
-please respond with just the topic label and no other formatting or text. Here
-are the next topic's top words:'' followed by a comma-separated list of the
-given topic's top-weighted words reflected in the table. For some topics,
-ChatGPT responded with a longer-form response rather than a concise topic
-label. In these instances, on a case-by-case basis, we used a second follow-up
-prompt to achieve the given topic's label: ``could you please come up with a
-more concise label for that topic?''. We then manually identified a set of 11
-cognitive labels that were intended to encapsulate a representative range of
-widely studied low-level and high-level cognitive functions. In choosing the
-set of cognitive labels, we jointly considered each topic's ChatGPT-derived
-topic label, along with the top-weighted words for the topic. We attempted to
-generate a concise set of labels that still spanned the full set of cognitive
-functions reflected across the 80 topics. Topics that appeared unrelated to
-specific cognitive functions (e.g., topics related to specific methods or
-clinical themes) are designated with dashes.
+ 
+ \label{tab:topics}
 
 
+\end{supertabular}
+\end{center}
 \end{landscape}
+
+
+
+\newpage
+
+\begin{table}[t]
+\begin{center}
+\begin{tabular}{lr}
+  \toprule
+  Cognitive label &  Rank \\
+  \midrule
+  Cognitive control   &    10 \\
+  Language processing &     9 \\
+  Memory              &     8 \\
+  Emotion             &     7 \\
+  Social cognition    &     6 \\
+  Spatial cognition   &     5 \\
+  Attention           &     4 \\
+  Reward              &     3 \\
+  Sensory perception  &     2 \\
+  Motor control       &     1 \\
+  Resting state       &     0 \\
+  \bottomrule
+\end{tabular}
+
+\caption{\textbf{Ranking cognitive processes.} The table displays the output of
+a ChatGPT~\citep{ChatGPT} prompt asking for a ranking of the cognitive
+processes reflected in the labels from Table~\ref{tab:topics}. See \textit{Ranking cognitive
+processes} for additional detail.}
+\label{tab:topic-tags}
+
+\end{center}
+\end{table}
+  
+\newpage
 
 \begin{figure}[t]
   \centering
@@ -203,7 +223,7 @@ to an experimental condition (denoted by color, as indicated in the legend in
 the lower right), and the columns and shading correspond to the component
 number (ranked by proportion of variance explained). The colored squares in
 front of many of the topics denote manually identified cognitive labels
-(Tab.~S1).}
+(Tab.~\ref{tab:topics}).}
 
 \label{fig:top-terms}
 \end{figure}
@@ -247,7 +267,7 @@ across topics that pertain to each of several broad cognitive functions
 (columns within each sub-panel, indicated by colored dots). Each sub-panel
 reflects correlations for the components indicated in the panel titles. A
 legend for the condition and cognitive function classifications is displayed in
-the lower right of the figure. Table~S1 provides a list of each topic's
+the lower right of the figure. Table~\ref{tab:topics} provides a list of each topic's
 top-weighted terms, along with each topic's manually labeled cognitive
 classification. A full list of the topics most highly associated with each
 component may be found in Figure~\ref{fig:top-terms}. \textbf{B. Associations
@@ -260,18 +280,17 @@ colors denote cognitive functions). The line thicknesses are proportional to
 the correlation values (correlation coefficients are noted in the heatmaps in
 Panel A). \textbf{C. Correlations between each principal component, by
 condition.} The heatmaps display the correlations between the brain maps
-(Fig.~\componentBrains) for each principal component (sub-panel), across each
+(Fig.~\ref{fig:components}) for each principal component (sub-panel), across each
 pair of conditions (rows and columns of each sub-panel's matrix, indicated by
 colored dots). \textbf{D. Associations between per-condition topic weights, by
 component.} Each sub-panels network plot summarizes the pattern of correlations
-between the topic correlations from each of the $n$\textsuperscript{th} top-weighted principal components
-(sub-panel), for each experimental condition (gray-outlined dots). The line
-thicknesses are proportional to the correlation values (correlation
-coefficients are noted in the heatmaps in Panel C).}
+between the topic correlations from each of the $n$\textsuperscript{th}
+top-weighted principal components (sub-panel), for each experimental condition
+(gray-outlined dots). The line thicknesses are proportional to the correlation
+values (correlation coefficients are noted in the heatmaps in Panel C).}
 
 \label{fig:neurosynth-full}
 \end{figure}
-
 
 \newpage
 \renewcommand{\refname}{Supplemental references}

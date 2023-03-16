@@ -556,7 +556,7 @@ conditions (Fig.~\ref{fig:inflection}). Over time (e.g., as the experiment
 progressed), these phenomena were strengthened. Specifically, across story
 segments, data from more cognitively rich conditions became more informative
 and compressible, and data from less cognitively rich conditions became
-\textit{less} informative and compressible (Fig.~\ref{fig:inflection-thirds}).
+\textit{less} informative and compressible (Fig.~\ref{fig:inflection-quarters}).
 We also repeated these analyses separately for different brain networks. We
 found that networks traditionally associated with higher-level cognitive
 functions tended to provide more informative brain patterns than networks
@@ -745,22 +745,70 @@ $\mathcal{G}_{\mathrm{template}}$ as the to-be-decoded group. Given the true
 timepoint labels (for each group), we defined the decoding accuracy as the
 average proportion of correctly decoded timepoints, across both groups (where
 chance perfomance is $\frac{1}{T}$). In Figures~\ref{fig:inflection}
-and~\ref{fig:inflection-thirds} we report the decoding accuracy for each
+and~\ref{fig:inflection-quarters} we report the decoding accuracy for each
 condition and value of $k$, averaged across $n = 100$ cross validation folds.
 
-\textbf{JRM NOTE: UPDATE THE NEXT TWO SUB-SECTIONS}
 \subsection*{Reverse inference}
 
 To help interpret the brain activity patterns we found within the contexts of
 other studies, we created summary maps of each principal component, for each
-experimental condition, by summing together the 20 HTFA-derived RBF nodes (see
-\textit{Hierarchical Topographic Factor Analysis}) with the highest absolute
-value weights for each of the top 5 components (Figs.~\ref{fig:neurosynth-pca},
-\synthThirds). We then carried out a meta analysis using
-Neurosynth~\citep{RubiEtal17} to identify the 5 terms most commonly associated
-with the given map.
+experimental condition. Each principal component comprises 700 ``weights'' on
+each of the HTFA-derived RBF nodes (see \textit{Hierarchical Topographic Factor
+Analysis}). For each node, we evaluated its RBF at the locations of every voxel
+in the standard 2~mm MNI152 template brain and multiplied the RBF by the node's
+weight. The sum of these weighted RBF activation maps provides a full-brain
+image, in MNI152 space, of the given principal component.
+
+Next, we considered 80 topics estimated using Latent Dirichlet
+Allocation~\citep{BleiEtal03} applied to 9,204 functional neuroimaging articles
+in the Neurosynth database~\citep{RubiEtal17}. The topics, as well as
+associated brain maps identified using Neurosynth, were identified and reported
+in several prior studies~\citep{FoxEtal14, SulEtal17, ChenEtal20}. The topic
+labels for each topic were generated automatically with the following ChatGPT
+(chat.openai.com) prompt: ``Please help me come up with intuitive labels for
+topic topics I found by fitting a topic model to thousands of neuroscience and
+psychology articles. I'll paste in the top 10 highest-weighted words for each
+topic, and I'd like you to respond with a suggested label. For each topic,
+please respond with just the topic label and no other formatting or text. Here
+are the next topic's top words:'' followed by a comma-separated list of the
+given topic's top-weighted words reflected in the Table~\topics. For some
+topics, ChatGPT responded with a longer-form response rather than a concise
+topic label. In these instances, on a case-by-case basis, we used a second
+follow-up prompt to achieve the given topic's label: ``could you please come up
+with a more concise label for that topic?''. We then manually identified a set
+of 11 cognitive labels that were intended to encapsulate a representative range
+of widely studied low-level and high-level cognitive functions. In choosing the
+set of cognitive labels, we jointly considered each topic's ChatGPT-derived
+topic label, along with the top-weighted words for the topic. We attempted to
+generate a concise set of labels that still spanned the full set of cognitive
+functions reflected across the 80 topics. Topics that appeared unrelated to
+specific cognitive functions (e.g., topics related to specific methods or
+clinical themes) are designated with dashes in Table~\topics.
+
+Finally, following an approach used in several prior studies~\citep{FoxEtal14,
+SulEtal17, ChenEtal20} we treated the correlation between a given component's
+brain map and each topic's brain map as a reflection of how much the component
+was reflective of the given topic. This resulted in a set of 80 ``weights''
+(correlation coefficients) for each component's brain map, with one weight per
+Neurosynth-derived topic.
 
 \subsection*{Ranking cognitive processes}
+
+We manually identified 11 cognitive labels
+spanning the set of 80 Neurosynth-derived topics: cognitive control, language
+processing, memory, emotion, social cognition, spatial cognition, attention,
+reward, sensory perception, motor control, and resting state. We then used
+ChatGPT to automatically ``rank'' the processes from high-level to low-level
+using the following prompt: ``Please rank these cognitive processes from
+highest-level to lowest-level, where higher values indicate higher-order or
+higher-level processes. return the result as a csv file with a header row and
+two columns: `Cognitive label' and `Rank'. Here are the processes: cognitive
+control, language processing, memory, emotion, social cognition, spatial
+cognition, attention, reward, sensory perception, motor control, resting
+state''.  Table~\topicTags displays the output.  We used these labels in
+the analysis presented in Figure~\ref{fig:neurosynth-summary}E to help summarize
+difference in topic weightings across experimental conditions.
+
 
 
 
