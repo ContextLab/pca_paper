@@ -13,6 +13,7 @@ from scipy.spatial.distance import cdist
 import os
 import warnings
 import pickle
+import requests
 
 basedir = os.path.split(os.path.split(os.getcwd())[0])[0]
 datadir = os.path.join(basedir, 'data')
@@ -239,7 +240,7 @@ def ridge_plot(x, column='Number of components', fname=None, xlim=[-99, 700], hu
 
 
 def get_data():
-    url = 'https://www.dropbox.com/s/29a48lv3j5ybcvw/pieman2_htfa.pkl?dl=1'
+    url = 'https://www.dropbox.com/s/fjntg498tl6gfvz/pieman2_htfa.pkl?dl=1'
 
     fname = os.path.join(datadir, 'pieman2_htfa.pkl')
     if not os.path.exists(fname):
