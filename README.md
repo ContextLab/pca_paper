@@ -28,10 +28,10 @@ We recommend running all of the analyses in a fresh Python 3.10 conda environmen
   1. Install [Anaconda](https://www.anaconda.com/)
   2. Clone this repository by running the following in a terminal: `git clone https://github.com/ContextLab/pca_paper.git`  3. Create a new (empty) virtual environment by running the following (in the terminal): `conda create --name pca-paper python=3.10` (follow the prompts)
   3. Navigate (in terminal) to the activate the virtual environment (`conda activate pca-paper`)
-  4. Install support for jupyter notebooks (`conda install -c anaconda ipykernel`) and then add the new kernel to your notebooks (`python -m ipykernel install --user --name=pca-paper`).  Follow any prompts that come up (accepting the default options should work).
+  4. Install support for jupyter notebooks (`conda install -c anaconda ipykernel jupyter`) and then add the new kernel to your notebooks (`python -m ipykernel install --user --name=pca-paper`).  Follow any prompts that come up (accepting the default options should work).
   5. Navigate to the `code` directory (`cd code`) in terminal
-  6. Start a notebook server (`jupyter notebook`) and click on the notebook you want to run in the browser window that comes up.  `decoding_and_compression.ipynb` is a good place to start.  Selecting "Restart & Run All" from the "Kernel" menu will automatically
-  7. Make sure the notebook kernel is set to `pca-paper` (indicated in the top right).  If not, in the `Kernel` menu at the top of the notebook, select "Change kernel" and then "pca-paper".
+  6. Start a notebook server (`jupyter notebook`) and click on the notebook you want to run in the browser window that comes up.  The `pie_images.ipynb` notebook is a good place to start.  Selecting "Restart & Run All" from the "Kernel" menu will automatically run all cells.
+  7. When you're running the notebooks, always make sure the notebook kernel is set to `pca-paper` (indicated in the top right).  If not, in the `Kernel` menu at the top of the notebook, select "Change kernel" and then "pca-paper".
   8. To stop the server, send the "kill" command in terminal (e.g., `ctrl` + `c` on a Mac or Linux system).
   9. To "exit" the virtual environment, type `conda deactivate`.
 
