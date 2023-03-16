@@ -161,7 +161,7 @@ that have some influence over brain activity patterns) are compressible.
 
 To the extent that brain activity patterns contain rich task-relevant
 information, we should be able to use the activity patterns to accurately
-differentiate between different aspects of the task~\citep[e.g., using pattern
+differentiate between different aspects of a task~\citep[e.g., using pattern
 classifiers;][]{NormEtal06b}. For example, prior work has shown a direct
 correspondence between classification accuracy and the information content of a
 signal~\citep{Alva02}. To the extent that brain activity patterns are
@@ -173,7 +173,7 @@ compressibility are related but are partially dissociable
 representation of brain activity patterns) contains more information about
 ongoing cognitive processes, then the peak decoding accuracy should be high.
 And if the signal is compressible, a low-dimensional embedding of the signal
-will be similarly informative to the original signal
+will be similarly informative as the original signal
 (Fig.~\ref{fig:information-compression}D).
 
 
@@ -279,7 +279,7 @@ density plots display the numbers of components required to reach at least 5\%
 ``rest'' condition, where decoding accuracy never reached 5\% accuracy, we
 display the distribution of the numbers of components required to achieve the
 peak decoding accuracy in each fold. (This distribution is nearly flat, as
-illustrated in Panel E.) \textbf{D. Estimating ``informativeness'' for each
+also illustrated in Panel E.) \textbf{D. Estimating ``informativeness'' for each
 condition.} The density plots display the peak (corrected) decoding accuracies
 achieved in each condition, across all cross validation runs. \textbf{E.
 Informativeness versus compressibility.} Each dot displays the minimum number
@@ -314,8 +314,8 @@ evoke more stable brain activity patterns across people.
 The cognitively richer conditions also displayed steeper initial slopes. For
 example, the intact condition decoders reached an arbitrarily chosen threshold
 of 5\% accuracy using fewer components than the paragraph condition decoders
-($t(99) = -7.429, p < 0.001)$) or word condition decoders ($t(99) = -7.300, p <
-0.001)$), and decoding accuracy never exceeded 5\% for the rest condition. This
+($t(99) = -7.429, p < 0.001$) or word condition decoders ($t(99) = -7.300, p <
+0.001$), and decoding accuracy never exceeded 5\% for the rest condition. This
 suggests that brain activity patterns evoked by cognitively richer conditions
 are more compressible, such that representing the data using the same number of
 principal components provides more information to the temporal decoders
@@ -363,11 +363,11 @@ that, in the two most cognitively rich conditions (intact and paragraph), both
 decoding accuracy and compressibility, as reflected by the change in decoding
 curves, increased with listening time (e.g., at the annotated reference point
 of $k = 20$ components in Fig.~\ref{fig:inflection-quarters}C: intact: $t(99) =
-7.915, p < 0.001)$; paragraph: $t(99) = 2.354, p = 0.021)$). These changes may
+7.915, p < 0.001$; paragraph: $t(99) = 2.354, p = 0.021$). These changes may
 reflect an increase in comprehension or depth of processing with listening
 time. In contrast, the decoding accuracy and compressibility \textit{decreased}
-with listening time in the word condition ($t(99) = -10.747, p < 0.001)$) and
-rest condition ($t(99) = -22.081, p < 0.001)$). This might reflect the
+with listening time in the word condition ($t(99) = -10.747, p < 0.001$) and
+rest condition ($t(99) = -22.081, p < 0.001$). This might reflect the
 depletion of attentional resources in the less-engaging word and rest
 conditions.
 
@@ -485,7 +485,7 @@ that are common across all conditions. The second components' weightings were
 similar across the intact, paragraph, and rest conditions (highest-weighted
 functions: cognitive control, memory, social cognition, and resting state), but
 different for the word condition (highest-weighted functions: sensory
-perception and cognitive control). The fourth components' weighting were
+perception and cognitive control). The fourth components' weighting 
 grouped the paragraph and word conditions (highest-weighted functions: memory,
 language processing, and cognitive control) and the intact and rest conditions
 (highest-weighted functions: emotion, social cognition). We also used
@@ -527,7 +527,7 @@ condition.} The heatmaps display the correlations between the brain maps
 (Fig.~\componentBrains) for each principal component (sub-panel), across each
 pair of conditions (rows and columns of each sub-panel's matrix, indicated by
 colored dots). \textbf{D. Associations between per-condition components, by
-component.} Each sub-panels network plot summarizes the pattern of correlations
+component.} Each sub-panel's network plot summarizes the pattern of correlations
 between the $n$\textsuperscript{th} top-weighted principal components
 (sub-panel) for each experimental condition (gray-outlined dots). The line
 thicknesses are proportional to the correlation values (correlation
@@ -556,26 +556,24 @@ conditions (Fig.~\ref{fig:inflection}). Over time (e.g., as the experiment
 progressed), these phenomena were strengthened. Specifically, across story
 segments, data from more cognitively rich conditions became more informative
 and compressible, and data from less cognitively rich conditions became
-\textit{less} informative and compressible (Fig.~\ref{fig:inflection-quarters}).
-We also repeated these analyses separately for different brain networks. We
-found that networks traditionally associated with higher-level cognitive
-functions tended to provide more informative brain patterns than networks
-traditionally associated with lower level cognitive functions
-(Fig.~\ref{fig:networks}). Finally, we examined the most dominant components of
-the brain activity patterns from each experimental condition. We used a reverse
-inference approach~\citep{RubiEtal17} to identify the terms in the neuroimaging
-literature most commonly associated with the corresponding maps. As summarized
-in Figure~\ref{fig:neurosynth-summary}, we found that terms associated with memory and
-sensory processing were associated with the strongest components in all three
-story listening conditions. Terms associated with sensory integration were
-associated with the strongest components in the intact and paragraph-scrambled
-conditions. Terms associated with sentence comprehension, emotion, and valence
-were associated with the strongest components in the intact condition. Finally,
-terms associated with the default mode network were associated with the
-strongest components in the word-scrambled and resting state conditions. Taken
-together, our findings indicate that the informativeness and compressibility of
-our brain activity patterns are task-dependent, and these properties change
-systematically with factors like cognitive richness and depth of processing.
+\textit{less} informative and compressible
+(Fig.~\ref{fig:inflection-quarters}). We also repeated these analyses
+separately for different brain networks. We found that networks traditionally
+associated with higher-level cognitive functions tended to provide more
+informative brain patterns than networks traditionally associated with lower
+level cognitive functions (Fig.~\ref{fig:networks}). Finally, we examined the
+most dominant components of the brain activity patterns from each experimental
+condition. We used a reverse inference approach~\citep{RubiEtal17} to identify
+the terms in the neuroimaging literature most commonly associated with the
+corresponding maps. As summarized in Figure~\ref{fig:neurosynth-summary}E, we
+found that the intact and paragraph conditions tended to weight on higher-level
+cognitive processes more than lower-level cognitive processes, whereas the word
+condition weighted on lower-level processes more than higher-level processes
+and the rest condition showed no difference in high-level versus low-level
+weighting. Taken together, our findings indicate that the informativeness and
+compressibility of our brain activity patterns are task-dependent, and these
+properties change systematically with factors like cognitive richness and depth
+of processing.
 
 
 
@@ -587,11 +585,11 @@ BassSpor17, BullSpor09, SporHone06, SporBetz16, SporZwi04, DhamEtal08,
 KorzEtal08, BrovEtal04}. Correlations or causal associations between different
 brain regions simultaneously imply that full-brain activity patterns will be
 compressible and also that those activity patterns will contain redundancies.
-For example, the extent ot which activity patterns at one brain area can be
+For example, the extent to which activity patterns at one brain area can be
 inferred or predicted from activity patterns at other
 areas~\citep[e.g.,][]{OwenEtal20, ScanEtal21}, reflects overlap in the
 information available in or represented by those brain areas. If brain patterns
-in one area are recoverable using brain patterns in another area, then the
+in one area are recoverable using brain patterns in another area, then a
 ``signal'' used to convey the activity patterns could be compressed by removing
 the recoverable activity. Predictable (and therefore redundant) brain activity
 patterns are also more robust to signal corruption. For example, even if the
@@ -683,7 +681,7 @@ Following our prior related work, we used HTFA~\citep{MannEtal18} to derive a
 compact representation of the neuroimaging data. In brief, this approach
 approximates the timeseries of voxel activations (44,415 voxels) using a much
 smaller number of radial basis function (RBF) nodes~\citep[in this case, 700
-nodes, as determined by an optimization procedure;][]{MannEtal18}). This
+nodes, as determined by an optimization procedure;][]{MannEtal18}. This
 provides a convenient representation for examining full-brain activity patterns
 and network dynamics. All of the analyses we carried out on the neuroimaging
 dataset were performed in this lower-dimensional space. In other words, each
@@ -757,7 +755,7 @@ each of the HTFA-derived RBF nodes (see \textit{Hierarchical Topographic Factor
 Analysis}). For each node, we evaluated its RBF at the locations of every voxel
 in the standard 2~mm MNI152 template brain and multiplied the RBF by the node's
 weight. The sum of these weighted RBF activation maps provides a full-brain
-image, in MNI152 space, of the given principal component.
+image, in MNI152 space, of the given principal component (Fig.~\componentBrains).
 
 Next, we considered 80 topics estimated using Latent Dirichlet
 Allocation~\citep{BleiEtal03} applied to 9,204 functional neuroimaging articles
@@ -774,7 +772,7 @@ are the next topic's top words:'' followed by a comma-separated list of the
 given topic's top-weighted words reflected in the Table~\topics. For some
 topics, ChatGPT responded with a longer-form response rather than a concise
 topic label. In these instances, on a case-by-case basis, we used a second
-follow-up prompt to achieve the given topic's label: ``could you please come up
+follow-up prompt to achieve the given topic's label: ``Could you please come up
 with a more concise label for that topic?''. We then manually identified a set
 of 11 cognitive labels that were intended to encapsulate a representative range
 of widely studied low-level and high-level cognitive functions. In choosing the
@@ -801,11 +799,11 @@ reward, sensory perception, motor control, and resting state. We then used
 ChatGPT to automatically ``rank'' the processes from high-level to low-level
 using the following prompt: ``Please rank these cognitive processes from
 highest-level to lowest-level, where higher values indicate higher-order or
-higher-level processes. return the result as a csv file with a header row and
+higher-level processes. Return the result as a csv file with a header row and
 two columns: `Cognitive label' and `Rank'. Here are the processes: cognitive
 control, language processing, memory, emotion, social cognition, spatial
 cognition, attention, reward, sensory perception, motor control, resting
-state''.  Table~\topicTags displays the output.  We used these labels in
+state''.  Table~\topicTags~displays the output.  We used these labels in
 the analysis presented in Figure~\ref{fig:neurosynth-summary}E to help summarize
 difference in topic weightings across experimental conditions.
 
