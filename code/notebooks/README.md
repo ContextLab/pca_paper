@@ -1,6 +1,6 @@
 # Generating figures and statistical results for this project
 
-Follow the [setup instructions]() before running the project code.
+Follow the [setup instructions](https://github.com/ContextLab/pca_paper/blob/master/README.md) before running the project code.
 
 Running the notebooks in this folder will produce all of the figures and statistical results
 reported in the [main paper](https://github.com/ContextLab/pca_paper/blob/master/paper/main.pdf) and [supplement](https://github.com/ContextLab/pca_paper/blob/master/paper/supplement.pdf), as follows:
