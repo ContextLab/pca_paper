@@ -110,14 +110,14 @@ are also robust, since there is little total information loss due to removing
 any given observation.
 
 We take as a given that brain activity is highly flexible: our brains can
-exhibit nearly infinite varieties of activity patterns. This flexibility implies that our
-brains activity patterns are highly information rich. However, brain activity
-patterns are also highly structured. For example, full-brain correlation
-matrices are stable within~\citep{FinnEtal15, FinnEtal17, GratEtal18} and
-across~\citep{YeoEtal11, GlerEtal12, GratEtal18, ColeEtal14} individuals. This
-stability suggests that our brains' activity patterns are at least partially
-constrained, for example by anatomical, external, or internal factors.
-Constraints on brain activity that limit its flexibility decrease
+exhibit nearly infinite varieties of activity patterns. This flexibility
+implies that our brains' activity patterns are highly information rich. However,
+brain activity patterns are also highly structured. For example, full-brain
+correlation matrices are stable within~\citep{FinnEtal15, FinnEtal17,
+GratEtal18} and across~\citep{YeoEtal11, GlerEtal12, GratEtal18, ColeEtal14}
+individuals. This stability suggests that our brains' activity patterns are at
+least partially constrained, for example by anatomical, external, or internal
+factors. Constraints on brain activity that limit its flexibility decrease
 expressiveness (i.e., its information rate). However, constraints on brain
 activity also increase its robustness to noise (e.g., ``missing'' or corrupted
 signals may be partially recovered). For example, recent work has shown that
@@ -137,7 +137,7 @@ that have some influence over brain activity patterns) are compressible.
   ``observations.'' Across columns, we identified the numbers of components
   required to explain 100\%, 95\%, 75\%, or 50\% of the cumulative variance in
   each image (the 100\% columns denote the original images). The numbers of
-  components are indicate in parentheses, and the resulting ``compressed''
+  components are indicated in parentheses, and the resulting ``compressed''
   images are displayed. \textbf{B. Representing two images with different
   numbers of components.} Using the same principal component decompositions as
   in Panel A, we computed the cumulative proportion of variance explained with
@@ -238,20 +238,20 @@ We analyzed a dataset collected by \cite{SimoEtal16} that comprised four
 experimental conditions. These conditions exposed participants to stimuli that
 systematically varied in cognitive engagement. In the \textit{intact}
 experimental condition, participants listened to an audio recording of a
-10-minute story. In the \textit{paragraph}-scrambled experimental condition,
-partipants listened to a temporally scrambled version of the story, where the
-paragraphs occurred out of order, but where the same set of paragraphs was
-presented over the entire listening interval. All participants in this
-condition experienced the scrambled paragraphs in the same order. In the
-\textit{word}-scrambled experimental condition, participants listened to a
-temporally scrambled version of the story, where the words occurred in a random
-order. Again, all participants in this condition experienced the scrambled
-words in the same order. Finally, in the \textit{rest} experimental condition,
-participants lay in the scanner with no overt stimulus, while keeping their
-eyes open and blinking as needed. This public dataset provided a convenient
-means for testing our hypothesis that different levels of cognitive processing
-and engagement affect how informative and compressible the associated brain
-patterns are.
+10-minute Moth Radio Hour story, \textit{Pie Man}, by Jim O'Grady. In the
+\textit{paragraph}-scrambled experimental condition, participants listened to a
+temporally scrambled version of the story, where the paragraphs occurred out of
+order, but where the same set of paragraphs was presented over the entire
+listening interval. All participants in this condition experienced the
+scrambled paragraphs in the same order. In the \textit{word}-scrambled
+experimental condition, participants listened to a temporally scrambled version
+of the story, where the words occurred in a random order. Again, all
+participants in this condition experienced the scrambled words in the same
+order. Finally, in the \textit{rest} experimental condition, participants lay
+in the scanner with no overt stimulus, while keeping their eyes open and
+blinking as needed. This public dataset provided a convenient means for testing
+our hypothesis that different levels of cognitive processing and engagement
+affect how informative and compressible the associated brain patterns are.
 
 \begin{figure}[tp]
   \centering
@@ -293,7 +293,7 @@ inset displays a zoomed-in view of the indicated region in the main panel.}
 \label{fig:inflection}
 \end{figure}
 
-To evaluate the relation between informativeness and compressibiilty for brain
+To evaluate the relation between informativeness and compressibility for brain
 activity from each experimental condition, we trained a series of
 across-participant temporal decoders on compressed representations of the data.
 Figure~\ref{fig:inflection}A displays the decoding accuracy as a function of
@@ -322,7 +322,7 @@ principal components provides more information to the temporal decoders
 (Figs.~\ref{fig:inflection}B, C). Taken together, as shown in
 Figure~\ref{fig:inflection}E, we found that brain activity patterns evoked by
 cognitively richer conditions tended to be both more informative (i.e.,
-associated with higher decoding accuracies) \textit{and} more compressible
+associated with higher peak decoding accuracies) \textit{and} more compressible
 (i.e., requiring fewer components to achieve the 5\% accuracy threshold).
 
 
@@ -341,7 +341,8 @@ over time, by number of components.} For each number of components ($x$-axis)
 and condition (color), we fit a regression line to the decoding accuracies
 obtained for the first, second, third, and fourth quarters of the dataset
 (corresponding to the columns of Panels A and B). The $y$-axis denotes the
-slopes of the regression lines. All error ribbons denote bootstrap-estimated
+slopes of the regression lines. The black vertical line marks $k = 20$ components,
+as referenced in the main text.  All error ribbons denote bootstrap-estimated
 95\% confidence intervals.}
 
 \label{fig:inflection-quarters}
@@ -401,8 +402,8 @@ conditions.
   the proportion of components (relative to the total possible number of
   components displayed in Panel C) required to achieve at least 5\% decoding
   accuracy (or, for the rest condition, peak decoding accuracy, as described
-  above). Error ribbons in Panels E and F denote 95\% bootstrap-estimated
-  confidence intervals.}
+  above). Error ribbons in Panels E and F denote bootstrap-estimated
+  95\% confidence intervals.}
 
   \label{fig:networks}
 \end{figure}
@@ -417,7 +418,7 @@ frontoparietal, and default mode. Next, we computed decoding curves separately
 for the activity patterns within each network and identified each network's
 inflection point, for each experimental condition. Moving from low-order
 networks to higher-order networks, we found that decoding accuracy tended to
-increase, particularly in the higer-order experimental conditions
+increase, particularly in the higher-level experimental conditions
 (Fig.~\ref{fig:networks}D, E). This suggests that higher-order networks may
 carry more content-relevant or stimulus-driven ``information.'' We found no
 clear trends in the proportions of components required to achieve 5\% decoding
@@ -442,8 +443,8 @@ topic may be found in Table~\topics. \textbf{B. Topic correlations averaged
 across components.} The radar plot is in the same format as the plots in Panel
 A, but here we display the per-condition average correlations across the top
 five components (for each condition) reflected in Panel A. \textbf{C. Component
-images.} Each plot diplays a right sagittal view of a glass brain projection of
-the top five principal components (columns) for each experimental conditions
+images.} Each plot displays a right sagittal view of a glass brain projection of
+the top five principal components (columns) for each experimental condition
 (rows). Additional projections for each component may be found in
 Figure~\componentBrains.}
 
@@ -477,25 +478,25 @@ each of the top-weighted components from each experimental condition
 condition's components (Fig.~\neurosynthFull C, D). Taken together, we found
 that each component appeared to weight on a fundamental set of cognitive
 functions that varied by experimental condition. For example, the top principal
-components from every condition weighted similarly on the full set of
-Neurosynth topics (Fig.~\ref{fig:neurosynth-pca}A) and cognitive functions
-(Figs.~\ref{fig:neurosynth-summary}A, B and~\neurosynthFull~A, B), suggesting
-that these components might reflect a set of functions or activity patterns
-that are common across all conditions. The second components' weightings were
-similar across the intact, paragraph, and rest conditions (highest-weighted
-functions: cognitive control, memory, social cognition, and resting state), but
-different for the word condition (highest-weighted functions: sensory
-perception and cognitive control). The fourth components' weighting 
-grouped the paragraph and word conditions (highest-weighted functions: memory,
-language processing, and cognitive control) and the intact and rest conditions
-(highest-weighted functions: emotion, social cognition). We also used
-ChatGPT~\citep{ChatGPT} to sort the list of manually tagged cognitive functions
-from lowest-level to highest-level (Tab.~\topicTags,
-Fig.~\ref{fig:neurosynth-summary}E; also see \textit{Ranking cognititive
+components from every condition weighted similarly (across conditions) on the
+full set of Neurosynth topics (Fig.~\ref{fig:neurosynth-pca}A) and cognitive
+functions (Figs.~\ref{fig:neurosynth-summary}A, B and~\neurosynthFull~A, B),
+suggesting that these components might reflect a set of functions or activity
+patterns that are common across all conditions. The second components'
+weightings were similar across the intact, paragraph, and rest conditions
+(highest-weighted functions: cognitive control, memory, social cognition, and
+resting state), but different for the word condition (highest-weighted
+functions: sensory perception and cognitive control). The fourth components'
+weighting grouped the paragraph and word conditions (highest-weighted
+functions: memory, language processing, and cognitive control) and the intact
+and rest conditions (highest-weighted functions: emotion, social cognition). We
+also used ChatGPT~\citep{ChatGPT} to sort the list of manually tagged cognitive
+functions from lowest-level to highest-level (Tab.~\topicTags,
+Fig.~\ref{fig:neurosynth-summary}E; also see \textit{Ranking cognitive
 processes}). We found that higher-level functions tended to be weighted on more
 heavily by top components from the intact and paragraph conditions than
 lower-level functions. The top components from the word condition showed the
-opposite tendancy, whereby \textit{lower}-level functions tended to be weighted
+opposite tendency, whereby \textit{lower}-level functions tended to be weighted
 on more heavily than higher-level functions. The components from the rest
 condition showed almost no differences in the weights associated with
 high-level versus low-level functions.
@@ -521,9 +522,9 @@ condition (gray-outlined dots on the left sides of each network; colors denote
 conditions) and topic-specific brain maps associated with each indicated
 cognitive function (black-outlined dots on the right sides of each network;
 colors denote cognitive functions). The line thicknesses are proportional to
-the correlation values (correlation coefficients are noted in the heatmaps in
+the correlation values (correlation coefficients are noted in the heat maps in
 Panel A). \textbf{C. Correlations between each principal component, by
-condition.} The heatmaps display the correlations between the brain maps
+condition.} The heat maps display the correlations between the brain maps
 (Fig.~\componentBrains) for each principal component (sub-panel), across each
 pair of conditions (rows and columns of each sub-panel's matrix, indicated by
 colored dots). \textbf{D. Associations between per-condition components, by
@@ -531,7 +532,7 @@ component.} Each sub-panel's network plot summarizes the pattern of correlations
 between the $n$\textsuperscript{th} top-weighted principal components
 (sub-panel) for each experimental condition (gray-outlined dots). The line
 thicknesses are proportional to the correlation values (correlation
-coefficients are noted in the heatmaps in Panel C). \textbf{E. Change in
+coefficients are noted in the heat maps in Panel C). \textbf{E. Change in
 weights by condition.} The bar heights reflect the slopes of regression lines,
 fit separately to the top five components from each condition, between the
 ChatGPT-derived ``rank'' of each cognitive classification and the correlations
@@ -579,15 +580,15 @@ of processing.
 
 Our explorations of informativeness and compressibility are related to a much
 broader literature on the correlational and causal structure of brain activity
-patterns~\citep{PretEtal17, OwenEtal21, RogeEtal07, RubiSpor10, SizeEtal18,
-SmitEtal13b, SmitEtal13c, SrinEtal07, TomaVolk11, YeoEtal11, AdacEtal12,
-BassSpor17, BullSpor09, SporHone06, SporBetz16, SporZwi04, DhamEtal08,
-KorzEtal08, BrovEtal04}. Correlations or causal associations between different
-brain regions simultaneously imply that full-brain activity patterns will be
-compressible and also that those activity patterns will contain redundancies.
-For example, the extent to which activity patterns at one brain area can be
-inferred or predicted from activity patterns at other
-areas~\citep[e.g.,][]{OwenEtal20, ScanEtal21}, reflects overlap in the
+patterns and networks~\citep{PretEtal17, OwenEtal21, RogeEtal07, RubiSpor10,
+SizeEtal18, SmitEtal13b, SmitEtal13c, SrinEtal07, TomaVolk11, YeoEtal11,
+AdacEtal12, BassSpor17, BullSpor09, SporHone06, SporBetz16, SporZwi04,
+DhamEtal08, KorzEtal08, BrovEtal04, LynnBass21}. Correlations or causal
+associations between different brain regions simultaneously imply that
+full-brain activity patterns will be compressible and also that those activity
+patterns will contain redundancies. For example, the extent to which activity
+patterns at one brain area can be inferred or predicted from activity patterns
+at other areas~\citep[e.g.,][]{OwenEtal20, ScanEtal21}, reflects overlap in the
 information available in or represented by those brain areas. If brain patterns
 in one area are recoverable using brain patterns in another area, then a
 ``signal'' used to convey the activity patterns could be compressed by removing
@@ -642,7 +643,7 @@ Cognitive neuroscientists are still grappling with basic questions about the
 fundamental ``rules'' describing how our brains respond, and about how brain
 activity patterns and the associated underlying cognitive representations and
 computations are linked. We identified two aspects of brain activity patterns,
-informativeness and compressibiilty, that appear to change systematically with
+informativeness and compressibility, that appear to change systematically with
 task demands and across brain networks. Our work helps to clarify how the
 ``neural code'' might be structured, and how the code might vary across tasks
 and brain areas.
@@ -762,9 +763,9 @@ Allocation~\citep{BleiEtal03} applied to 9,204 functional neuroimaging articles
 in the Neurosynth database~\citep{RubiEtal17}. The topics, as well as
 associated brain maps identified using Neurosynth, were identified and reported
 in several prior studies~\citep{FoxEtal14, SulEtal17, ChenEtal20}. The topic
-labels for each topic were generated automatically with the following ChatGPT
-(chat.openai.com) prompt: ``Please help me come up with intuitive labels for
-topic topics I found by fitting a topic model to thousands of neuroscience and
+labels for each topic were generated automatically with the following
+ChatGPT~\citep{ChatGPT} prompt: ``Please help me come up with intuitive labels
+for topics I found by fitting a topic model to thousands of neuroscience and
 psychology articles. I'll paste in the top 10 highest-weighted words for each
 topic, and I'd like you to respond with a suggested label. For each topic,
 please respond with just the topic label and no other formatting or text. Here
@@ -785,10 +786,10 @@ clinical themes) are designated with dashes in Table~\topics.
 
 Finally, following an approach used in several prior studies~\citep{FoxEtal14,
 SulEtal17, ChenEtal20} we treated the correlation between a given component's
-brain map and each topic's brain map as a reflection of how much the component
-was reflective of the given topic. This resulted in a set of 80 ``weights''
-(correlation coefficients) for each component's brain map, with one weight per
-Neurosynth-derived topic.
+brain map and each topic's brain map as an approximate measure of how much the
+component was reflective of the given topic. This resulted in a set of 80
+``weights'' (correlation coefficients) for each component's brain map, with one
+weight per Neurosynth-derived topic.
 
 \subsection*{Ranking cognitive processes}
 
@@ -829,9 +830,10 @@ publish, or preparation of the manuscript.
 
 \section*{Author contributions} 
 
-Conceptulization: J.R.M. and L.L.W.O. Methodology: J.R.M. and L.L.W.O.
-Implementation: L.L.W.O. Analysis: L.L.W.O. Writing, Reviewing, and Editing:
-J.R.M. and L.L.W.O. Supervision: J.R.M.
+Conceptualization: J.R.M. and L.L.W.O. Methodology: J.R.M. and L.L.W.O.
+Implementation: J.R.M. and L.L.W.O. Analysis: J.R.M. and L.L.W.O. Writing,
+Reviewing, and Editing: J.R.M. and L.L.W.O. Funding acquisition: J.R.M.
+Supervision: J.R.M.
 
 \bibliographystyle{apacite}
 \bibliography{CDL-bibliography/cdl}
