@@ -36,7 +36,7 @@ We recommend running all of the analyses in a fresh Python 3.10 conda environmen
   9. To "exit" the virtual environment, type `conda deactivate`.
 
 Notes:
-- After setting up your environment for the first time, you can skip steps 1--4 when you wish to re-enter the analysis environment in the future.
+- After setting up your environment for the first time, you can skip steps 1, 2,and 4 when you wish to re-enter the analysis environment in the future.
 - After running the `decoding_and_compression.ipynb` notebook fully, the correct versions of all required packages for that notebook *and the other notebooks* will be automatically installed.  To run any other notebook:
   - Select the desired notebook from the Jupyter "Home Page" menu to open it in a new browser tab
   - Verify that the notebook is using the `pca-paper` kernel, using the above instructions to adjust the kernel if needed.
