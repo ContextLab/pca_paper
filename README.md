@@ -1,6 +1,6 @@
 # Overview
 
-This repository contains code and data pertaining to [High-level cognition is supported by information-rich but compressible brain activity patterns](link) by Lucy L. W. Owen and Jeremy R. Manning.
+This repository contains code and data pertaining to [High-level cognition is supported by information-rich but compressible brain activity patterns](https://www.biorxiv.org/content/10.1101/2023.03.17.533152v1) by Lucy L. W. Owen and Jeremy R. Manning.
 
 The repository is organized as follows:
 
