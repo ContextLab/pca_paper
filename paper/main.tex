@@ -132,30 +132,34 @@ that have some influence over brain activity patterns) are compressible.
   \includegraphics[width=\textwidth]{figs/information_and_compressibility}
   
   \caption{\textbf{Information content and compressibility.} \textbf{A.
-  Variance explained for two images.} We applied principal components analysis
-  to a photograph and drawing, treating the rows of the images as
-  ``observations.'' Across columns, we identified the numbers of components
-  required to explain 100\%, 95\%, 75\%, or 50\% of the cumulative variance in
-  each image (the 100\% columns denote the original images). The numbers of
-  components are indicated in parentheses, and the resulting ``compressed''
-  images are displayed. \textbf{B. Representing two images with different
-  numbers of components.} Using the same principal component decompositions as
-  in Panel A, we computed the cumulative proportion of variance explained with
-  380 (original images), 20, 4, or 2 components. \textbf{C. Cumulative variance
-  explained versus number of components.} For the images displayed in Panels A
-  and B, we plot the cumulative proportion of variance explained as a function
-  of the number of components used to represent each image. \textbf{D.
-  Information rate and compressibility.} Across multiple images, the
-  information rate (i.e., the amount of information contained in each image;
-  horizontal axis) is high when each individual pixel provides information that
-  cannot be inferred from other pixels. High-information rate images tend to be
-  high-resolution, and low-information rate images tend to be low-resolution.
-  Compressibility is related to the difference between the information required
-  to specify the original versus compressed images (vertical axis). Highly
-  compressible images often contain predictable structure (redundancies) that
-  can be leveraged to represent the images much more efficiently than in their
-  original feature spaces.}
-
+  Variance explained for two images.} Consider two example images: a photograph
+  and simple drawing. The images have the same resolutions, but their content
+  is very different. The photograph is more information rich: when we compare
+  the original photograph and drawing (leftmost column), we can see that the
+  photograph captures much more detail. We can also apply principal components
+  analysis to the images, treating the rows of the images as ``observations.''
+  Across columns, we identified the numbers of components required to explain
+  100\%, 95\%, 75\%, or 50\% of the cumulative variance in each image (the
+  100\% columns denote the original images). The numbers of components are
+  indicated in parentheses, and the resulting ``compressed'' images are
+  displayed. This analysis reveals that the drawing is more compressible: just
+  16 components can explain 95\% of the variance in teh drawing, whereas 50
+  components are required to explain 95\% of the variance in the photograph.
+  \textbf{B. Representing two images with different numbers of components.}
+  Using the same principal component decompositions as in Panel A, we computed
+  the cumulative proportion of variance explained with 380 (original images),
+  20, 4, or 2 components. This analysis provides another way of characterizing
+  the compressibility of each image by showing that the same number of
+  components can explain more variance in the drawing than in the photograph.
+  \textbf{C. Template data from four synthetic datasets.} We constructed four
+  synthetic datasets, each comprising 25 features (columns) observed across 100
+  samples (rows) from each of 10 simulated ``participants.'' The datasets were
+  constructed to contain different levels of informativeness and
+  compressibility (see \textit{Synthetic data}). \textbf{D. Decoding accuracy
+  by number of components.} For each synthetic dataset, we trained
+  across-participant classifiers to decode timepoint labels.  Each panel displays the
+  decoding accuracy as a function of the number of components used to represent
+  the data. Error ribbons denote bootstrap-estimated 95\% confidence intervals.}
 \label{fig:information-compression} 
 \end{figure}
 
@@ -809,6 +813,48 @@ the analysis presented in Figure~\ref{fig:neurosynth-summary}E to help summarize
 difference in topic weightings across experimental conditions.
 
 
+\subsection*{Synthetic data}
+
+To help illustrate the relationship between informativeness and compressibility
+(Fig.~\ref{fig:information-compression}), we generated four synthetic datasets,
+varying in informativeness and compressibility. Each dataset comprised
+simulated observations of $K = 25$ features across $N = 100$ timepoints, from each of $S = 10$
+participants. To create each dataset, we first constructed a ``template''
+matrix of $N$ timepoints by $K$ features. We then generated participant-specific
+data by adding independent noise to each entry in template matrix, drawn from
+the unit normal distribution (i.e., with a mean of 0 and a variance of 1). We
+repeated this process for each participant, yielding $S$ participant-specific
+matrices for each dataset.
+
+Since we estimate informativeness using the temporal decoding accuracy across
+participants, highly informative data will tend to have observations that are
+highly timepoint specific. Relatively uninformative data, in contrast, will
+tend to have more similar observations across timepoints. To generate data with
+``high informativeness,'' we constructed template matrices whose rows
+(observations) were drawn independently from zero-mean multivariate normal
+distributions. The covariances of these distributions were determined according
+to the desired compressibility of the data, as described below. We used a
+multi-step process to generate data with ``low informativeness.'' First we
+generated new template matrices using the same procedure as for the ``high
+informativeness'' datasets. We then multiplied each matrix by a constant ($\rho
+= 0.1$) and computed the cumulative sum of each matrix's rows. This yielded
+matrices whose rows were highly similar across observations.
+
+Compressibility reflects the extent to which decoding accuracy is affected by
+reducing the number of components used to represent the data. Highly
+compressible data will tend to exhibit more similarities across features,
+whereas less compressible data will tend to show greater independence across
+features. To generate data with ``high compressibility,'' we set the covariance
+matrix of the multivariate normal distribution to a toeplitz matrix whose first
+row was given by $\left[K, K - 1, ..., 1\right]$. To generate data with ``low
+compressibility,'' we set the covariance matrix to the identity matrix.
+
+Template matrices for datasets with high informativeness and high
+compressibility, high informativeness and low compressibility, low
+informativeness and high compressibility, and low informativeness and low
+compressibility are displayed in Figure~\ref{fig:information-compression}C. The
+corresponding decoding curves are displayed in
+Figure~\ref{fig:information-compression}D.
 
 
 
