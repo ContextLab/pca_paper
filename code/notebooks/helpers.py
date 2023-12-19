@@ -296,15 +296,18 @@ def rbf(R, center, width):
     return np.exp(-np.sum((R - center) ** 2, axis=1) / width)
 
 
-def plot_accuracy(x, figdir=None, fname=None, conditions=['intact', 'paragraph', 'word', 'rest'], condition_colors=condition_colors, ylim=[-0.01, 0.35], xlim=[3, 700]):
+def plot_accuracy(x, figdir=None, fname=None, conditions=['intact', 'paragraph', 'word', 'rest'], condition_colors=condition_colors, ylim=[-0.01, 0.35], xlim=[3, 700], ax=None):
     if figdir is not None and not os.path.exists(figdir):
         os.makedirs(figdir)
 
-    fig = plt.figure(figsize=(4, 3))
-    ax = plt.gca()
+    if ax is None:
+        fig = plt.figure(figsize=(4, 3))
+        ax = plt.gca()
+    else:
+        fig = plt.gcf()
 
     for c in conditions:
-        sns.lineplot(x[c], x='Number of components', y='Relative decoding accuracy', label=c.capitalize(), color=condition_colors[c], legend=False)
+        sns.lineplot(x[c], x='Number of components', y='Relative decoding accuracy', label=c.capitalize(), color=condition_colors[c], legend=False, ax=ax)
     
     ax.set_xlabel('Number of components', fontsize=12)
     ax.set_ylabel('Relative decoding accuracy', fontsize=12)
