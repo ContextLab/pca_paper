@@ -172,14 +172,29 @@ signal~\citep{Alva02}. To the extent that brain activity patterns are
 compressible, we should be able to generate simplified (e.g., lower
 dimensional) representations of the data while still preserving the relevant or
 important aspects of the original signal. In general, information content and
-compressibility are related but are partially dissociable
+compressibility are often related but are also dissociable
 (Fig.~\ref{fig:information-compression}). If a given signal (e.g., a
 representation of brain activity patterns) contains more information about
-ongoing cognitive processes, then the peak decoding accuracy should be high.
-And if the signal is compressible, a low-dimensional embedding of the signal
-will be similarly informative as the original signal
-(Fig.~\ref{fig:information-compression}D).
-
+ongoing cognitive processes, then the peak decoding accuracy should be high. In
+the simulations shown in Figure~\ref{fig:information-compression}C we construct
+synthetic datasets that have high or low levels of informativeness by varying
+temporal autocorrelations in the data (see \textit{Synthetic data}).
+If a signal is compressible, then a low-dimensional embedding of the signal
+will be similarly informative as the original signal.  In the simulations
+shown in Figure~\ref{fig:information-compression}C we construct synthetic
+datasets that have high or low levels of compressibility by varying
+the covariance structure across features (see \textit{Synthetic data}).  As shown
+in Figure~\ref{fig:information-compression}D, highly informative datasets
+yield higher decoding accuracies than less informative datasets (i.e., the peaks of the curves in
+the top panels of Fig.~\ref{fig:information-compression}D are higher than the
+peaks of the curves in the bottom panels). Highly compressible datasets show
+steeper slopes when we plot decoding accuracy as a function of the number of
+components used to represent the data (i.e., the slopes of the curves in the
+left panels of Fig.~\ref{fig:information-compression}D are steeper than the
+slopes of the curves in the right panels).  Whereas characterizing
+the informativeness and compressibility of synthetic data can be instructive,
+we are ultimately interested in understanding how these properties relate to
+brain activity patterns recorded under different cognitive circumstances.
 
 Several recent studies suggest that the complexity of brain activity is
 task-dependent, whereby simpler tasks with lower cognitive demands are
@@ -660,6 +675,10 @@ processing. We were especially interested in how \textit{informative} and
 \textit{compressible} the activity patterns were under these different
 conditions (Fig.~\ref{fig:information-compression}).
 
+Unless otherwise noted, all statistical tests are two-sided, all error bars and
+error ribbons denote bootstrap-estimated 95\% confidence intervals across
+participants, and all reported $p$-values are corrected for multiple
+comparisons using the Benjamini-Hochberg procedure~\citep{BenjHoch95}.
 
 \subsection*{Functional neuroimaging data collected during story
   listening}
