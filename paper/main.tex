@@ -11,6 +11,7 @@
 \usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
 \usepackage[left]{lineno}
 \usepackage{soul}
+\usepackage{rotating}
 \linenumbers
 
 \newcommand{\varExplained}{S1}
@@ -35,22 +36,25 @@ jeremy.r.manning@dartmouth.edu}
 
 
 \begin{abstract} 
-
-We applied dimensionality reduction algorithms and pattern classifiers to
-functional neuroimaging data collected as participants listened to a story,
-temporally scrambled versions of the story, or underwent a resting state
-scanning session. These experimental conditions were intended to require
-different depths of processing and inspire different levels of cognitive
-engagement. We considered two primary aspects of the data. First, we treated
-the maximum achievable decoding accuracy across participants as an indicator of
-the ``informativeness'' of the recorded patterns. Second, we treated the number
-of features (components) required to achieve a threshold decoding accuracy as a
+  
+Brain activity patterns are highly flexible and often complex, but also highly
+structured. Here we examined how fundamental properties of brain activity
+patterns relate to ongoing cognitive processes. To this end, we applied
+dimensionality reduction algorithms and pattern classifiers to functional
+neuroimaging data collected as participants listened to a story, temporally
+scrambled versions of the story, or underwent a resting state scanning session.
+These experimental conditions were intended to require different depths of
+processing and inspire different levels of cognitive engagement. We considered
+two primary aspects of the data. First, we treated the maximum achievable
+decoding accuracy across participants as an indicator of the
+``informativeness'' of the recorded patterns. Second, we treated the number of
+features (components) required to achieve a threshold decoding accuracy as a
 proxy for the ``compressibility'' of the neural patterns (where fewer
 components indicate greater compression). Overall, we found that the peak
-decoding accuracy (achievable without restricting the numbers of features)
-was highest in the intact (unscrambled) story listening condition.  However, the
-number of features required to achieve comparable classification accuracy
-was also lowest in the intact story listening condition.  Taken together, our work
+decoding accuracy (achievable without restricting the numbers of features) was
+highest in the intact (unscrambled) story listening condition. However, the
+number of features required to achieve comparable classification accuracy was
+also lowest in the intact story listening condition. Taken together, our work
 suggests that our brain networks flexibly reconfigure according to ongoing task
 demands, and that the activity patterns associated with higher-order cognition
 and high engagement are both more informative and more compressible than the
@@ -393,7 +397,7 @@ conditions.
 
 These results make some intuitive sense. As the contextual information
 available to participants increases (i.e., over time in the cognitively rich
-``intact'' and ``paragraph'' conditions), it makes sense that this might
+intact and paragraph conditions), it makes sense that this might
 constrain neural responses to a greater extent. While this pattern may not
 necessarily hold for \textit{every} possible story or stimulus, we suspect that
 it is generally the case that our knowledge about what is happening in a story
@@ -401,7 +405,7 @@ tends to increase as we experience more about it. In turn, this could lead to
 greater consistency in different people's interpretations of and neural
 responses to the stimulus. Similarly, as participants are left to ``mind
 wander,'' or as they experience mental fatigue (i.e., over time in the less
-cognitively rich ``word'' and ``rest'' conditions), we suggest that this might
+cognitively rich word and rest conditions), we suggest that this might
 lead to greater variability in neural responses across people, resulting in
 lower decoding accuracy. Again, it is not necessarily the case that every
 possible ``unengaging'' stimulus will lead to greater neural variability as
@@ -448,23 +452,27 @@ other stimuli would require additional study (with new stimuli).
   \label{fig:networks}
 \end{figure}
 
-We also wondered how informativeness and compressibility in the different
-experimental conditions might vary across brain networks. We used a network
-parcellation identified by \cite{YeoEtal11} to segment the brain into seven
-distinct networks. The networks can be sorted (roughly) in order from
+If the informativeness and compressibility of brain activity patterns vary over
+time, do these properties might also vary across brain networks? We used a
+network parcellation identified by \cite{YeoEtal11} to segment the brain into
+seven distinct networks. The networks can be sorted (roughly) in order from
 lower-level to higher-level cortex as follows (Figs.~\ref{fig:networks}A--C):
 visual, somatomotor, dorsal attention, ventral attention, limbic,
 frontoparietal, and default mode. Next, we computed decoding curves separately
 for the activity patterns within each network and identified each network's
 inflection point, for each experimental condition. Moving from low-order
 networks to higher-order networks, we found that decoding accuracy tended to
-increase, particularly in the higher-level experimental conditions
-(Fig.~\ref{fig:networks}D, E). This suggests that higher-order networks may
-carry more content-relevant or stimulus-driven ``information.'' We found no
-clear trends in the proportions of components required to achieve 5\% decoding
-accuracy across networks or conditions (Fig.~\ref{fig:networks}F).
+increase in the higher-level experimental conditions and decrease (slightly) in
+the lower-level experimental conditions (Fig.~\ref{fig:networks}D, E;
+Spearman's rank correlation between decoding accuracy and network order:
+intact: $\rho = 0.362, p < 0.001$; paragraph: $\rho = 0.441, p < 0.001$; word:
+$\rho = -0.102, p = 0.007$; rest: $\rho = -0.354, p < 0.001$). This suggests
+that higher-order networks may carry more content-relevant or stimulus-driven
+``information.'' We found no clear trends in the proportions of components
+required to achieve 5\% decoding accuracy across networks or conditions
+(Fig.~\ref{fig:networks}F).
 
-\begin{figure}[tp]
+\begin{sidewaysfigure}[tp]
   \centering
   \includegraphics[width=\textwidth]{figs/neurosynth_by_component}
 
@@ -490,18 +498,18 @@ Figure~\componentBrains.}
 
 \label{fig:neurosynth-pca}
 
-\end{figure}
+\end{sidewaysfigure}
 
-In addition to examining different networks in isolation, we wondered about the
-general structure of the full-brain (i.e., potentially multi-network) activity
-patterns reflected by different principal components across different
-experimental conditions. As shown in Figure~\ref{fig:neurosynth-pca}, we used
+Whereas the above analyses examinine different networks in isolation, how does
+full-brain (i.e., potentially multi-network) activity patterns reflected by
+different principal components vary across different experimental conditions?
+As shown in Figure~\ref{fig:neurosynth-pca}, we used
 Neurosynth~\citep{RubiEtal17} to identify, for each component, the associations
-with each of 80 themes (see \textit{Reverse inference}).  In general, the first
+with each of 80 themes (see \textit{Reverse inference}). In general, the first
 principal components across all of the experimental conditions tended to weight
-most heavily on themes related to cognitive control, memory,
-language processing, attention, and perception.  Other components appeared to
-vary more across conditions.
+most heavily on themes related to cognitive control, memory, language
+processing, attention, and perception. Other components appeared to vary more
+across conditions.
 
 To gain further insights into which brain functions might be most closely
 associated with the top-weighted components from each experimental condition,
@@ -535,11 +543,27 @@ functions from lowest-level to highest-level (Tab.~\topicTags,
 Fig.~\ref{fig:neurosynth-summary}E; also see \textit{Ranking cognitive
 processes}). We found that higher-level functions tended to be weighted on more
 heavily by top components from the intact and paragraph conditions than
-lower-level functions. The top components from the word condition showed the
-opposite tendency, whereby \textit{lower}-level functions tended to be weighted
-on more heavily than higher-level functions. The components from the rest
-condition showed almost no differences in the weights associated with
-high-level versus low-level functions.
+lower-level functions (intact vs. word: $t(198) = 11.059, p < 0.001$; intact
+vs. rest: $t(198) = 3.699, p < 0.001$; paragraph vs. word: $t(198) = 13.504, p
+< 0.001$; paragraph vs. rest: $t(198) = 4.812, p < 0.001$; also see
+\textit{Ranking cognitive processes}). The top components from the word
+condition showed the opposite tendency, whereby \textit{lower}-level functions
+tended to be weighted on more heavily than higher-level functions (word vs.
+rest: $t(198) = -7.315, p < 0.001$). The weighting trends for the intact and
+paragraph conditions were not reliably different ($t(198) = -0.479, p =
+0.633$). The components from the rest condition showed almost no differences in
+the weights associated with high-level versus low-level functions (rest vs. 0:
+$t(99) = 1.836, p = 0.081$). These findings suggest that when participants were
+engaged more strongly (in the more engaging intact and paragraph conditions),
+their dominant neural patterns reflected higher-level cognitive functions. In
+contrast, when participants were engaged less strongly (in the less engaging
+word and rest conditions), their dominant neural patterns reflected lower-level
+cognitive functions. Although they were highly statistically reliable, it is
+also important to note that these latter effects are also relatively small
+(e.g., the slopes for \textit{all} of the experimental conditions are
+numerically close to zero; Fig.~\ref{fig:neurosynth-summary}E). We suggest that
+this phenomenon may merit further investigation in future work.
+
 
 \begin{figure}[tp]
   \centering
@@ -568,16 +592,17 @@ condition.} The heat maps display the correlations between the brain maps
 (Fig.~\componentBrains) for each principal component (sub-panel), across each
 pair of conditions (rows and columns of each sub-panel's matrix, indicated by
 colored dots). \textbf{D. Associations between per-condition components, by
-component.} Each sub-panel's network plot summarizes the pattern of correlations
-between the $n$\textsuperscript{th} top-weighted principal components
-(sub-panel) for each experimental condition (gray-outlined dots). The line
-thicknesses are proportional to the correlation values (correlation
+component.} Each sub-panel's network plot summarizes the pattern of
+correlations between the $n$\textsuperscript{th} top-weighted principal
+components (sub-panel) for each experimental condition (gray-outlined dots).
+The line thicknesses are proportional to the correlation values (correlation
 coefficients are noted in the heat maps in Panel C). \textbf{E. Change in
 weights by condition.} The bar heights reflect the slopes of regression lines,
 fit separately to the top five components from each condition, between the
 ChatGPT-derived ``rank'' of each cognitive classification and the correlations
 between the component and topic maps associated with cognitive processes at the
-given rank (see \textit{Ranking cognitive processes}).  Also see
+given rank (see \textit{Ranking cognitive processes}) Error bars denote
+bootstrap-estimated 95\% confidence intervals. Also see
 Fig.~\neurosynthFull~for additional information.}
 
 \label{fig:neurosynth-summary}
@@ -837,20 +862,35 @@ weight per Neurosynth-derived topic.
 
 \subsection*{Ranking cognitive processes}
 
-We manually identified 11 cognitive labels
-spanning the set of 80 Neurosynth-derived topics: cognitive control, language
-processing, memory, emotion, social cognition, spatial cognition, attention,
-reward, sensory perception, motor control, and resting state. We then used
-ChatGPT to automatically ``rank'' the processes from high-level to low-level
-using the following prompt: ``Please rank these cognitive processes from
-highest-level to lowest-level, where higher values indicate higher-order or
-higher-level processes. Return the result as a csv file with a header row and
-two columns: `Cognitive label' and `Rank'. Here are the processes: cognitive
-control, language processing, memory, emotion, social cognition, spatial
-cognition, attention, reward, sensory perception, motor control, resting
-state''.  Table~\topicTags~displays the output.  We used these labels in
-the analysis presented in Figure~\ref{fig:neurosynth-summary}E to help summarize
-difference in topic weightings across experimental conditions.
+We manually identified 11 cognitive labels spanning the set of 80
+Neurosynth-derived topics: cognitive control, language processing, memory,
+emotion, social cognition, spatial cognition, attention, reward, sensory
+perception, motor control, and resting state. We then used ChatGPT to
+automatically ``rank'' the processes from high-level to low-level using the
+following prompt: ``Please rank these cognitive processes from highest-level to
+lowest-level, where higher values indicate higher-order or higher-level
+processes. Return the result as a csv file with a header row and two columns:
+`Cognitive label' and `Rank'. Here are the processes: cognitive control,
+language processing, memory, emotion, social cognition, spatial cognition,
+attention, reward, sensory perception, motor control, resting state''.
+Table~\topicTags~displays the output. 
+
+In the analysis presented in Figure~\ref{fig:neurosynth-summary}E, we summarize
+difference in topic weightings across experimental conditions. In particular,
+we sought to characterize how the dominant neural patterns evoked by each
+experimental condition weighted on different cognitive functions. For each of
+the top five principal components from each experimental condition
+(Fig.~\ref{fig:neurosynth-pca}), we computed the average weightings for each of
+the 11 manually identified (and ChatGPT-ranked) cognitive labels described
+above (Tab.~\topicTags). We then fit a line separately for each experiment
+condition ($x$-values: cognitive rank; $y$-values: weights). In carrying out
+this analysis, we used a bootstrap procedure to estimate the variability in the
+slopes of the regression lines, whereby we repeated this process for each of $n
+= 100$ iterations, each time resampling (with replacement) the set of observed
+ranks and weights. This procedure yielded distributions of 100 estimated slopes
+for each experimental condition. We used these distributions to compare the
+slopes across experimental conditions and to estimate 95\% confidence intervals.
+
 
 
 \subsection*{Synthetic data}
