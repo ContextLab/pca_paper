@@ -319,3 +319,10 @@ def plot_accuracy(x, figdir=None, fname=None, conditions=['intact', 'paragraph',
         fig.savefig(os.path.join(figdir, fname + '.pdf'), bbox_inches='tight')
 
     return fig
+
+
+def pstring(pval):
+    if pval < 0.001:
+        return 'p < 0.001'
+    else:
+        return f'p = {pval:.3f}'
