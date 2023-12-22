@@ -9,6 +9,7 @@ from matplotlib import pyplot as plt
 from sklearn.decomposition import IncrementalPCA as PCA
 from tqdm import tqdm
 from scipy.spatial.distance import cdist
+import statsmodels.api as sm
 
 import os
 import warnings
@@ -205,10 +206,30 @@ def cross_validation(data, n_iter=10, fname=None, max_components=700):
 
 
 def ridge_plot(x, column='Number of components', fname=None, xlim=[-99, 700], hue='Condition', palette=[condition_colors[c] for c in conditions], scale_start=0.25, scale_height=0.1):
+    def pdf_plot(x, ax=None, xlim=[0.0, 1.0], resolution=1000, **kwargs):
+        if ax is None:
+            ax = plt.gca()
+        
+        if 'color' in kwargs:
+            color = kwargs['color']
+            kwargs.pop('color')
+        else:
+            color = 'k'
+        
+        density = sm.nonparametric.KDEUnivariate(x)
+        density.fit()
+
+        xs = np.linspace(xlim[0], xlim[1], resolution)
+        ys = density.evaluate(xs)
+        ys = ys / np.sum(ys)
+
+        ax.fill(xs, ys, color=color, **kwargs)
+        return ax
 
     sns.set_theme(style="white", rc={"axes.facecolor": (0, 0, 0, 0)})
     g = sns.FacetGrid(x, row=hue, hue=hue, palette=palette, height=1, aspect=6)
-    g.map(sns.kdeplot, column, bw_adjust=1, clip_on=True, fill=True, alpha=1, common_norm=True, linewidth=1.5)
+    # g.map(sns.kdeplot, column, bw_adjust=1, clip_on=True, fill=True, alpha=1, common_norm=True, linewidth=1.5)  # REPLACE WITH A NEW FUNCTION THAT NORMALIZES AREA TO 1
+    g.map(pdf_plot, column, xlim=xlim, linewidth=1.5)
     g.refline(y=0, linewidth=1.5, linestyle='-', color=None, clip_on=False)
 
     # plot a scale bar in the upper right
