@@ -245,7 +245,7 @@ simple or low-level) cognitive tasks.
 We used a previously collected neuroimaging dataset to estimate the extent to
 which each of these two possibilities might hold. The dataset we examined
 comprised functional magnetic resonance imaging (fMRI) data collected as
-participants listened to an audio recording of a 10-minute story, temporally
+participants listened to an audio recording of a 7-minute story, temporally
 scrambled recordings of the story, or underwent a resting state
 scan~\citep{SimoEtal16}. Each of these experimental conditions evokes different
 depths of cognitive processing~\citep{SimoEtal16,LernEtal11,
@@ -279,7 +279,7 @@ We analyzed a dataset collected by \cite{SimoEtal16} that comprised four
 experimental conditions. These conditions exposed participants to stimuli that
 systematically varied in cognitive engagement. In the \textit{intact}
 experimental condition, participants listened to an audio recording of a
-10-minute Moth Radio Hour story, \textit{Pie Man}, by Jim O'Grady. In the
+7-minute Moth Radio Hour story, \textit{Pie Man}, by Jim O'Grady. In the
 \textit{paragraph}-scrambled experimental condition, participants listened to a
 temporally scrambled version of the story, where the paragraphs occurred out of
 order, but where the same set of paragraphs was presented over the entire
@@ -490,7 +490,10 @@ $\rho = -0.102, p = 0.007$; rest: $\rho = -0.354, p < 0.001$). This suggests
 that higher-order networks may carry more content-relevant or stimulus-driven
 ``information.'' We found no clear trends in the proportions of components
 required to achieve 5\% decoding accuracy across networks or conditions
-(Fig.~\ref{fig:networks}F).
+(Fig.~\ref{fig:networks}F). We note that the limbic network we considered here
+often overlaps with low (imaging) signal regions, and therefore it may be
+difficult to draw strong conclusions about this network's informativeness or
+compressibility.
 
 \begin{sidewaysfigure}[tp]
   \centering
@@ -794,7 +797,40 @@ which the data were collected~\citep{SimoEtal16}. Procedures were approved by
 the Princeton University Committee on Activities Involving Human Subjects, and
 by the Western Institutional Review Board (Puyallup, WA). All subjects were
 native English speakers with normal hearing and provided written informed
-consent.
+consent. We have excerpted the relevant portions of the dataset documention
+here to provide information about the scanning parameters and preprocessing
+steps used to generate the data we analyzed (the original descriptions may be
+found at the above link):
+
+\begin{quote}
+Subjects were scanned in a 3T full-body MRI scanner (Skyra; Siemens) with a
+sixteen-channel head coil. For functional scans, images were acquired using a
+T2* weighted echo planer imaging (EPI) pulse sequence [repetition time (TR),
+1500 ms; echo time (TE), 28 ms; flip angle, $64^\circ$], each volume comprising
+27 slices of 4 mm thickness with 0 mm gap; slice acquisition order was
+interleaved. In-plane resolution was $3 \times 3$ mm\textsuperscript{2} [field
+of view (FOV), 192 $\times$ 192 mm\textsuperscript{2}]. Anatomical images were
+acquired using a T1-weighted magnetization-prepared rapid-acquisition gradient
+echo (MPRAGE) pulse sequence (TR, 2300 ms; TE, 3.08 ms; flip angle 9$^\circ$;
+0.89 mm\textsuperscript{3} resolution; FOV, 256 mm\textsuperscript{2}). To
+minimize head movement, subjects' heads were stabilized with foam padding.
+Stimuli were presented using the Psychophysics toolbox~\citep{Brai97,Pell97}.
+Subjects were provided with an MRI compatible in-ear mono earbuds (Sensimetrics
+Model S14), which provided the same audio input to each ear. MRI-safe passive
+noise-canceling headphones were placed over the earbuds, for noise removal and
+safety. 
+
+Functional data were preprocessed and analyzed using FSL
+(www.fmrib.ox.ac.uk/fsl), including correction for head motion and
+slice-acquisition time, spatial smoothing (6 mm FWHM Gaussian kernel), and
+high-pass temporal filtering (140 s period). Preprocessed data were aligned to
+coplanar and high-resolution anatomicals and the standard MNI152 brain, and
+interpolated to 3-mm isotropic voxels.
+\end{quote}
+
+The intact and word conditions each comprised 300 TRs (7.5 minutes) per participant.
+The paragraph condition comprised 272 TRs (6.8 minutes) per participant. The rest
+condition comprised 400 TRs (10 minutes) per participant.
 
 \subsection*{Hierarchical topographic factor analysis (HTFA)}
 
@@ -802,7 +838,7 @@ Following our prior related work, we used HTFA~\citep{MannEtal18} to derive a
 compact representation of the neuroimaging data. In brief, this approach
 approximates the timeseries of voxel activations (44,415 voxels) using a much
 smaller number of radial basis function (RBF) nodes~\citep[in this case, 700
-nodes, as determined by an optimization procedure;][]{MannEtal18}. This
+nodes, as determined by an optimization procedure;][]{MannEtal18}.  This
 provides a convenient representation for examining full-brain activity patterns
 and network dynamics. All of the analyses we carried out on the neuroimaging
 dataset were performed in this lower-dimensional space. In other words, each
@@ -811,6 +847,21 @@ HTFA-derived factor weights (where the row and column labels were matched
 across participants). Code for carrying out HTFA on fMRI data may be found as
 part of the BrainIAK toolbox~\citep{CapoEtal17, KumaEtal21}, which may be
 downloaded at \href{https://brainiak.org/}{brainiak.org}.
+
+We also considered alternative approaches to obtaining compact representations
+of the neuroimaging data, including network
+parcellations~\citep[e.g.,][]{SchaEtal18, GordEtal16}. Whereas network
+parcellations are typically derived from large resting state datasets, HTFA may
+be applied to much smaller datasets. In our prior work, we showed that HTFA
+applied to the same dataset used here can explain full-brain activity to within
+a maximum of 0.25 standard deviations of each voxel's observed activity in the
+original dataset, taken across all voxels, images, and participants, using the
+700-node representation we also employed here~\citep{MannEtal18}. Some of the
+explanatory power of HTFA comes from the fact that each node's explanatory
+power falls off smoothly with distance to its center. Intuitively, the result
+is a representation that looks like a lightly spatially smoothed version of the
+original data, but where the degree of smoothing varies across the brain
+according to how spatially autocorrelated the local activity patterns are.
 
 \subsection*{Principal components analysis (PCA)}
 
