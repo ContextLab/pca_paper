@@ -66,6 +66,24 @@ engagement.
 \textbf{Keywords: information, compression, temporal decoding, dimensionality
 reduction, neuroimaging}
 
+\bigskip 
+\noindent 
+
+\textbf{Significance Statement:} How our brains respond to ongoing experiences
+depends on what we are doing and thinking about, how engaged we are, and our
+past experiences, among other factors. To gain insights into how brain activity
+patterns reflect ongoing cognitive processes, we examined two fundamental
+aspects of brain activity under different cognitive circumstances:
+informativeness and compressibility. Informativeness refers to the extent to
+which brain patterns are both temporally specific and consistent across
+different people. Compressibility refers to the extent to how robust the
+informativeness of brain patterns is to dimensionality reduction. We found that
+brain activity patterns evoked by higher-level cognitive tasks are both more
+informative \textit{and} more compressible than activity evoked by lower-level
+tasks. Our findings suggest that our brains flexibly reconfigure themselves to
+optimize different aspects of how they function according to ongoing cognitive
+demands.
+
 \end{abstract}
 
 \doublespacing
@@ -297,21 +315,23 @@ inset in Panel A. Intersections between each condition's decoding accuracy
 curve and the 5\% decoding accuracy reference line are marked by arrows. All
 error ribbons in Panels A and B denote bootstrap-estimated 95\% confidence
 intervals. \textbf{C. Estimating ``compressibility'' for each condition.} The
-density plots display the numbers of components required to reach at least 5\%
-(corrected) decoding accuracy, across all cross validation runs. For the
-``rest'' condition, where decoding accuracy never reached 5\% accuracy, we
-display the distribution of the numbers of components required to achieve the
-peak decoding accuracy in each fold. (This distribution is nearly flat, as
-also illustrated in Panel E.) \textbf{D. Estimating ``informativeness'' for each
-condition.} The density plots display the peak (corrected) decoding accuracies
-achieved in each condition, across all cross validation runs. \textbf{E.
-Informativeness versus compressibility.} Each dot displays the minimum number
-of components required to achieve at least 5\% corrected decoding accuracy
-($x$-coordinate; for the rest condition the numbers of components are estimated
-using the peak decoding accuracies as in Panel C) and the peak (corrected)
-decoding accuracy ($y$-coordinate). The smaller dots correspond to individual
-cross validation runs and the larger dots display the averages across runs. The
-inset displays a zoomed-in view of the indicated region in the main panel.}
+probability density plots display the numbers of components required to reach
+at least 5\% (corrected) decoding accuracy, across all cross validation runs.
+For the ``rest'' condition, where decoding accuracy never reached 5\% accuracy,
+we display the distribution of the numbers of components required to achieve
+the peak decoding accuracy in each fold. (This distribution is nearly flat, as
+also illustrated in Panel E.) The scale bar denotes a height of 0.01.
+\textbf{D. Estimating ``informativeness'' for each condition.} The probability
+density plots display the peak (corrected) decoding accuracies achieved in each
+condition, across all cross validation runs. The scale bar denotes a height of
+0.01. \textbf{E. Informativeness versus compressibility.} Each dot displays the
+minimum number of components required to achieve at least 5\% corrected
+decoding accuracy ($x$-coordinate; for the rest condition the numbers of
+components are estimated using the peak decoding accuracies as in Panel C) and
+the peak (corrected) decoding accuracy ($y$-coordinate). The smaller dots
+correspond to individual cross validation runs and the larger dots display the
+averages across runs. The inset displays a zoomed-in view of the indicated
+region in the main panel.}
 
 \label{fig:inflection}
 \end{figure}
@@ -562,7 +582,7 @@ cognitive functions. Although they were highly statistically reliable, it is
 also important to note that these latter effects are also relatively small
 (e.g., the slopes for \textit{all} of the experimental conditions are
 numerically close to zero; Fig.~\ref{fig:neurosynth-summary}E). We suggest that
-this phenomenon may merit further investigation in future work.
+this phenomenon may merit further investigation in future work. 
 
 
 \begin{figure}[tp]
