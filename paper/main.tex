@@ -643,7 +643,7 @@ progressed), these phenomena were strengthened. Specifically, across story
 segments, data from more cognitively rich conditions became more informative
 and compressible, and data from less cognitively rich conditions became
 \textit{less} informative and compressible
-(Fig.~\ref{fig:inflection-quarters}). We also repeated these analyses
+(Fig.~\ref{fig:inflection-quarters}).  We also repeated these analyses
 separately for different brain networks. We found that networks traditionally
 associated with higher-level cognitive functions tended to provide more
 informative brain patterns than networks traditionally associated with lower
@@ -660,8 +660,6 @@ weighting. Taken together, our findings indicate that the informativeness and
 compressibility of our brain activity patterns are task-dependent, and these
 properties change systematically with factors like cognitive richness and depth
 of processing.
-
-
 
 Our explorations of informativeness and compressibility are related to a much
 broader literature on the correlational and causal structure of brain activity
@@ -681,7 +679,20 @@ the recoverable activity. Predictable (and therefore redundant) brain activity
 patterns are also more robust to signal corruption. For example, even if the
 activity patterns at one region are unreadable or unreliable at a given moment,
 that unreliability could be compensated for by other regions' activity patterns
-that were predictive of the unreliable region.
+that were predictive of the unreliable region. Whereas compressible brain
+patterns a robust to spatial signal corruption, high versus low informativeness
+reflects a similar (though dissociable; e.g.,
+Fig.~\ref{fig:information-compression}) tradeoff between expressiveness and
+robustness of \textit{temporal} patterns. Highly informative brain patterns (by
+our measure; i.e., patterns that yield greater temporal decoding accuracy) are
+expressive about ongoing experiences or cognitive states, since each moment's
+pattern is reliably distinguishable from other moments' patterns. However, when
+each moment's pattern is unique, brain activity becomes less robust to temporal
+signal corruption. Our finding that brain activity patterns becomes more
+informative (i.e., less robust to temporal signal corruption) and compressible
+(i.e., more robust to spatial signal corruption) when cognitive engagement is
+higher suggests that our brain may optimize its activity patterns to prioritize
+either temporal or spatial robustness, according to task demands.
 
 Our findings that informativeness and compressibility change with task demands
 may follow from task-dependent changes in full-brain correlation patterns. A
@@ -710,17 +721,35 @@ demands. For example, our brains may represent the same perceptual stimulus
 differently depending on which aspects of the stimulus or which combinations of
 features are task-relevant~\citep{MackEtal20}.
 
-Different brain networks also varied in how informative and compressible their
-activity patterns were across experimental conditions (e.g.,
-Fig.~\ref{fig:networks}). This might follow from evolutionary optimizations
-that reflect the relevant constraints or demands placed on those networks. One
-possibility is that cortex is organized in a hierarchy of networks ``concerned
-with'' or selective to different levels of processing or function. To the
-extent that different levels of processing (e.g., low-level sensory processing
-versus ``deeper'' higher-level processing) reflect different stimulus
-timescales~\citep[e.g.,][]{Mann20}, the network differences we observed might
-also relate to the timescales at which each network is maximally
-sensitive~\citep{RegeEtal18, BaldEtal17,LernEtal11, HassEtal08}.
+We found that different brain networks varied in how informative and
+compressible their activity patterns were across experimental conditions (e.g.,
+Fig.~\ref{fig:networks}). This might
+follow from evolutionary optimizations that reflect the relevant constraints or
+demands placed on those networks. One possibility is that cortex is organized
+in a hierarchy of networks ``concerned with'' or selective to different levels
+of processing or function. To the extent that different levels of processing
+(e.g., low-level sensory processing versus ``deeper'' higher-level processing)
+reflect different stimulus timescales~\citep[e.g.,][]{Mann20}, the network
+differences we observed might also relate to the timescales at which each
+network is maximally sensitive~\citep{RegeEtal18, BaldEtal17,LernEtal11,
+HassEtal08}.
+
+Our reverse inference analyses (Figs.~\ref{fig:neurosynth-pca},
+\ref{fig:neurosynth-summary}) also provide some insights into how neural
+activity patterns change with cognitive engagement or task demands. Prior work
+has shown that the components and network ``parcels'' identified through
+covarying activity patterns can be highly similar even across different
+tasks~\citep[including ``rest,'' e.g.,][]{SmitEtal09, LairEtal11}. We
+replicated this basic finding in that the first principal components from all
+four experimental conditions were strikingly similar (e.g., see the leftmost
+columns of Figs.~\ref{fig:neurosynth-pca}A and~\ref{fig:neurosynth-summary}C,
+D). We also found some small, though statistically reliable, systematic changes
+in the weights associated with different cognitive functions across conditions
+(Fig.~\ref{fig:neurosynth-summary}E). This result provided an additional way of
+characterizing network-level differences across conditions
+(Fig.~\ref{fig:networks}E).  Taken together, these findings suggest that although
+similar networks may be involved in different tasks, the ways in which those
+networks are engaged may vary systematically with task demands.
 
 \subsection*{Concluding remarks}
 
@@ -729,9 +758,11 @@ fundamental ``rules'' describing how our brains respond, and about how brain
 activity patterns and the associated underlying cognitive representations and
 computations are linked. We identified two aspects of brain activity patterns,
 informativeness and compressibility, that appear to change systematically with
-task demands and across brain networks. Our work helps to clarify how the
-``neural code'' might be structured, and how the code might vary across tasks
-and brain areas.
+task demands and across brain networks. We speculate that these changes may
+reflect ongoing tradeoffs between how robust to signal corruption versus how
+expressive about ongoing cognitive states our brains' activity patterns are.
+Our work also provides a new framework for evaluating these tradeoffs in other
+datasets, or in future studies.
 
 \section*{Methods}
 
@@ -893,7 +924,15 @@ processes. Return the result as a csv file with a header row and two columns:
 `Cognitive label' and `Rank'. Here are the processes: cognitive control,
 language processing, memory, emotion, social cognition, spatial cognition,
 attention, reward, sensory perception, motor control, resting state''.
-Table~\topicTags~displays the output. 
+Table~\topicTags~displays the output.
+
+We recognize that ChatGPT is not omniscient, nor should it be treated as an
+expert cognitive neuroscientist. We therefore reviewed ChatGPT's responses
+carefully by hand to verify that they seemed reasonable to us. Whereas prior
+work has often constructed such rankings by hand, we see our use of ChatGPT in
+this case as a small additional ``sanity check'' on our rankings that helped us
+to be slightly more objective than if we had simply created the rankings
+ourselves manually.
 
 In the analysis presented in Figure~\ref{fig:neurosynth-summary}E, we summarize
 difference in topic weightings across experimental conditions. In particular,
