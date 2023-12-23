@@ -223,12 +223,14 @@ task-dependent, whereby simpler tasks with lower cognitive demands are
 reflected by simpler and more compressible brain activity patterns, and more
 complex tasks with higher cognitive demands are reflected by more complex and
 less compressible brain activity patterns~\citep{MackEtal20, OwenEtal21}. These
-findings complement other work suggesting that functional connectivity
-(correlation) patterns are task-dependent~\citep{FinnEtal17, OwenEtal20,
-ColeEtal14}, although see~\cite{GratEtal18}. Higher-order cognitive processing
-of a common stimulus also appears to drive more stereotyped task-related
-activity and functional connectivity across individuals~\citep{HassEtal08,
-LernEtal11, SimoChan20, SimoEtal16}.
+patterns hold even when the stimulus itself is held
+constant~\citep{MackEtal20}. These findings complement other work suggesting
+that functional connectivity (correlation) patterns are
+task-dependent~\citep{FinnEtal17, OwenEtal20, ColeEtal14}, although
+see~\cite{GratEtal18}. Higher-order cognitive processing of a common stimulus
+also appears to drive more stereotyped task-related activity and functional
+connectivity across individuals~\citep{HassEtal08, LernEtal11, SimoChan20,
+SimoEtal16}.
 
 The above studies are consistent with two potential descriptions of how
 cognitive processes are reflected in brain activity patterns. One possibility
@@ -236,11 +238,13 @@ is that the information rate of brain activity increases during more complex or
 higher-level cognitive processing. If so, then the ability to reliably decode
 cognitive states from brain activity patterns should improve with task
 complexity or with the level (or ``depth'') of cognitive processing. A second
-possibility is that the compressibility of brain activity patterns increases
+possibility is that the compressibility of brain activity patterns decreases
 during more complex or higher-level cognitive processing. If so, then
-individual features of brain recordings, or compressed representations of brain
-recordings, should carry more information during complex or high-level (versus
-simple or low-level) cognitive tasks.
+individual features of brain recordings should carry more information (over and
+above the information carried by other features) during complex or high-level
+(versus simple or low-level) cognitive tasks. The tradeoffs between these two
+aspects of brain activity may also vary across brain regions or networks, for
+example according to each region's functional role.
 
 We used a previously collected neuroimaging dataset to estimate the extent to
 which each of these two possibilities might hold. The dataset we examined
@@ -712,6 +716,55 @@ reliability. For higher-level tasks, or for tasks that require deeper cognitive
 processing, our brains may sacrifice some redundancy in favor of greater
 expressiveness.
 
+One potential limitation of our work concerns how our measure of
+informativeness might generalize across tasks or cognitive representations and
+processes. Our use of across-participant temporal decoding accuracy as a proxy
+for informativeness is motivated in part by prior work that introduced
+across-participant similarity (in time-varying response to a stimulus) as a
+means of identifying stimulus-driven brain activity
+patterns~\citep{SimoEtal16}. Intuitively, only activity patterns are are driven
+by the stimulus would be expected to synchronize (i.e., be time-locked to the
+stimulus) across participants. This approach implicitly removes idiosyncratic
+responses (e.g., neural patterns that are \textit{not} similar across people).
+However, there are also some published examples, including in our own prior
+work, that indicate that some types of stimulus-evoked activity will be missed
+by across-participant comparisons. For example we have reported how brain
+regions like the ventromedial prefrontal cortex (vmPFC) show stimulus-driven
+responses that are, for the most part, not similar across people. In that paper
+(and drawing on other work), we suggest that the vmPFC seems to represent or
+support highly idiosyncratic internal states, like affective responses.
+Although we would consider the vmPFC to be a ``high-level'' region (e.g., we
+consider affect to be a relatively high-level aspect of cognition), the measure
+of informativeness that we used in our current study would identify regions
+like the vmPFC as having \textit{low} informativeness. This is because
+across-participant decoding accuracy (our proxy measure for informativeness)
+will only be high for representations or responses that are common across
+people.
+
+Relatedly, even in the experimental conditions we describe as ``less
+cognitively engaging,'' we do not think it likely that high-level thought or
+cognitive processing is absent. Rather, we suggest that these high-level
+representations tend to be more idiosyncratic when the stimulus is less
+engaging, and therefore less constraining on people's thoughts. Nonetheless,
+even during highly engaging tasks, people may engage in idiosyncratic
+stimulus-driven processes. For example, people might retrieve personal
+information as they listened to the story. Those retrievals could happen at
+different times for different people according to each individual's prior
+experiences, and even when those sorts of retrievals happen to be temporally
+synchronized across people, the specific memories or information being
+retrieved might still be idiosyncratic. Our measure of informativeness is
+insensitive to these processes. Further, even in response to an identical
+stimulus, task instructions or participants' interal goals could change the
+relationship between compressibility and informativeness. Some work has shown
+that the ``dimensionality'' of neural representations can change systematically
+with task complexity, even in response to an identical
+stimulus~\citep{MackEtal20}. Taken together, we expect that the way we have
+defined informativeness in this paper, and the specific dataset we examined,
+are likely to have influenced our findings. While we see our approach as a
+reasonable first step, we also suggest that future work should explore
+alternative measures of informativeness and compressibility, and should examine
+how these measures vary across different tasks and datasets.
+
 In the information theory sense~\citep{Shan48}, when a signal is transmitted
 using a fixed alphabet of ``symbols,'' the information rate decreases as the
 signal is compressed (e.g., fewer symbols transmitted per unit time, using an
@@ -753,6 +806,8 @@ characterizing network-level differences across conditions
 (Fig.~\ref{fig:networks}E).  Taken together, these findings suggest that although
 similar networks may be involved in different tasks, the ways in which those
 networks are engaged may vary systematically with task demands.
+
+
 
 \subsection*{Concluding remarks}
 
