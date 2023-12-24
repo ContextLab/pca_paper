@@ -501,8 +501,14 @@ compressibility. We also considered the possibility that the correlations with
 network order might be influenced by the numbers of nodes in each network. We
 designed a permutation-based procedure to address this possibility, whereby we
 repeated the above analyses using shuffled network labels (see \textit{Network
-permutation tests}).  The correlations between decoding accuracy and network
-order... <INSERT RESULTS>
+permutation tests}). The correlations between decoding accuracy and network
+order were reliably more positive than the shuffled correlations for the intact
+($t(1998) = 276.431, p < 0.001$) and paragraph ($t(1998) = 330.334, p < 0.001$)
+conditions, and reliably more negative for the word ($t(1998) = -16.386, p <
+0.001$) and rest ($t(1998) = -318.631, p < 0.001$) conditions. These results
+suggest that the correlations between decoding accuracy and network order were
+not driven solely by the numbers of nodes in each network.
+
 
 \begin{sidewaysfigure}[tp]
   \centering
@@ -922,6 +928,31 @@ power falls off smoothly with distance to its center. Intuitively, the result
 is a representation that looks like a lightly spatially smoothed version of the
 original data, but where the degree of smoothing varies across the brain
 according to how spatially autocorrelated the local activity patterns are.
+
+\subsection*{Network permutation tests}
+
+In our analyses of how informativeness varied across brain networks, we
+considered the possibility that the correlations with network order might be
+influenced by the numbers of nodes in each network. We designed a
+permutation-based procedure to address this possibility, whereby we repeated
+the above analyses using shuffled network labels. Specifically, for each of $n_1 =
+10$ iterations, we randomly shuffled (without replacement) the network labels of
+the HTFA nodes, and then we re-ran our entire decoding analysis pipeline,
+including applying PCA with $3...m$ features for each condition (where $m$ is the
+number of nodes in the given network), and then running 100 cross-validation
+runs of the decoding procedure for each condition and number of components.
+This resulted in 10 sets of shuffled data where each network had the same
+numbers of nodes, but where the decoding results no longer maintained the
+fidelity of each individual network.
+
+We sampled the original and shuffled datasets (with replacement) to create $n_2
+= 1000$ bootstrap samples. For each bootstrap sample, we computed the
+correlations between the decoding accuracies and network order for each
+condition and number of components. This yielded a distribution of $n_2$
+correlation values for each condition, for both the original and shuffled
+datasets. We then compared the distributions of Spearman's $\rho$ values for
+the original and shuffled datasets using a two-sided independent samples
+Welch's $t$-tests.
 
 \subsection*{Principal components analysis (PCA)}
 
