@@ -9,6 +9,7 @@ from matplotlib import pyplot as plt
 from sklearn.decomposition import IncrementalPCA as PCA
 from tqdm import tqdm
 from scipy.spatial.distance import cdist
+import statsmodels.api as sm
 
 import os
 import warnings
@@ -100,10 +101,6 @@ def nii2cmu(nifti_file, mask_file=None):
     vox_coords = fullfact(img.shape[0:3])[vmask, ::-1]-1
     
     R = np.array(np.dot(vox_coords, S[0:3, 0:3])) + S[:3, 3]
-
-    # center on the MNI152 brain (hard code this in)
-    #mni_center = np.array([0.55741881, -21.52140703, 9.83783098])
-    #R = R - R.mean(axis=0) + mni_center
     
     return {'Y': Y, 'R': R}
 
@@ -208,12 +205,38 @@ def cross_validation(data, n_iter=10, fname=None, max_components=700):
     return results
 
 
-def ridge_plot(x, column='Number of components', fname=None, xlim=[-99, 700], hue='Condition', palette=[condition_colors[c] for c in conditions]):
+def ridge_plot(x, column='Number of components', fname=None, xlim=[-99, 700], hue='Condition', palette=[condition_colors[c] for c in conditions], scale_start=0.25, scale_height=0.1):
+    def pdf_plot(x, ax=None, xlim=[0.0, 1.0], resolution=1000, **kwargs):
+        if ax is None:
+            ax = plt.gca()
+        
+        if 'color' in kwargs:
+            color = kwargs['color']
+            kwargs.pop('color')
+        else:
+            color = 'k'
+        
+        density = sm.nonparametric.KDEUnivariate(x)
+        density.fit()
+
+        xs = np.linspace(xlim[0], xlim[1], resolution)
+        ys = density.evaluate(xs)
+        ys = ys / np.sum(ys)
+
+        ax.fill(xs, ys, color=color, **kwargs)
+        return ax
 
     sns.set_theme(style="white", rc={"axes.facecolor": (0, 0, 0, 0)})
     g = sns.FacetGrid(x, row=hue, hue=hue, palette=palette, height=1, aspect=6)
-    g.map(sns.kdeplot, column, bw_adjust=1, clip_on=True, fill=True, alpha=1, common_norm=True, linewidth=1.5)
+    # g.map(sns.kdeplot, column, bw_adjust=1, clip_on=True, fill=True, alpha=1, common_norm=True, linewidth=1.5)  # REPLACE WITH A NEW FUNCTION THAT NORMALIZES AREA TO 1
+    g.map(pdf_plot, column, xlim=xlim, linewidth=1.5)
     g.refline(y=0, linewidth=1.5, linestyle='-', color=None, clip_on=False)
+
+    # plot a scale bar in the upper right
+    if scale_height is not None:        
+        # compute the x position of the scale bar -- 98% of the way to the right
+        x = xlim[0] + 0.98 * (xlim[1] - xlim[0])    
+        g.axes[0][0].plot([x, x], [scale_start, scale_start + scale_height], color='k', linewidth=1.5)
 
     def label(x, color, label):
         ax = plt.gca()
@@ -231,7 +254,7 @@ def ridge_plot(x, column='Number of components', fname=None, xlim=[-99, 700], hu
 
     ax = plt.gca()
     ax.set_xlim(xlim[0], xlim[1])
-    ax.set_xlabel(column, fontsize=12)
+    ax.set_xlabel(column, fontsize=12)    
 
     if fname is not None:
         g.savefig(os.path.join(figdir, fname + '.pdf'), bbox_inches='tight')
@@ -254,7 +277,7 @@ def get_data():
     return data
 
 
-def info_and_compressibility(d, target=0.05):
+def info_and_compressibility(d, target=None):
     def closest(x, target):
         dists = np.abs(x.values - target)
         dists[x.values < target] += 10 * np.max(dists)
@@ -264,7 +287,11 @@ def info_and_compressibility(d, target=0.05):
     for c in conditions:
         dc = d[c].astype(float).pivot(index='Iteration', columns='Number of components', values='Relative decoding accuracy')
         i = pd.DataFrame()
-        i['Number of components'] = dc.apply(lambda x: closest(x, target), axis=1, raw=False)
+
+        if target is None:
+            i['Number of components'] = dc.idxmax(axis=1).astype(int)
+        else:
+            i['Number of components'] = dc.apply(lambda x: closest(x, target), axis=1, raw=False)
         i['Relative decoding accuracy'] = dc.max(axis=1)
         i['Condition'] = c
         i['Iteration'] = dc.index.values.astype(int)
@@ -272,11 +299,11 @@ def info_and_compressibility(d, target=0.05):
     return pd.concat(df, ignore_index=True, axis=0)
 
 
-def plot_info_and_compressibility_scatter(x, fname=None):
+def plot_info_and_compressibility_scatter(x, fname=None, target=None):
     fig = plt.figure(figsize=(4, 3))
     ax = plt.gca()
 
-    x = info_and_compressibility(x)
+    x = info_and_compressibility(x, target=target)
     sns.scatterplot(x, x='Number of components', y='Relative decoding accuracy', hue='Condition', palette=[condition_colors[c] for c in conditions], legend=False, s=10, ax=ax)
     sns.scatterplot(x.groupby('Condition').mean().loc[conditions].reset_index(), x='Number of components', y='Relative decoding accuracy', hue='Condition', palette=[condition_colors[c] for c in conditions], legend=False, s=100, ax=ax)
 
@@ -294,3 +321,35 @@ def plot_info_and_compressibility_scatter(x, fname=None):
 
 def rbf(R, center, width):
     return np.exp(-np.sum((R - center) ** 2, axis=1) / width)
+
+
+def plot_accuracy(x, figdir=None, fname=None, conditions=['intact', 'paragraph', 'word', 'rest'], condition_colors=condition_colors, ylim=[-0.01, 0.35], xlim=[3, 700], ax=None):
+    if figdir is not None and not os.path.exists(figdir):
+        os.makedirs(figdir)
+
+    if ax is None:
+        fig = plt.figure(figsize=(4, 3))
+        ax = plt.gca()
+    else:
+        fig = plt.gcf()
+
+    for c in conditions:
+        sns.lineplot(x[c], x='Number of components', y='Relative decoding accuracy', label=c.capitalize(), color=condition_colors[c], legend=False, ax=ax)
+    
+    ax.set_xlabel('Number of components', fontsize=12)
+    ax.set_ylabel('Relative decoding accuracy', fontsize=12)
+    ax.set_ylim(ylim)
+    ax.set_xlim(xlim)
+    ax.spines[['right', 'top']].set_visible(False)
+
+    if fname is not None:
+        fig.savefig(os.path.join(figdir, fname + '.pdf'), bbox_inches='tight')
+
+    return fig
+
+
+def pstring(pval):
+    if pval < 0.001:
+        return 'p < 0.001'
+    else:
+        return f'p = {pval:.3f}'

@@ -171,3 +171,4 @@ data/pieman2_htfa.pkl
 data/neurosynth/*.xlsx
 data/neurosynth/Topic_Labels.csv
 paper/figs/source/neurosynth_topics.aux
+data/scratch/decoding_results_shuffled_*.pkl
