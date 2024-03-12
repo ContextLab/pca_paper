@@ -172,3 +172,4 @@ data/neurosynth/*.xlsx
 data/neurosynth/Topic_Labels.csv
 paper/figs/source/neurosynth_topics.aux
 data/scratch/decoding_results_shuffled_*.pkl
+data/scratch/spatial_autocorrelations.pkl
