@@ -38,29 +38,36 @@ jeremy.r.manning@dartmouth.edu}
 
 \begin{abstract} 
   
-Brain activity patterns are highly flexible and often complex, but also highly
-structured. Here we examined how fundamental properties of brain activity
-patterns relate to ongoing cognitive processes. To this end, we applied
-dimensionality reduction algorithms and pattern classifiers to functional
-neuroimaging data collected as participants listened to a story, temporally
-scrambled versions of the story, or underwent a resting state scanning session.
-These experimental conditions were intended to require different depths of
-processing and inspire different levels of cognitive engagement. We considered
-two primary aspects of the data. First, we treated the maximum achievable
-decoding accuracy across participants as an indicator of the
+To efficiently yet reliably represent and process information, our brains need
+to produce information-rich signals that differentiate between different
+moments or cognitive states, while also being robust to noise or corruption.
+For many, though not all, natural systems, these two properties are often
+inversely related: more information-rich signals are less redundant, and vice
+versa. Here we examined how these properties change according to ongoing
+cognitive demands. To this end, we applied dimensionality reduction algorithms
+and pattern classifiers to functional neuroimaging data collected as
+participants listened to a story, temporally scrambled versions of the story,
+or underwent a resting state scanning session. We expected that the intact
+story would be highly engaging, involving a range of cognitive operations from
+low-level sensory processing to higher-level cognitive processing. In contrast,
+we expected that the scrambled stories and resting state condition would be
+less engaging and would reliably involve only lower-level (e.g., sensory)
+processing. We considered two primary aspects of the neural data recorded in
+these different experimental conditions. First, we treated the maximum
+achievable decoding accuracy across participants as an indicator of the
 ``informativeness'' of the recorded patterns. Second, we treated the number of
 features (components) required to achieve a threshold decoding accuracy as a
 proxy for the ``compressibility'' of the neural patterns (where fewer
-components indicate greater compression). Overall, we found that the peak
-decoding accuracy (achievable without restricting the numbers of features) was
-highest in the intact (unscrambled) story listening condition. However, the
-number of features required to achieve comparable classification accuracy was
-also lowest in the intact story listening condition. Taken together, our work
-suggests that our brain networks flexibly reconfigure according to ongoing task
-demands, and that the activity patterns associated with higher-order cognition
-and high engagement are both more informative and more compressible than the
-activity patterns associated with lower-order tasks and lower levels of
-engagement.
+components indicate greater compression, and therefore greater redundancy and
+robustness to signal corruption). Overall, we found that the peak decoding accuracy
+(achievable without restricting the numbers of features) was \textit{highest} in the
+intact (unscrambled) story listening condition. However, the number of features
+required to achieve comparable classification accuracy was also \textit{lowest} in the
+intact story listening condition. Taken together, our work suggests that our
+brain networks flexibly reconfigure according to ongoing task demands, and that
+the activity patterns associated with higher-order cognition and high
+engagement are both more informative and more compressible than the activity
+patterns associated with lower-order tasks and lower levels of engagement.
 
 \bigskip
 \noindent
@@ -72,7 +79,7 @@ reduction, neuroimaging}
 
 \textbf{Significance Statement:} How our brains respond to ongoing
 experiences depends on what we are doing and thinking about, among
-other factors. To study how brain activity reflects ongoing cognition,
+other factors. To study how brain activity reflects ongoing processing,
 we examined two fundamental aspects of brain activity under different
 cognitive circumstances: informativeness and
 compressibility. Informativeness refers to the extent to which brain
@@ -428,24 +435,25 @@ conditions.
 
 These results make some intuitive sense. As the contextual information
 available to participants increases (i.e., over time in the cognitively rich
-intact and paragraph conditions), it makes sense that this might
-constrain neural responses to a greater extent. While this pattern may not
-necessarily hold for \textit{every} possible story or stimulus, we suspect that
-it is generally the case that our knowledge about what is happening in a story
-tends to increase as we experience more of it. In turn, this could lead to
-greater consistency in different people's interpretations of and neural
-responses to the stimulus. Similarly, as participants are left to ``mind
-wander,'' or as they experience mental fatigue (i.e., over time in the less
-cognitively rich word and rest conditions), we suggest that this might
-lead to greater variability in neural responses across people, resulting in
-lower decoding accuracy. Again, it is not necessarily the case that every
-possible ``unengaging'' stimulus will lead to greater neural variability as
-time progresses, but we suspect this phenomenon is likely to hold for a variety
-of such stimuli. These findings replicate at least to a limited extent (e.g.,
+intact and paragraph conditions), it makes sense that this might constrain
+neural responses to a greater extent. While this pattern may not necessarily
+hold for \textit{every} possible story or stimulus, we suspect that it is
+generally the case that our knowledge about what is happening in a story tends
+to increase as we experience more of it. In turn, this could lead to greater
+consistency in different people's interpretations of and neural responses to
+the stimulus. Similarly, as participants are left to ``mind wander,'' or as
+they experience mental fatigue (i.e., over time in the less cognitively rich
+word and rest conditions), we suggest that this might lead to greater
+variability in neural responses across people, resulting in lower decoding
+accuracy. Again, it is not necessarily the case that every possible
+``unengaging'' stimulus will lead to greater neural variability as time
+progresses, but we suspect this phenomenon is likely to hold for a variety of
+such stimuli. These findings replicate at least to a limited extent (e.g.,
 across both cognitively rich conditions and across both cognitively
 impoverished conditions, and for the different groups of participants in each
 of those conditions). However, determining whether these patterns generalize to
-other stimuli would require additional study (with new stimuli).
+other stimuli (e.g., other scramblings, other stories, other modalities, etc.)
+would require additional study (with new stimuli).
 
 \begin{figure}[tp]
   \centering
@@ -952,7 +960,8 @@ condition (where $m$ is the number of nodes in the given network), and then
 running 100 cross-validation runs of the decoding procedure for each condition
 and number of components. This resulted in 10 sets of shuffled data, where each
 network had the same numbers of nodes, but where the decoding results no longer
-maintained the fidelity of each individual network.
+maintained the fidelity of each individual network. Note that, for each of the
+shuffled datasets, the same shuffled labels were used for all participants.
 
 We sampled the original and shuffled datasets (with replacement) to create $n_2
 = 1000$ bootstrap samples. For each bootstrap sample, we computed the
