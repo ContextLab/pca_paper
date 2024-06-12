@@ -37,34 +37,35 @@ jeremy.r.manning@dartmouth.edu}
 
 
 \begin{abstract}
+
 To efficiently yet reliably represent and process information, our brains need
-to produce information-rich signals that differentiate between different
-moments or cognitive states, while also being robust to noise or corruption.
-For many, though not all, natural systems, these two properties are often
-inversely related: more information-rich signals are less redundant, and vice
-versa. Here we examined how these properties change according to ongoing
-cognitive demands. To this end, we applied dimensionality reduction algorithms
-and pattern classifiers to functional neuroimaging data collected as
-participants listened to a story, temporally scrambled versions of the story,
-or underwent a resting state scanning session. We expected that the intact
-story would be highly engaging, involving a range of cognitive operations from
-low-level sensory processing to higher-level cognitive processing. In contrast,
-we expected that the scrambled stories and resting state condition would be
-less engaging and would reliably involve only lower-level (e.g., sensory)
-processing. We considered two primary aspects of the neural data recorded in
-these different experimental conditions. First, we treated the maximum
-achievable decoding accuracy across participants as an indicator of the
-``informativeness'' of the recorded patterns. Second, we treated the number of
-features (components) required to achieve a threshold decoding accuracy as a
-proxy for the ``compressibility'' of the neural patterns (where fewer
-components indicate greater compression, and therefore greater redundancy and
-robustness to signal corruption). Overall, we found that the peak decoding accuracy
-(achievable without restricting the numbers of features) was \textit{highest} in the
-intact (unscrambled) story listening condition. However, the number of features
-required to achieve comparable classification accuracy was also \textit{lowest} in the
-intact story listening condition. Taken together, our work suggests that our
-brain networks flexibly reconfigure according to ongoing task demands, and that
-the activity patterns associated with higher-order cognition and high
+to produce information-rich signals that differentiate between moments or
+cognitive states, while also being robust to noise or corruption. For many,
+though not all, natural systems, these two properties are often inversely
+related: more information-rich signals are less robust, and vice versa. Here
+we examined how these properties change with ongoing cognitive demands.
+To this end, we applied dimensionality reduction algorithms and pattern
+classifiers to functional neuroimaging data collected as participants listened
+to a story, temporally scrambled versions of the story, or underwent a resting
+state scanning session. We expected that the intact story would be highly
+engaging, involving a range of cognitive operations from low-level sensory
+processing to higher-level cognitive processing. In contrast, we expected that
+the scrambled stories and resting state condition would be less engaging and
+would reliably involve only lower-level (e.g., sensory) processing. We
+considered two primary aspects of the neural data recorded in these different
+experimental conditions. First, we treated the maximum achievable decoding
+accuracy across participants as an indicator of the ``informativeness'' of the
+recorded patterns. Second, we treated the number of features (components)
+required to achieve a threshold decoding accuracy as a proxy for the
+``compressibility'' of the neural patterns (where fewer components indicate
+greater compression, and therefore greater redundancy and robustness to signal
+corruption). Overall, we found that the peak decoding accuracy (achievable
+without restricting the numbers of features) was highest in the intact
+(unscrambled) story listening condition. However, the number of features
+required to achieve comparable classification accuracy was also \textit{lowest}
+in the intact story listening condition. Taken together, our work suggests that
+our brain networks flexibly reconfigure according to ongoing task demands, and
+that the activity patterns associated with higher-order cognition and high
 engagement are both more informative and more compressible than the activity
 patterns associated with lower-order tasks and lower levels of engagement.
 
@@ -81,10 +82,10 @@ how brain activity reflects ongoing processing, we examined two fundamental
 aspects of brain activity under different cognitive circumstances:
 informativeness and compressibility. Informativeness refers to how specific the
 brain activity we measure at a given moment is to whatever was being done or
-experienced in that \textit{particular} moment, versus at some other time. More
+experienced in that \textit{particular} moment, versus at other times. More
 informative patterns can be used to more accurately match up brain activity
-with specific moments or tasks. Compressibility is a measure of how robust the
-activity patterns are. For example, if two components of brain activity are
+with specific moments or tasks. Compressibility is a measure of how redundant
+the activity patterns are. For example, if two components of brain activity are
 telling us about the same aspect of a task, then we should be able to remove
 one of them or combine them into a single component without losing much
 information. We found that when people were engaged in higher-level cognitive
@@ -115,12 +116,12 @@ network is maximally expressive when its nodes' activity patterns vary in
 meaningful ways from moment to moment, whereas it is maximally robust to signal
 corruption when its activity is constant over time. Presumably, most natural
 systems tend to occupy positions between these temporal and spatial extremes. Under
-different circumstances, it may even prove benefitial for systems to make
+different circumstances, it may even prove beneficial for systems to make
 different tradeoffs between expressiveness and robustness along the temporal
 and spatial dimensions.  We wondered: might the human brain reconfigure itself to
 be more flexible or more robust according to ongoing demands? In other words,
 might the brain reconfigure its connections or behaviors under different
-circumstances to change its position along these continuums?
+circumstances to change its positions along these continuums?
 
 Closely related to the above notions of expressiveness versus robustness are
 measures of how much \textit{information} is contained in a given signal or
@@ -360,7 +361,7 @@ activity from each experimental condition, we trained a series of
 across-participant temporal decoders on compressed representations of the data.
 Figure~\ref{fig:inflection}A displays the decoding accuracy as a function of
 the number of principal components used to represent the data (also see
-Fig.~\varExplained). Several patterns were revealed by the analysis. First, in
+Figs.~\autocorr~and \varExplained). Several patterns were revealed by the analysis. First, in
 general (i.e., across experimental conditions), decoding accuracy tends to
 improve as the number of components are increased. However, decoding accuracy
 peaked at higher levels for experimental conditions that exposed participants
@@ -461,7 +462,7 @@ would require additional study (with new stimuli).
   \includegraphics[width=0.9\textwidth]{figs/network_results}
 
   \caption{\textbf{Network-specific decoding accuracy and compression.}
-  \textbf{A. Network parcellation map.} The glass brain displays the location
+  \textbf{A. Network parcellation map.} The glass brains display the locations
   of each of seven networks identified by \cite{YeoEtal11}. \textbf{B. Node
   labels.} We assigned network labels to each of 700 Hierarchical Topographic
   Factor Analysis-derived nodes (see \textit{Hierarchical topographic factor
@@ -469,8 +470,10 @@ would require additional study (with new stimuli).
   (RBF) at the locations of every voxel in the parcellation map displayed in
   Panel A. We summed up these RBF weights separately for the voxels in each
   network. We defined each node's network label as its highest-weighted network
-  across all voxels. \textbf{C. Per-network node counts.} The bar plot displays
-  the total number of HTFA-derived nodes assigned to each network. \textbf{D.
+  across all voxels. The RBF center location of each node is shown as a circle
+  in the glass brains, and the colors denote each node's assigned network
+  label.  \textbf{C. Per-network node counts.} The bar plot displays the total
+  number of HTFA-derived nodes assigned to each network. \textbf{D.
   Informativeness versus compressibility by network and condition.} Each dot
   corresponds to a single cross validation run. The dots' coordinates denote
   the minimum proportion of components (relative to the number of nodes in the
@@ -486,8 +489,8 @@ would require additional study (with new stimuli).
   the proportion of components (relative to the total possible number of
   components displayed in Panel C) required to achieve at least 5\% decoding
   accuracy (or, for the rest condition, peak decoding accuracy, as described
-  above). Error ribbons in Panels E and F denote bootstrap-estimated
-  95\% confidence intervals.}
+  above). Error ribbons in Panels E and F denote bootstrap-estimated 95\%
+  confidence intervals.}
 
   \label{fig:networks}
 \end{figure}
@@ -538,16 +541,18 @@ Topic correlations by component.} For each of the top five highest-weighted
 principal components (columns) derived from each experimental condition
 (colors), the radar plots display the correlations between the component images
 and the per-topic images derived for each topic (topic identities are denoted
-by the blue dots; a legend for the topic labels is in the lower right of the
-figure). An annotated list of the top-weighted topics for each component and
-condition may be found in Figure~\topTerms~and the top-weighted terms for each
-topic may be found in Table~\topics. \textbf{B. Topic correlations averaged
-across components.} The radar plot is in the same format as the plots in Panel
-A, but here we display the per-condition average correlations across the top
-five components (for each condition) reflected in Panel A. \textbf{C. Component
-images.} Each plot displays a right sagittal view of a glass brain projection of
-the top five principal components (columns) for each experimental condition
-(rows). Additional projections for each component may be found in
+by the colored dots; a legend with high-level labels for each base color is on
+the right, and a legend with lower-level labels (denoted by tints and shades
+of each base color) is in the lower right. An annotated list of the
+top-weighted topics for each component and condition may be found in
+Figure~\topTerms~and the top-weighted terms for each topic may be found in
+Table~\topics. \textbf{B. Topic correlations averaged across components.} The
+radar plot is in the same format as the plots in Panel A, but here we display
+the per-condition average correlations across the top five components (for each
+condition) reflected in Panel A. \textbf{C. Component images.} Each plot
+displays a right sagittal view of a glass brain projection of the top five
+principal components (columns) for each experimental condition (rows).
+Additional projections for each component may be found in
 Figure~\componentBrains.}
 
 \label{fig:neurosynth-pca}
@@ -704,7 +709,7 @@ associations between different brain regions simultaneously imply that
 full-brain activity patterns will be compressible and also that those activity
 patterns will contain redundancies. For example, the extent to which activity
 patterns at one brain area can be inferred or predicted from activity patterns
-at other areas~\citep[e.g.,][]{OwenEtal20, ScanEtal21}, reflects overlap in the
+at other areas~\citep[e.g.,][]{OwenEtal20, ScanEtal21} reflects overlap in the
 information available in or represented by those brain areas. If brain patterns
 in one area are recoverable using brain patterns in another area, then a
 ``signal'' used to convey the activity patterns could be compressed by removing
@@ -744,7 +749,7 @@ expressiveness.
 
 One potential limitation of our work concerns how our measure of
 informativeness might generalize across different tasks, cognitive
-representations, and processes. As in many neuroimaing studies, our findings
+representations, and processes. As in many neuroimaging studies, our findings
 may also be influenced by our preprocessing decisions, which could in turn
 affect temporal and spatial correlations in the data. Our use of
 across-participant temporal decoding accuracy as a proxy for informativeness is

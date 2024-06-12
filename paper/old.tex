@@ -11,6 +11,7 @@
 \usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
 \usepackage[left]{lineno}
 \usepackage{soul}
+\usepackage{rotating}
 \linenumbers
 
 \newcommand{\varExplained}{S1}
@@ -35,22 +36,25 @@ jeremy.r.manning@dartmouth.edu}
 
 
 \begin{abstract} 
-
-We applied dimensionality reduction algorithms and pattern classifiers to
-functional neuroimaging data collected as participants listened to a story,
-temporally scrambled versions of the story, or underwent a resting state
-scanning session. These experimental conditions were intended to require
-different depths of processing and inspire different levels of cognitive
-engagement. We considered two primary aspects of the data. First, we treated
-the maximum achievable decoding accuracy across participants as an indicator of
-the ``informativeness'' of the recorded patterns. Second, we treated the number
-of features (components) required to achieve a threshold decoding accuracy as a
+  
+Brain activity patterns are highly flexible and often complex, but also highly
+structured. Here we examined how fundamental properties of brain activity
+patterns relate to ongoing cognitive processes. To this end, we applied
+dimensionality reduction algorithms and pattern classifiers to functional
+neuroimaging data collected as participants listened to a story, temporally
+scrambled versions of the story, or underwent a resting state scanning session.
+These experimental conditions were intended to require different depths of
+processing and inspire different levels of cognitive engagement. We considered
+two primary aspects of the data. First, we treated the maximum achievable
+decoding accuracy across participants as an indicator of the
+``informativeness'' of the recorded patterns. Second, we treated the number of
+features (components) required to achieve a threshold decoding accuracy as a
 proxy for the ``compressibility'' of the neural patterns (where fewer
 components indicate greater compression). Overall, we found that the peak
-decoding accuracy (achievable without restricting the numbers of features)
-was highest in the intact (unscrambled) story listening condition.  However, the
-number of features required to achieve comparable classification accuracy
-was also lowest in the intact story listening condition.  Taken together, our work
+decoding accuracy (achievable without restricting the numbers of features) was
+highest in the intact (unscrambled) story listening condition. However, the
+number of features required to achieve comparable classification accuracy was
+also lowest in the intact story listening condition. Taken together, our work
 suggests that our brain networks flexibly reconfigure according to ongoing task
 demands, and that the activity patterns associated with higher-order cognition
 and high engagement are both more informative and more compressible than the
@@ -61,6 +65,24 @@ engagement.
 \noindent
 \textbf{Keywords: information, compression, temporal decoding, dimensionality
 reduction, neuroimaging}
+
+\bigskip 
+\noindent 
+
+\textbf{Significance Statement:} How our brains respond to ongoing
+experiences depends on what we are doing and thinking about, among
+other factors. To study how brain activity reflects ongoing cognition,
+we examined two fundamental aspects of brain activity under different
+cognitive circumstances: informativeness and
+compressibility. Informativeness refers to the extent to which brain
+patterns are both temporally specific and consistent across different
+people. Compressibility refers to how robust the informativeness of
+brain patterns is to dimensionality reduction. Brain activity evoked
+by higher-level cognitive tasks are both more informative \textit{and} more
+compressible than activity evoked by lower-level tasks. Our findings
+suggest that our brains flexibly reconfigure themselves to optimize
+different aspects of how they function according to ongoing cognitive
+demands.
 
 \end{abstract}
 
@@ -78,12 +100,18 @@ pattern across its nodes, then every state is equally reachable by a network
 with fully independent nodes. On the other hand, a network of identically
 behaved nodes optimizes \textit{robustness}: any subset of nodes may be removed
 from the network without any loss of function or expressive power, as long as
-any single node remains. Presumably, most natural systems tend to occupy
-positions between these extremes. We wondered: might the human brain
-reconfigure itself to be more flexible or more robust according to ongoing
-demands? In other words, might the brain reconfigure its connections or
-behaviors under different circumstances to change its position along this
-continuum?
+any single node remains. In addition to considering flexibility across space
+(nodes), these properties may also vary, largely independently, across time. A
+network is maximally expressive when its nodes' activity patterns vary in
+meaningful ways from moment to moment, whereas it is maximally robust to signal
+corruption when its activity is constant over time. Presumably, most natural
+systems tend to occupy positions between these temporal and spatial extremes. Under
+different circumstances, it may even prove benefitial for systems to make
+different tradeoffs between expressiveness and robustness along the temporal
+and spatial dimensions.  We wondered: might the human brain reconfigure itself to
+be more flexible or more robust according to ongoing demands? In other words,
+might the brain reconfigure its connections or behaviors under different
+circumstances to change its position along these continuums?
 
 Closely related to the above notions of expressiveness versus robustness are
 measures of how much \textit{information} is contained in a given signal or
@@ -132,30 +160,34 @@ that have some influence over brain activity patterns) are compressible.
   \includegraphics[width=\textwidth]{figs/information_and_compressibility}
   
   \caption{\textbf{Information content and compressibility.} \textbf{A.
-  Variance explained for two images.} We applied principal components analysis
-  to a photograph and drawing, treating the rows of the images as
-  ``observations.'' Across columns, we identified the numbers of components
-  required to explain 100\%, 95\%, 75\%, or 50\% of the cumulative variance in
-  each image (the 100\% columns denote the original images). The numbers of
-  components are indicated in parentheses, and the resulting ``compressed''
-  images are displayed. \textbf{B. Representing two images with different
-  numbers of components.} Using the same principal component decompositions as
-  in Panel A, we computed the cumulative proportion of variance explained with
-  380 (original images), 20, 4, or 2 components. \textbf{C. Cumulative variance
-  explained versus number of components.} For the images displayed in Panels A
-  and B, we plot the cumulative proportion of variance explained as a function
-  of the number of components used to represent each image. \textbf{D.
-  Information rate and compressibility.} Across multiple images, the
-  information rate (i.e., the amount of information contained in each image;
-  horizontal axis) is high when each individual pixel provides information that
-  cannot be inferred from other pixels. High-information rate images tend to be
-  high-resolution, and low-information rate images tend to be low-resolution.
-  Compressibility is related to the difference between the information required
-  to specify the original versus compressed images (vertical axis). Highly
-  compressible images often contain predictable structure (redundancies) that
-  can be leveraged to represent the images much more efficiently than in their
-  original feature spaces.}
-
+  Variance explained for two images.} Consider two example images: a photograph
+  and simple drawing. The images have the same resolutions, but their content
+  is very different. The photograph is more information rich: when we compare
+  the original photograph and drawing (leftmost column), we can see that the
+  photograph captures much more detail. We can also apply principal components
+  analysis to the images, treating the rows of the images as ``observations.''
+  Across columns, we identified the numbers of components required to explain
+  100\%, 95\%, 75\%, or 50\% of the cumulative variance in each image (the
+  100\% columns denote the original images). The numbers of components are
+  indicated in parentheses, and the resulting ``compressed'' images are
+  displayed. This analysis reveals that the drawing is more compressible: just
+  16 components can explain 95\% of the variance in the drawing, whereas 50
+  components are required to explain 95\% of the variance in the photograph.
+  \textbf{B. Representing two images with different numbers of components.}
+  Using the same principal component decompositions as in Panel A, we computed
+  the cumulative proportion of variance explained with 380 (original images),
+  20, 4, or 2 components. This analysis provides another way of characterizing
+  the compressibility of each image by showing that the same number of
+  components can explain more variance in the drawing than in the photograph.
+  \textbf{C. Template data from four synthetic datasets.} We constructed four
+  synthetic datasets, each comprising 25 features (columns) observed across 100
+  samples (rows) from each of 10 simulated ``participants.'' The datasets were
+  constructed to contain different levels of informativeness and
+  compressibility (see \textit{Synthetic data}). \textbf{D. Decoding accuracy
+  by number of components.} For each synthetic dataset, we trained
+  across-participant classifiers to decode timepoint labels.  Each panel displays the
+  decoding accuracy as a function of the number of components used to represent
+  the data. Error ribbons denote bootstrap-estimated 95\% confidence intervals.}
 \label{fig:information-compression} 
 \end{figure}
 
@@ -168,26 +200,43 @@ signal~\citep{Alva02}. To the extent that brain activity patterns are
 compressible, we should be able to generate simplified (e.g., lower
 dimensional) representations of the data while still preserving the relevant or
 important aspects of the original signal. In general, information content and
-compressibility are related but are partially dissociable
+compressibility are often related but are also dissociable
 (Fig.~\ref{fig:information-compression}). If a given signal (e.g., a
 representation of brain activity patterns) contains more information about
-ongoing cognitive processes, then the peak decoding accuracy should be high.
-And if the signal is compressible, a low-dimensional embedding of the signal
-will be similarly informative as the original signal
-(Fig.~\ref{fig:information-compression}D).
-
+ongoing cognitive processes, then the peak decoding accuracy should be high. In
+the simulations shown in Figure~\ref{fig:information-compression}C we construct
+synthetic datasets that have high or low levels of informativeness by varying
+temporal autocorrelations in the data (see \textit{Synthetic data}).
+If a signal is compressible, then a low-dimensional embedding of the signal
+will be similarly informative as the original signal.  In the simulations
+shown in Figure~\ref{fig:information-compression}C we construct synthetic
+datasets that have high or low levels of compressibility by varying
+the covariance structure across features (see \textit{Synthetic data}).  As shown
+in Figure~\ref{fig:information-compression}D, highly informative datasets
+yield higher decoding accuracies than less informative datasets (i.e., the peaks of the curves in
+the top panels of Fig.~\ref{fig:information-compression}D are higher than the
+peaks of the curves in the bottom panels). Highly compressible datasets show
+steeper slopes when we plot decoding accuracy as a function of the number of
+components used to represent the data (i.e., the slopes of the curves in the
+left panels of Fig.~\ref{fig:information-compression}D are steeper than the
+slopes of the curves in the right panels).  Whereas characterizing
+the informativeness and compressibility of synthetic data can be instructive,
+we are ultimately interested in understanding how these properties relate to
+brain activity patterns recorded under different cognitive circumstances.
 
 Several recent studies suggest that the complexity of brain activity is
 task-dependent, whereby simpler tasks with lower cognitive demands are
 reflected by simpler and more compressible brain activity patterns, and more
 complex tasks with higher cognitive demands are reflected by more complex and
 less compressible brain activity patterns~\citep{MackEtal20, OwenEtal21}. These
-findings complement other work suggesting that functional connectivity
-(correlation) patterns are task-dependent~\citep{FinnEtal17, OwenEtal20,
-ColeEtal14}, although see~\cite{GratEtal18}. Higher-order cognitive processing
-of a common stimulus also appears to drive more stereotyped task-related
-activity and functional connectivity across individuals~\citep{HassEtal08,
-LernEtal11, SimoChan20, SimoEtal16}.
+patterns hold even when the stimulus itself is held
+constant~\citep{MackEtal20}. These findings complement other work suggesting
+that functional connectivity (correlation) patterns are
+task-dependent~\citep{FinnEtal17, OwenEtal20, ColeEtal14}, although
+see~\cite{GratEtal18}. Higher-order cognitive processing of a common stimulus
+also appears to drive more stereotyped task-related activity and functional
+connectivity across individuals~\citep{HassEtal08, LernEtal11, SimoChan20,
+SimoEtal16}.
 
 The above studies are consistent with two potential descriptions of how
 cognitive processes are reflected in brain activity patterns. One possibility
@@ -195,16 +244,18 @@ is that the information rate of brain activity increases during more complex or
 higher-level cognitive processing. If so, then the ability to reliably decode
 cognitive states from brain activity patterns should improve with task
 complexity or with the level (or ``depth'') of cognitive processing. A second
-possibility is that the compressibility of brain activity patterns increases
+possibility is that the compressibility of brain activity patterns decreases
 during more complex or higher-level cognitive processing. If so, then
-individual features of brain recordings, or compressed representations of brain
-recordings, should carry more information during complex or high-level (versus
-simple or low-level) cognitive tasks.
+individual features of brain recordings should carry more information (over and
+above the information carried by other features) during complex or high-level
+(versus simple or low-level) cognitive tasks. The tradeoffs between these two
+aspects of brain activity may also vary across brain regions or networks, for
+example according to each region's functional role.
 
 We used a previously collected neuroimaging dataset to estimate the extent to
 which each of these two possibilities might hold. The dataset we examined
 comprised functional magnetic resonance imaging (fMRI) data collected as
-participants listened to an audio recording of a 10-minute story, temporally
+participants listened to an audio recording of a 7-minute story, temporally
 scrambled recordings of the story, or underwent a resting state
 scan~\citep{SimoEtal16}. Each of these experimental conditions evokes different
 depths of cognitive processing~\citep{SimoEtal16,LernEtal11,
@@ -238,7 +289,7 @@ We analyzed a dataset collected by \cite{SimoEtal16} that comprised four
 experimental conditions. These conditions exposed participants to stimuli that
 systematically varied in cognitive engagement. In the \textit{intact}
 experimental condition, participants listened to an audio recording of a
-10-minute Moth Radio Hour story, \textit{Pie Man}, by Jim O'Grady. In the
+7-minute Moth Radio Hour story, \textit{Pie Man}, by Jim O'Grady. In the
 \textit{paragraph}-scrambled experimental condition, participants listened to a
 temporally scrambled version of the story, where the paragraphs occurred out of
 order, but where the same set of paragraphs was presented over the entire
@@ -274,21 +325,23 @@ inset in Panel A. Intersections between each condition's decoding accuracy
 curve and the 5\% decoding accuracy reference line are marked by arrows. All
 error ribbons in Panels A and B denote bootstrap-estimated 95\% confidence
 intervals. \textbf{C. Estimating ``compressibility'' for each condition.} The
-density plots display the numbers of components required to reach at least 5\%
-(corrected) decoding accuracy, across all cross validation runs. For the
-``rest'' condition, where decoding accuracy never reached 5\% accuracy, we
-display the distribution of the numbers of components required to achieve the
-peak decoding accuracy in each fold. (This distribution is nearly flat, as
-also illustrated in Panel E.) \textbf{D. Estimating ``informativeness'' for each
-condition.} The density plots display the peak (corrected) decoding accuracies
-achieved in each condition, across all cross validation runs. \textbf{E.
-Informativeness versus compressibility.} Each dot displays the minimum number
-of components required to achieve at least 5\% corrected decoding accuracy
-($x$-coordinate; for the rest condition the numbers of components are estimated
-using the peak decoding accuracies as in Panel C) and the peak (corrected)
-decoding accuracy ($y$-coordinate). The smaller dots correspond to individual
-cross validation runs and the larger dots display the averages across runs. The
-inset displays a zoomed-in view of the indicated region in the main panel.}
+probability density plots display the numbers of components required to reach
+at least 5\% (corrected) decoding accuracy, across all cross validation runs.
+For the ``rest'' condition, where decoding accuracy never reached 5\% accuracy,
+we display the distribution of the numbers of components required to achieve
+the peak decoding accuracy in each fold. (This distribution is nearly flat, as
+also illustrated in Panel E.) The scale bar denotes a height of 0.01.
+\textbf{D. Estimating ``informativeness'' for each condition.} The probability
+density plots display the peak (corrected) decoding accuracies achieved in each
+condition, across all cross validation runs. The scale bar denotes a height of
+0.01. \textbf{E. Informativeness versus compressibility.} Each dot displays the
+minimum number of components required to achieve at least 5\% corrected
+decoding accuracy ($x$-coordinate; for the rest condition the numbers of
+components are estimated using the peak decoding accuracies as in Panel C) and
+the peak (corrected) decoding accuracy ($y$-coordinate). The smaller dots
+correspond to individual cross validation runs and the larger dots display the
+averages across runs. The inset displays a zoomed-in view of the indicated
+region in the main panel.}
 
 \label{fig:inflection}
 \end{figure}
@@ -304,11 +357,11 @@ improve as the number of components are increased. However, decoding accuracy
 peaked at higher levels for experimental conditions that exposed participants
 to cognitively richer stimuli (Fig.~\ref{fig:inflection}D). The peak decoding
 accuracy was highest for the ``intact'' condition (versus paragraph: $t(99) =
-35.205, p < 0.001)$; versus word: $t(99) = 43.172, p < 0.001)$; versus rest:
-$t(99) = 81.361, p < 0.001)$), next highest for the ``paragraph'' condition
-(versus word: $t(99) = 6.243, p < 0.001)$; versus rest: $t(99) = 50.748, p <
-0.001)$), and next highest for the ``word'' condition (versus rest: $t(99) =
-48.791, p < 0.001)$). This ordering implies that cognitively richer conditions
+35.205, p < 0.001$; versus word: $t(99) = 43.172, p < 0.001$; versus rest:
+$t(99) = 81.361, p < 0.001$), next highest for the ``paragraph'' condition
+(versus word: $t(99) = 6.243, p < 0.001$; versus rest: $t(99) = 50.748, p <
+0.001$), and next highest for the ``word'' condition (versus rest: $t(99) =
+48.791, p < 0.001$). This ordering implies that cognitively richer conditions
 evoke more stable brain activity patterns across people.
 
 The cognitively richer conditions also displayed steeper initial slopes. For
@@ -372,6 +425,27 @@ rest condition ($t(99) = -22.081, p < 0.001$). This might reflect the
 depletion of attentional resources in the less-engaging word and rest
 conditions.
 
+These results make some intuitive sense. As the contextual information
+available to participants increases (i.e., over time in the cognitively rich
+intact and paragraph conditions), it makes sense that this might
+constrain neural responses to a greater extent. While this pattern may not
+necessarily hold for \textit{every} possible story or stimulus, we suspect that
+it is generally the case that our knowledge about what is happening in a story
+tends to increase as we experience more of it. In turn, this could lead to
+greater consistency in different people's interpretations of and neural
+responses to the stimulus. Similarly, as participants are left to ``mind
+wander,'' or as they experience mental fatigue (i.e., over time in the less
+cognitively rich word and rest conditions), we suggest that this might
+lead to greater variability in neural responses across people, resulting in
+lower decoding accuracy. Again, it is not necessarily the case that every
+possible ``unengaging'' stimulus will lead to greater neural variability as
+time progresses, but we suspect this phenomenon is likely to hold for a variety
+of such stimuli. These findings replicate at least to a limited extent (e.g.,
+across both cognitively rich conditions and across both cognitively
+impoverished conditions, and for the different groups of participants in each
+of those conditions). However, determining whether these patterns generalize to
+other stimuli would require additional study (with new stimuli).
+
 \begin{figure}[tp]
   \centering
   \includegraphics[width=0.9\textwidth]{figs/network_results}
@@ -408,23 +482,41 @@ conditions.
   \label{fig:networks}
 \end{figure}
 
-We also wondered how informativeness and compressibility in the different
-experimental conditions might vary across brain networks. We used a network
-parcellation identified by \cite{YeoEtal11} to segment the brain into seven
-distinct networks. The networks can be sorted (roughly) in order from
+If the informativeness and compressibility of brain activity patterns vary over
+time, might these properties also vary across brain networks? We used a
+network parcellation identified by \cite{YeoEtal11} to segment the brain into
+seven distinct networks. The networks can be sorted (roughly) in order from
 lower-level to higher-level cortex as follows (Figs.~\ref{fig:networks}A--C):
 visual, somatomotor, dorsal attention, ventral attention, limbic,
 frontoparietal, and default mode. Next, we computed decoding curves separately
 for the activity patterns within each network and identified each network's
 inflection point, for each experimental condition. Moving from low-order
 networks to higher-order networks, we found that decoding accuracy tended to
-increase, particularly in the higher-level experimental conditions
-(Fig.~\ref{fig:networks}D, E). This suggests that higher-order networks may
-carry more content-relevant or stimulus-driven ``information.'' We found no
-clear trends in the proportions of components required to achieve 5\% decoding
-accuracy across networks or conditions (Fig.~\ref{fig:networks}F).
+increase in the higher-level experimental conditions and decrease (slightly) in
+the lower-level experimental conditions (Fig.~\ref{fig:networks}D, E;
+Spearman's rank correlation between decoding accuracy and network order:
+intact: $\rho = 0.362, p < 0.001$; paragraph: $\rho = 0.441, p < 0.001$; word:
+$\rho = -0.102, p = 0.007$; rest: $\rho = -0.354, p < 0.001$). This suggests
+that higher-order networks may carry more content-relevant or stimulus-driven
+``information.'' We found no clear trends in the proportions of components
+required to achieve 5\% decoding accuracy across networks or conditions
+(Fig.~\ref{fig:networks}F). We note that the limbic network we considered here
+often overlaps with low (imaging) signal regions, and therefore it may be
+difficult to draw strong conclusions about this network's informativeness or
+compressibility. We also considered the possibility that the correlations with
+network order might be influenced by the numbers of nodes in each network. We
+designed a permutation-based procedure to address this possibility, whereby we
+repeated the above analyses using shuffled network labels (see \textit{Network
+permutation tests}). The correlations between decoding accuracy and network
+order were reliably more positive than the shuffled correlations for the intact
+($t(1998) = 276.431, p < 0.001$) and paragraph ($t(1998) = 330.334, p < 0.001$)
+conditions, and reliably more negative for the word ($t(1998) = -16.386, p <
+0.001$) and rest ($t(1998) = -318.631, p < 0.001$) conditions. These results
+suggest that the correlations between decoding accuracy and network order were
+not driven solely by the numbers of nodes in each network.
 
-\begin{figure}[tp]
+
+\begin{sidewaysfigure}[tp]
   \centering
   \includegraphics[width=\textwidth]{figs/neurosynth_by_component}
 
@@ -450,18 +542,18 @@ Figure~\componentBrains.}
 
 \label{fig:neurosynth-pca}
 
-\end{figure}
+\end{sidewaysfigure}
 
-In addition to examining different networks in isolation, we wondered about the
-general structure of the full-brain (i.e., potentially multi-network) activity
-patterns reflected by different principal components across different
-experimental conditions. As shown in Figure~\ref{fig:neurosynth-pca}, we used
+Whereas the above analyses examined different networks in isolation, how does
+full-brain (i.e., potentially multi-network) activity patterns reflected by
+different principal components vary across different experimental conditions?
+As shown in Figure~\ref{fig:neurosynth-pca}, we used
 Neurosynth~\citep{RubiEtal17} to identify, for each component, the associations
-with each of 80 themes (see \textit{Reverse inference}).  In general, the first
-principal components across all of the experimental conditions tended to weight
-most heavily on themes related to cognitive control, memory,
-language processing, attention, and perception.  Other components appeared to
-vary more across conditions.
+with each of 80 themes (see \textit{Reverse inference}). In general, the first
+principal components across all of the experimental conditions tended to weigh
+most heavily on themes related to cognitive control, memory, language
+processing, attention, and perception. Other components appeared to vary more
+across conditions.
 
 To gain further insights into which brain functions might be most closely
 associated with the top-weighted components from each experimental condition,
@@ -476,9 +568,9 @@ B). We also computed correlations between the sets of per-topic weightings from
 each of the top-weighted components from each experimental condition
 (Fig.~\ref{fig:neurosynth-summary}C, D) and between the brain maps for each
 condition's components (Fig.~\neurosynthFull C, D). Taken together, we found
-that each component appeared to weight on a fundamental set of cognitive
+that each component appeared to weigh on a fundamental set of cognitive
 functions that varied by experimental condition. For example, the top principal
-components from every condition weighted similarly (across conditions) on the
+components from every condition weighed similarly (across conditions) on the
 full set of Neurosynth topics (Fig.~\ref{fig:neurosynth-pca}A) and cognitive
 functions (Figs.~\ref{fig:neurosynth-summary}A, B and~\neurosynthFull~A, B),
 suggesting that these components might reflect a set of functions or activity
@@ -493,13 +585,30 @@ and rest conditions (highest-weighted functions: emotion, social cognition). We
 also used ChatGPT~\citep{ChatGPT} to sort the list of manually tagged cognitive
 functions from lowest-level to highest-level (Tab.~\topicTags,
 Fig.~\ref{fig:neurosynth-summary}E; also see \textit{Ranking cognitive
-processes}). We found that higher-level functions tended to be weighted on more
+processes}). We found that higher-level functions tended to be weighted more
 heavily by top components from the intact and paragraph conditions than
-lower-level functions. The top components from the word condition showed the
-opposite tendency, whereby \textit{lower}-level functions tended to be weighted
-on more heavily than higher-level functions. The components from the rest
-condition showed almost no differences in the weights associated with
-high-level versus low-level functions.
+lower-level functions (intact vs. word: $t(198) = 11.059, p < 0.001$; intact
+vs. rest: $t(198) = 3.699, p < 0.001$; paragraph vs. word: $t(198) = 13.504, p
+< 0.001$; paragraph vs. rest: $t(198) = 4.812, p < 0.001$; also see
+\textit{Ranking cognitive processes}). The top components from the word
+condition showed the opposite tendency, whereby \textit{lower}-level functions
+tended to be weighted more heavily than higher-level functions (word vs. rest:
+$t(198) = -7.315, p < 0.001$). The weighting trends for the intact and
+paragraph conditions were not reliably different ($t(198) = -0.479, p =
+0.633$). The components from the rest condition showed only a small trending
+difference in the weights associated with high-level versus low-level functions
+(rest vs. 0: $t(99) = 1.836, p = 0.081$). These findings suggest that when
+participants were engaged more strongly (in the more engaging intact and
+paragraph conditions), their dominant neural patterns reflected higher-level
+cognitive functions. In contrast, when participants were engaged less strongly
+(in the less engaging word and rest conditions), their dominant neural patterns
+reflected lower-level cognitive functions. Although they were highly
+statistically reliable, it is also important to note that these latter effects
+are also relatively small (e.g., the slopes for \textit{all} of the
+experimental conditions are numerically close to zero;
+Fig.~\ref{fig:neurosynth-summary}E). We suggest that this phenomenon may merit
+further investigation in future work.
+
 
 \begin{figure}[tp]
   \centering
@@ -510,35 +619,34 @@ by condition.} \textbf{A. Top-weighted topics by condition.} Here we display
 per-condition (rows, indicated by colored dots) topic correlations, averaged
 across topics that pertain to each of several broad cognitive functions
 (columns within each sub-panel, indicated by colored dots). Each sub-panel
-reflects correlations for the components indicated in the panel titles. A
-legend for the condition and several core cognitive function classifications is
-displayed in the lower right of the figure. Table~\topics~provides a list of
-each topic's top-weighted terms, along with each topic's manually labeled
-cognitive classification. A full list of the topics most highly associated with
-each component may be found in Figure~\topTerms. \textbf{B. Associations
-between per-condition components and cognitive functions.} The network plots
-denote positive average correlations between the component images for each
-condition (gray-outlined dots on the left sides of each network; colors denote
-conditions) and topic-specific brain maps associated with each indicated
-cognitive function (black-outlined dots on the right sides of each network;
-colors denote cognitive functions). The line thicknesses are proportional to
-the correlation values (correlation coefficients are noted in the heat maps in
-Panel A). \textbf{C. Correlations between each principal component, by
-condition.} The heat maps display the correlations between the brain maps
-(Fig.~\componentBrains) for each principal component (sub-panel), across each
-pair of conditions (rows and columns of each sub-panel's matrix, indicated by
-colored dots). \textbf{D. Associations between per-condition components, by
-component.} Each sub-panel's network plot summarizes the pattern of correlations
-between the $n$\textsuperscript{th} top-weighted principal components
-(sub-panel) for each experimental condition (gray-outlined dots). The line
+reflects correlations for the components indicated in the panel titles.
+Table~\topics~provides a list of each topic's top-weighted terms, along with
+each topic's manually labeled cognitive classification. A full list of the
+topics most highly associated with each component may be found in
+Figure~\topTerms. \textbf{B. Associations between per-condition components and
+cognitive functions.} The network plots denote positive average correlations
+between the component images for each condition (gray-outlined dots on the left
+sides of each network; colors denote conditions) and topic-specific brain maps
+associated with each indicated cognitive function (black-outlined dots on the
+right sides of each network; colors denote cognitive functions). The line
 thicknesses are proportional to the correlation values (correlation
-coefficients are noted in the heat maps in Panel C). \textbf{E. Change in
-weights by condition.} The bar heights reflect the slopes of regression lines,
-fit separately to the top five components from each condition, between the
-ChatGPT-derived ``rank'' of each cognitive classification and the correlations
-between the component and topic maps associated with cognitive processes at the
-given rank (see \textit{Ranking cognitive processes}).  Also see
-Fig.~\neurosynthFull~for additional information.}
+coefficients are noted in the heat maps in Panel A). \textbf{C. Correlations
+between each principal component, by condition.} The heat maps display the
+correlations between the brain maps (Fig.~\componentBrains) for each principal
+component (sub-panel), across each pair of conditions (rows and columns of each
+sub-panel's matrix, indicated by colored dots). \textbf{D. Associations between
+per-condition components, by component.} Each sub-panel's network plot
+summarizes the pattern of correlations between the $n$\textsuperscript{th}
+top-weighted principal components (sub-panel) for each experimental condition
+(gray-outlined dots). The line thicknesses are proportional to the correlation
+values (correlation coefficients are noted in the heat maps in Panel C).
+\textbf{E. Change in weights by condition.} The bar heights reflect the slopes
+of regression lines, fit separately to the top five components from each
+condition, between the ChatGPT-derived ``rank'' of each cognitive
+classification and the correlations between the component and topic maps
+associated with cognitive processes at the given rank (see \textit{Ranking
+cognitive processes}) Error bars denote bootstrap-estimated 95\% confidence
+intervals. Also see Fig.~\neurosynthFull~for additional information.}
 
 \label{fig:neurosynth-summary}
 \end{figure}
@@ -558,7 +666,7 @@ progressed), these phenomena were strengthened. Specifically, across story
 segments, data from more cognitively rich conditions became more informative
 and compressible, and data from less cognitively rich conditions became
 \textit{less} informative and compressible
-(Fig.~\ref{fig:inflection-quarters}). We also repeated these analyses
+(Fig.~\ref{fig:inflection-quarters}).  We also repeated these analyses
 separately for different brain networks. We found that networks traditionally
 associated with higher-level cognitive functions tended to provide more
 informative brain patterns than networks traditionally associated with lower
@@ -567,16 +675,14 @@ most dominant components of the brain activity patterns from each experimental
 condition. We used a reverse inference approach~\citep{RubiEtal17} to identify
 the terms in the neuroimaging literature most commonly associated with the
 corresponding maps. As summarized in Figure~\ref{fig:neurosynth-summary}E, we
-found that the intact and paragraph conditions tended to weight on higher-level
+found that the intact and paragraph conditions tended to weight higher-level
 cognitive processes more than lower-level cognitive processes, whereas the word
-condition weighted on lower-level processes more than higher-level processes
-and the rest condition showed no difference in high-level versus low-level
-weighting. Taken together, our findings indicate that the informativeness and
+condition weighted lower-level processes more than higher-level processes
+and the rest condition showed no reliable difference in high-level versus low-level
+weightings. Taken together, our findings indicate that the informativeness and
 compressibility of our brain activity patterns are task-dependent, and these
 properties change systematically with factors like cognitive richness and depth
 of processing.
-
-
 
 Our explorations of informativeness and compressibility are related to a much
 broader literature on the correlational and causal structure of brain activity
@@ -596,7 +702,20 @@ the recoverable activity. Predictable (and therefore redundant) brain activity
 patterns are also more robust to signal corruption. For example, even if the
 activity patterns at one region are unreadable or unreliable at a given moment,
 that unreliability could be compensated for by other regions' activity patterns
-that were predictive of the unreliable region.
+that were predictive of the unreliable region. Whereas compressible brain
+patterns are robust to spatial signal corruption, high versus low
+informativeness reflects a similar (though dissociable; e.g.,
+Fig.~\ref{fig:information-compression}) tradeoff between expressiveness and
+robustness of \textit{temporal} patterns. Highly informative brain patterns (by
+our measure; i.e., patterns that yield greater temporal decoding accuracy) are
+expressive about ongoing experiences or cognitive states, since each moment's
+pattern is reliably distinguishable from other moments' patterns. However, when
+each moment's pattern is unique, brain activity becomes less robust to temporal
+signal corruption. Our finding that brain activity patterns becomes more
+informative (i.e., less robust to temporal signal corruption) and compressible
+(i.e., more robust to spatial signal corruption) when cognitive engagement is
+higher suggests that our brain may optimize its activity patterns to prioritize
+either temporal or spatial robustness, according to task demands.
 
 Our findings that informativeness and compressibility change with task demands
 may follow from task-dependent changes in full-brain correlation patterns. A
@@ -613,6 +732,55 @@ reliability. For higher-level tasks, or for tasks that require deeper cognitive
 processing, our brains may sacrifice some redundancy in favor of greater
 expressiveness.
 
+One potential limitation of our work concerns how our measure of
+informativeness might generalize across different tasks, cognitive
+representations, and processes. Our use of across-participant temporal decoding
+accuracy as a proxy for informativeness is motivated in part by prior work that
+introduced across-participant similarity (in time-varying response to a
+stimulus) as a means of identifying stimulus-driven brain activity
+patterns~\citep{SimoEtal16}. Intuitively, only activity patterns that are
+driven by the stimulus would be expected to synchronize (i.e., be time-locked
+to the stimulus) across participants. This approach implicitly removes
+idiosyncratic responses (e.g., neural patterns that are \textit{not} similar
+across people). However, there are also some published examples, including in
+our own prior work, that indicate that some types of stimulus-evoked activity
+will be missed by across-participant comparisons. For example we have reported
+how brain regions like the ventromedial prefrontal cortex (vmPFC) show
+stimulus-driven responses that are, for the most part, \textit{not} similar
+across people. In that paper (and drawing on other work), we suggest that the
+vmPFC seems to represent or support highly idiosyncratic internal states, like
+affective responses. Although we would consider the vmPFC to be a
+``high-level'' region (e.g., we consider affect to be a relatively high-level
+aspect of cognition), the measure of informativeness that we used in our
+current study would identify regions like the vmPFC as having \textit{low}
+informativeness. This is because across-participant decoding accuracy (our
+proxy measure for informativeness) will only be high for representations or
+responses that are common across people.
+
+Relatedly, even in the experimental conditions we describe as ``less
+cognitively engaging,'' we think it likely that high-level thought or cognitive
+processing is still present. Rather, we suggest that these high-level
+representations will tend to be more idiosyncratic when the stimulus is less
+engaging, and therefore less constraining on people's thoughts. Nonetheless,
+even during highly engaging tasks, people may engage in idiosyncratic
+stimulus-driven processes. For example, people might retrieve personal
+information as they listened to the story. Those retrievals could happen at
+different times for different people according to each individual's prior
+experiences. Even when those sorts of retrievals happen to be temporally
+synchronized across people, the specific memories or information being
+retrieved might still be idiosyncratic. Our measure of informativeness is
+insensitive to these processes. Further, even in response to an identical
+stimulus, task instructions or participants' internal goals could change the
+relationship between compressibility and informativeness. Some work has shown
+that the ``dimensionality'' of neural representations can change systematically
+with task complexity, even in response to an identical
+stimulus~\citep{MackEtal20}. Taken together, we expect that the way we have
+defined informativeness in this paper, and the specific dataset we examined,
+are likely to have influenced our findings. While we see our approach as a
+reasonable first step, we also suggest that future work should explore
+alternative measures of informativeness and compressibility, and should examine
+how these measures vary across different tasks and datasets.
+
 In the information theory sense~\citep{Shan48}, when a signal is transmitted
 using a fixed alphabet of ``symbols,'' the information rate decreases as the
 signal is compressed (e.g., fewer symbols transmitted per unit time, using an
@@ -625,17 +793,37 @@ demands. For example, our brains may represent the same perceptual stimulus
 differently depending on which aspects of the stimulus or which combinations of
 features are task-relevant~\citep{MackEtal20}.
 
-Different brain networks also varied in how informative and compressible their
-activity patterns were across experimental conditions (e.g.,
-Fig.~\ref{fig:networks}). This might follow from evolutionary optimizations
-that reflect the relevant constraints or demands placed on those networks. One
-possibility is that cortex is organized in a hierarchy of networks ``concerned
-with'' or selective to different levels of processing or function. To the
-extent that different levels of processing (e.g., low-level sensory processing
-versus ``deeper'' higher-level processing) reflect different stimulus
-timescales~\citep[e.g.,][]{Mann20}, the network differences we observed might
-also relate to the timescales at which each network is maximally
-sensitive~\citep{RegeEtal18, BaldEtal17,LernEtal11, HassEtal08}.
+We found that different brain networks varied in how informative and
+compressible their activity patterns were across experimental conditions (e.g.,
+Fig.~\ref{fig:networks}). This might
+follow from evolutionary optimizations that reflect the relevant constraints or
+demands placed on those networks. One possibility is that cortex is organized
+in a hierarchy of networks ``concerned with'' or selective to different levels
+of processing or function. To the extent that different levels of processing
+(e.g., low-level sensory processing versus ``deeper'' higher-level processing)
+reflect different stimulus timescales~\citep[e.g.,][]{Mann23b}, the network
+differences we observed might also relate to the timescales at which each
+network is maximally sensitive~\citep{RegeEtal18, BaldEtal17,LernEtal11,
+HassEtal08}.
+
+Our reverse inference analyses (Figs.~\ref{fig:neurosynth-pca},
+\ref{fig:neurosynth-summary}) also provide some insights into how neural
+activity patterns change with cognitive engagement or task demands. Prior work
+has shown that the components and network ``parcels'' identified through
+covarying activity patterns can be highly similar even across different
+tasks~\citep[including ``rest,'' e.g.,][]{SmitEtal09, LairEtal11}. We
+replicated this basic finding in that the first principal components from all
+four experimental conditions were strikingly similar (e.g., see the leftmost
+columns of Figs.~\ref{fig:neurosynth-pca}A and~\ref{fig:neurosynth-summary}C,
+D). We also found some small, though statistically reliable, systematic changes
+in the weights associated with different cognitive functions across conditions
+(Fig.~\ref{fig:neurosynth-summary}E). This result provided an additional way of
+characterizing network-level differences across conditions
+(Fig.~\ref{fig:networks}E).  Taken together, these findings suggest that although
+similar networks may be involved in different tasks, the ways in which those
+networks are engaged may vary systematically with task demands.
+
+
 
 \subsection*{Concluding remarks}
 
@@ -644,9 +832,11 @@ fundamental ``rules'' describing how our brains respond, and about how brain
 activity patterns and the associated underlying cognitive representations and
 computations are linked. We identified two aspects of brain activity patterns,
 informativeness and compressibility, that appear to change systematically with
-task demands and across brain networks. Our work helps to clarify how the
-``neural code'' might be structured, and how the code might vary across tasks
-and brain areas.
+task demands and across brain networks. We speculate that these changes may
+reflect ongoing tradeoffs between how robust to signal corruption versus how
+expressive about ongoing cognitive states our brains' activity patterns are.
+Our work also provides a new framework for evaluating these tradeoffs in other
+datasets, or in future studies.
 
 \section*{Methods}
 
@@ -656,6 +846,10 @@ processing. We were especially interested in how \textit{informative} and
 \textit{compressible} the activity patterns were under these different
 conditions (Fig.~\ref{fig:information-compression}).
 
+Unless otherwise noted, all statistical tests are two-sided, all error bars and
+error ribbons denote bootstrap-estimated 95\% confidence intervals across
+participants, and all reported $p$-values are corrected for multiple
+comparisons using the Benjamini-Hochberg procedure~\citep{BenjHoch95}.
 
 \subsection*{Functional neuroimaging data collected during story
   listening}
@@ -674,7 +868,40 @@ which the data were collected~\citep{SimoEtal16}. Procedures were approved by
 the Princeton University Committee on Activities Involving Human Subjects, and
 by the Western Institutional Review Board (Puyallup, WA). All subjects were
 native English speakers with normal hearing and provided written informed
-consent.
+consent. We have excerpted the relevant portions of the dataset documentation
+here to provide information about the scanning parameters and preprocessing
+steps used to generate the data we analyzed (the original descriptions may be
+found at the above link):
+
+\begin{quote}
+Subjects were scanned in a 3T full-body MRI scanner (Skyra; Siemens) with a
+sixteen-channel head coil. For functional scans, images were acquired using a
+T2* weighted echo planer imaging (EPI) pulse sequence [repetition time (TR),
+1500 ms; echo time (TE), 28 ms; flip angle, $64^\circ$], each volume comprising
+27 slices of 4 mm thickness with 0 mm gap; slice acquisition order was
+interleaved. In-plane resolution was $3 \times 3$ mm\textsuperscript{2} [field
+of view (FOV), 192 $\times$ 192 mm\textsuperscript{2}]. Anatomical images were
+acquired using a T1-weighted magnetization-prepared rapid-acquisition gradient
+echo (MPRAGE) pulse sequence (TR, 2300 ms; TE, 3.08 ms; flip angle 9$^\circ$;
+0.89 mm\textsuperscript{3} resolution; FOV, 256 mm\textsuperscript{2}). To
+minimize head movement, subjects' heads were stabilized with foam padding.
+Stimuli were presented using the Psychophysics toolbox~\citep{Brai97,Pell97}.
+Subjects were provided with an MRI compatible in-ear mono earbuds (Sensimetrics
+Model S14), which provided the same audio input to each ear. MRI-safe passive
+noise-canceling headphones were placed over the earbuds, for noise removal and
+safety. 
+
+Functional data were preprocessed and analyzed using FSL
+(www.fmrib.ox.ac.uk/fsl), including correction for head motion and
+slice-acquisition time, spatial smoothing (6 mm FWHM Gaussian kernel), and
+high-pass temporal filtering (140 s period). Preprocessed data were aligned to
+coplanar and high-resolution anatomicals and the standard MNI152 brain, and
+interpolated to 3-mm isotropic voxels.
+\end{quote}
+
+The intact and word conditions each comprised 300 TRs (7.5 minutes) per participant.
+The paragraph condition comprised 272 TRs (6.8 minutes) per participant. The rest
+condition comprised 400 TRs (10 minutes) per participant.
 
 \subsection*{Hierarchical topographic factor analysis (HTFA)}
 
@@ -682,7 +909,7 @@ Following our prior related work, we used HTFA~\citep{MannEtal18} to derive a
 compact representation of the neuroimaging data. In brief, this approach
 approximates the timeseries of voxel activations (44,415 voxels) using a much
 smaller number of radial basis function (RBF) nodes~\citep[in this case, 700
-nodes, as determined by an optimization procedure;][]{MannEtal18}. This
+nodes, as determined by an optimization procedure;][]{MannEtal18}.  This
 provides a convenient representation for examining full-brain activity patterns
 and network dynamics. All of the analyses we carried out on the neuroimaging
 dataset were performed in this lower-dimensional space. In other words, each
@@ -691,6 +918,46 @@ HTFA-derived factor weights (where the row and column labels were matched
 across participants). Code for carrying out HTFA on fMRI data may be found as
 part of the BrainIAK toolbox~\citep{CapoEtal17, KumaEtal21}, which may be
 downloaded at \href{https://brainiak.org/}{brainiak.org}.
+
+We also considered alternative approaches to obtaining compact representations
+of the neuroimaging data, including network
+parcellations~\citep[e.g.,][]{SchaEtal18, GordEtal16}. Whereas network
+parcellations are typically derived from large resting state datasets, HTFA may
+be applied to much smaller datasets. In our prior work, we showed that HTFA
+applied to the same dataset used here can explain full-brain activity to within
+a maximum of 0.25 standard deviations of each voxel's observed activity in the
+original dataset, taken across all voxels, images, and participants, using the
+700-node representation we also employed here~\citep{MannEtal18}. Some of the
+explanatory power of HTFA comes from the fact that each node's influence falls
+off smoothly with distance to its center. Intuitively, the result is a
+representation that looks like a lightly spatially smoothed version of the
+original data, but where the degree of smoothing varies across the brain
+according to how spatially autocorrelated the local activity patterns are.
+
+\subsection*{Network permutation tests}
+
+In our analyses of how informativeness varied across brain networks
+(Fig.~\ref{fig:networks}), we considered the possibility that the correlations
+with network order might be influenced by the numbers of nodes in each network.
+We designed a permutation-based procedure to address this possibility, whereby
+we repeated the above analyses using shuffled network labels. Specifically, for
+each of $n_1 = 10$ iterations, we randomly shuffled (without replacement) the
+network labels of the HTFA nodes, and then we re-ran our entire decoding
+analysis pipeline, including applying PCA with $3...m$ features for each
+condition (where $m$ is the number of nodes in the given network), and then
+running 100 cross-validation runs of the decoding procedure for each condition
+and number of components. This resulted in 10 sets of shuffled data, where each
+network had the same numbers of nodes, but where the decoding results no longer
+maintained the fidelity of each individual network.
+
+We sampled the original and shuffled datasets (with replacement) to create $n_2
+= 1000$ bootstrap samples. For each bootstrap sample, we computed the
+correlations between the decoding accuracies and network order for each
+condition and number of components. This yielded a distribution of $n_2$
+correlation values for each condition, for both the original and shuffled
+datasets. We then compared the distributions of Spearman's $\rho$ values for
+the original and shuffled datasets using two-sided independent samples Welch's
+$t$-tests.
 
 \subsection*{Principal components analysis (PCA)}
 
@@ -793,22 +1060,88 @@ weight per Neurosynth-derived topic.
 
 \subsection*{Ranking cognitive processes}
 
-We manually identified 11 cognitive labels
-spanning the set of 80 Neurosynth-derived topics: cognitive control, language
-processing, memory, emotion, social cognition, spatial cognition, attention,
-reward, sensory perception, motor control, and resting state. We then used
-ChatGPT to automatically ``rank'' the processes from high-level to low-level
-using the following prompt: ``Please rank these cognitive processes from
-highest-level to lowest-level, where higher values indicate higher-order or
-higher-level processes. Return the result as a csv file with a header row and
-two columns: `Cognitive label' and `Rank'. Here are the processes: cognitive
-control, language processing, memory, emotion, social cognition, spatial
-cognition, attention, reward, sensory perception, motor control, resting
-state''.  Table~\topicTags~displays the output.  We used these labels in
-the analysis presented in Figure~\ref{fig:neurosynth-summary}E to help summarize
-difference in topic weightings across experimental conditions.
+We manually identified 11 cognitive labels spanning the set of 80
+Neurosynth-derived topics: cognitive control, language processing, memory,
+emotion, social cognition, spatial cognition, attention, reward, sensory
+perception, motor control, and resting state. We then used ChatGPT to
+automatically ``rank'' the processes from high-level to low-level using the
+following prompt: ``Please rank these cognitive processes from highest-level to
+lowest-level, where higher values indicate higher-order or higher-level
+processes. Return the result as a csv file with a header row and two columns:
+`Cognitive label' and `Rank'. Here are the processes: cognitive control,
+language processing, memory, emotion, social cognition, spatial cognition,
+attention, reward, sensory perception, motor control, resting state''.
+Table~\topicTags~displays the output.
+
+We recognize that ChatGPT is not omniscient, nor should it be treated as an
+expert cognitive neuroscientist. We therefore reviewed ChatGPT's responses
+carefully by hand to verify that they seemed reasonable to us. Whereas prior
+work has often constructed such rankings by hand, we see our use of ChatGPT in
+this case as a small additional ``sanity check'' on our rankings that helped us
+to be slightly more objective than if we had simply created the rankings
+ourselves manually.
+
+In the analysis presented in Figure~\ref{fig:neurosynth-summary}E, we summarize
+difference in topic weightings across experimental conditions. In particular,
+we sought to characterize how the dominant neural patterns evoked by each
+experimental condition weighted on different cognitive functions. For each of
+the top five principal components from each experimental condition
+(Fig.~\ref{fig:neurosynth-pca}), we computed the average weights for each of
+the 11 manually identified (and ChatGPT-ranked) cognitive labels described
+above (Tab.~\topicTags). We then fit a line separately for each experiment
+condition ($x$-values: cognitive rank; $y$-values: weights). In carrying out
+this analysis, we used a bootstrap procedure to estimate the variability in the
+slopes of the regression lines, whereby we repeated this process for each of $n
+= 100$ iterations, each time resampling (with replacement) the set of observed
+ranks and weights. This procedure yielded distributions of 100 estimated slopes
+for each experimental condition. We used these distributions to compare the
+slopes across experimental conditions and to estimate 95\% confidence
+intervals.
 
 
+
+\subsection*{Synthetic data}
+
+To help illustrate the relationship between informativeness and compressibility
+(Fig.~\ref{fig:information-compression}), we generated four synthetic datasets,
+varying in informativeness and compressibility. Each dataset comprised
+simulated observations of $K = 25$ features across $N = 100$ timepoints, from each of $S = 10$
+participants. To create each dataset, we first constructed a ``template''
+matrix of $N$ timepoints by $K$ features. We then generated participant-specific
+data by adding independent noise to each entry in template matrix, drawn from
+the unit normal distribution (i.e., with a mean of 0 and a variance of 1). We
+repeated this process for each participant, yielding $S$ participant-specific
+matrices for each dataset.
+
+Since we estimate informativeness using the temporal decoding accuracy across
+participants, highly informative data will tend to have observations that are
+highly timepoint specific. Relatively uninformative data, in contrast, will
+tend to have more similar observations across timepoints. To generate data with
+``high informativeness,'' we constructed template matrices whose rows
+(observations) were drawn independently from zero-mean multivariate normal
+distributions. The covariances of these distributions were determined according
+to the desired compressibility of the data, as described below. We used a
+multi-step process to generate data with ``low informativeness.'' First we
+generated new template matrices using the same procedure as for the ``high
+informativeness'' datasets. We then multiplied each matrix by a constant ($\rho
+= 0.1$) and computed the cumulative sum of each matrix's rows. This yielded
+matrices whose rows were highly similar across observations.
+
+Compressibility reflects the extent to which decoding accuracy is affected by
+reducing the number of components used to represent the data. Highly
+compressible data will tend to exhibit more similarities across features,
+whereas less compressible data will tend to show greater independence across
+features. To generate data with ``high compressibility,'' we set the covariance
+matrix of the multivariate normal distribution to a toeplitz matrix whose first
+row was given by $\left[K, K - 1, ..., 1\right]$. To generate data with ``low
+compressibility,'' we set the covariance matrix to the identity matrix.
+
+Template matrices for datasets with high informativeness and high
+compressibility, high informativeness and low compressibility, low
+informativeness and high compressibility, and low informativeness and low
+compressibility are displayed in Figure~\ref{fig:information-compression}C. The
+corresponding decoding curves are displayed in
+Figure~\ref{fig:information-compression}D.
 
 
 
